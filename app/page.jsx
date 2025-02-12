@@ -76,8 +76,9 @@ export default function Home() {
       className=" w-screen flex flex-col justify-center xl:px-0 -z-10"
     >
       <div className="container mx-auto  h-full">
-        <div className="flex flex-col md:flex-row md:gap-[30px] mx-auto text-left bg-base1 bg-opacity-30  py-2 rounded-lg">
-          <div className="w-full md:w-[50%] xl:h-[400px] flex flex-col md:justify-between order-2 md:order-none  ">
+      <div className="flex flex-col md:flex-row md:gap-[30px] mx-auto text-left bg-base1 bg-opacity-100 py-2 rounded-lg w-[90%] md:w-[100%] lg:w-[100%]">
+
+          <div className="w-full md:w-[70%] xl:h-[400px] flex flex-col md:justify-between order-2 md:order-none  ">
             <div className="my-auto">
               <div className="md:text-3xl text-lg py-4 px-2 font-semibold leading-none stroke-primary   text-center group-hover:text-acccent transition-all duration-500 capitalize">
                 {list.title}

@@ -67,8 +67,9 @@ const ProjectCall = () => {
                     <div className="lg:h-[400px] h-[200px] relative group w-3/4 mx-auto flex justify-center items-center bg-base2 ">
                       <div></div>
                       <div className="relative w-full h-full">
-                        <Image src={project.img} fill className="object-fill" />
-                      </div>
+  <Image src="/assests/original-removebg-preview.png" fill className="object-cover" />
+</div>
+
                     </div>
                   </div>
                 </div>

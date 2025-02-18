@@ -1,9 +1,5 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
 import Image from "next/image";
-import WorkSliderBtns from "@/components/ui/WorkSliderBtns";
 
 const projects = [
   {
@@ -129,69 +125,46 @@ const projects = [
     aosdelay: "",
   },
 ];
-const list = projects.length;
-const CompletedProjects = () => {
-  const [project, setProject] = useState(projects[0]);
-  const handleSlideChange = (swiper) => {
-    const currentIndex = swiper.activeIndex;
-    setProject(projects[currentIndex]);
-  };
 
+
+const CompletedProjects = () => {
   return (
     <motion.section
       initial={{ opacity: 0 }}
-      animate={{
-        opacity: 1,
-      }}
-      className="min-h-[80vh] w-screen flex flex-col justify-center xl:px-0 "
+      animate={{ opacity: 1 }}
+      className="min-h-screen w-screen flex flex-col justify-center xl:px-0 py-1" // reduced padding here
     >
-      <div className="container mx-auto text-center h-full">
-        <div className="flex flex-col md:flex-row md:gap-[30px] mx-auto text-left">
-          <div className="w-full md:w-[50%] xl:h-[400px] flex flex-col md:justify-between order-2 md:order-none  ">
-            <div className="my-auto">
-              <div className="md:text-6xl text-5xl py-3 leading-none font-extrabold text-transparent text-outline">
-                {list - project.id + 1}
-              </div>
-              <div className="md:text-2xl text-lg py-2 font-bold leading-none text-base1 group-hover:text-acccent transition-all duration-500 capitalize">
-                {project.title}
-              </div>
-              <p className="text-base2 md:text-sm text-xs py-2 opacity-95 font-light">
-                {project.des}
-              </p>
-              <div className="border border-base1"></div>
-            </div>
-          </div>
-          <div className="w-full  my-auto md:w-[50%] ">
-            <Swiper
-              spaceBetween={30}
-              slidesPerView={1}
-              className="xl:h-[400px] mb-12"
-              onSlideChange={handleSlideChange}
-              autoplay="true"
+      <div className="container mx-auto text-center mt-0"> {/* Added margin-top here */}
+        <h2 className="text-4xl font-bold text-primary mb-8"></h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((project) => (
+            <motion.div
+              key={project.id}
+              className="bg-[#f5f5f5] border border-primary rounded-lg shadow-lg overflow-hidden transition-all transform hover:scale-105 p-4 backdrop-blur-md"
+              whileHover={{ scale: 1.05 }}
             >
-              {projects.map((project, index) => {
-                return (
-                  <SwiperSlide key={index} className="w-full">
-                    <div className="lg:h-[400px] h-[200px] relative group w-3/4 mx-auto flex justify-center items-center bg-base2 ">
-                      <div></div>
-                      <div className="relative w-full h-full">
-                        <Image src={project.img} fill className="object-fill" />
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                );
-              })}
-
-              <WorkSliderBtns
-                containerStyles="flex gap-2 absolute right-0 bottom-[calc(50%_-_22px)] xl:bottom-0  xl:mx-auto  z-30 w-full justify-between xl:w-max xl:jutify-none "
-                btnStyles="bg-base1 text-primary hover:text-base1 hover:bg-primary text-base1 text-[22px] w-[44px] h-[44px] flex justify-center items-center transition-all"
-              />
-            </Swiper>
-          </div>
+              <div className="w-full h-56 relative mb-4">
+                <Image
+                  src={project.img || "/assests/completed/default.jpg"}
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-xl"
+                  alt={project.title}
+                />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                {project.title}
+              </h3>
+              <p className="text-gray-600 text-sm">{project.des}</p>
+              <span className="text-sm font-semibold mt-3 text-gray-500"></span>
+            </motion.div>
+          ))}
         </div>
       </div>
     </motion.section>
   );
 };
+
+
 
 export default CompletedProjects;

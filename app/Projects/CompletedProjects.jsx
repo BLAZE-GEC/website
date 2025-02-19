@@ -98,28 +98,31 @@ const projects = [
   },
   {
     id: 4,
-    img: "",
+    img: "/assests/original.png",
     title: " Blind Man's Eye",
     des: "Mobility for the blind can be defined as the ability to move with ease, speed and safely through his environment independently. Through this project we put in an effort to illuminate the perpetually dark world of the blind. We present here an electronic travel aid device consisting of ultrasonic sensor to detect obstacles on the way within a distance of two to three meters. The discrete distance of the object is then measured and sensed by tactile vibrators, thus allowing the blind to walk comfortably.  ",
     aosdelay: "",
   },
   {
     id: 3,
-    img: "",
+    img: "/assests/original.png",
+    
     title: "Low Cost PCB Milling Machine",
     des: "The goal of this project is to design and construct a PCB milling machine. The design part consists of four steps: machine specifications, machine frame blue print, programming and electronics design. A PCB Mill is a device that etches out a pattern on a copper clad board such that it makes a Printed Circuit Board (PCB). PCBs are used everywhere in the field of electrical engineering to connect electrical components to one another. The advantage of the PCB Mill is its ability to create a prototype in less than a couple hours and at a much reduced cost compared to outsourcing. The current price of a commercial PCB Milling device is around 1 LAKH which is a significant investment for most small labs or individuals wishing to quickly prototype. The solution would be - Make a PCB Mill at low cost.",
     aosdelay: "",
   },
   {
     id: 2,
-    img: "",
+    img: "/assests/original.png",
+    
     title: "Gesture Based Commando Disaster Management Robot",
     des: "The objective of this project is to build a ROBOT that can be controlled by gesture wirelessly. User is able to control motions of the robot by wearing the controller glove and performing predefined gestures. In this project we are using a gyro controlled transmitter glove for the direction and speed control of the robot. For efficient aiding in commando operating and in the field of post disaster operation we are employing metal detection, gas detection and human detection. For better control of robot and for better analytic purpose real time video transmission is also done.",
     aosdelay: "",
   },
   {
     id: 1,
-    img: "",
+    img: "/assests/original.png",
+    
     title: "Inverted Pendulum Balancer",
     des: "The goal of this project is to implement an inverted pendulum balancer in the vertical two-dimensional plane, using proportional-integral-derivative (PID) feedback control. The inverted pendulum balancer is a controllable cart with an inverted pendulum attached to it. The system combines together a computational hardware, an input angle sensor and an output motor driver on a single board .The purpose of the system is to autonomously control the motion of the cart in order to prevent the pendulum from falling. The inputs over limited time in the form of pendulum position readings are mapped using algorithm to output in the form of motor control. The feedback control algorithm calculates the error in angle from the reference and relates to the motor velocity and direction using PID algorithm.The pendulum can be balanced by fine-tuning the variables-corresponding to the PID equation-according to system behavior.",
     aosdelay: "",

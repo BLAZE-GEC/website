@@ -18,7 +18,7 @@ const Projects = () => {
 <div className="mx-auto text-center ">
 <Tabs defaultValue="upcomingprojects"   className="gap-[10px]">
     <TabsList className="mx-auto" >
-      <TabsTrigger value="upcomingprojects">Upcoming Projects</TabsTrigger>
+      <TabsTrigger value="upcomingprojects">Ongoing Projects</TabsTrigger>
       <TabsTrigger value="projectcall">Project Call</TabsTrigger>
       <TabsTrigger value="completedprojects">Completed Projects</TabsTrigger>
       

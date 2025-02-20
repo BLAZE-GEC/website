@@ -9,8 +9,9 @@ const links = [
   { name: "PROJECTS", path: "/Projects" },
   { name: "EVENTS", path: "/Events" },
   { name: "TEAM", path: "/Team" },
+  {name:"ALUMNI",path:"/Alumni"},
+  {name:"SHRISTI",path:"/Shristi"},
   { name: "CONTACT", path: "/Contact" },
-  { name: "SHRISTI", path: "/Shristi" },  
 ];
 
 const Nav = () => {

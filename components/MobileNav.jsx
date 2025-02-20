@@ -11,6 +11,7 @@ const links = [
   { name: "PROJECTS", path: "/Projects" },
   { name: "EVENTS", path: "/Events" },
   { name: "TEAM", path: "/Team" },
+  {name:"ALUMNI",path:"/Alumni"},
   { name: "CONTACT", path: "/Contact" },
   { name: "SHRISTI", path: "/Shristi" },  // Add this line
 ];

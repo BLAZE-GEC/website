@@ -12,7 +12,9 @@ const links = [
   { name: "EVENTS", path: "/Events" },
   { name: "TEAM", path: "/Team" },
   { name: "CONTACT", path: "/Contact" },
+  { name: "SHRISTI", path: "/Shristi" },  // Add this line
 ];
+
 
 const MobileNav = () => {
   const pathname = usePathname();

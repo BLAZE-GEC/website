@@ -1,235 +1,182 @@
-"use client";
-import { motion } from "framer-motion";
-import { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import Image from "next/image";
-import WorkSliderBtns from "@/components/ui/WorkSliderBtns";
-import { RiLinkedinFill } from "react-icons/ri";
 
-const members = [
+import { FaLinkedin } from "react-icons/fa";
+
+const teamMembers = [
   {
-    id: 25,
-    img: "/assests/thinkercad.jpg",
-    name: "Prof.Lalgy Gopi, Electrical",
-    des: "Staff Advisor",
-    link: "https://www.linkedin.com/in/lalgy-gopi-5454061ba/",
+    name: "Prof. Lalgy Gopi",
+    role: "Staff Advisor",
+    image: "/assests/team/lalgysir.jpg", 
+    linkedin: "https://www.linkedin.com/in/lalgy-gopi-123456789",
   },
   {
-    id: 25,
-    img: "/assests/thinkercad.jpg",
-    name: "Aysha PT ",
-    des: "Convenor",
-    link: "https://www.linkedin.com/in/aysha-pt-b2509222b/",
+    name: "Aysha PT",
+    role: "Convenor",
+    image: "/assests/team/Ayshapt.jpg",
+    linkedin: "https://www.linkedin.com/in/aysha-pt-987654321",
   },
   {
-    id: 24,
-    img: "/assests/thinkercad.jpg",
     name: "Abhay Krishna K",
-    des: "Joint-Convenor",
-    link: "https://www.linkedin.com/in/abhay-krishna-k-596a4722a/",
+    role: "Joint-Convenor",
+    image: "/assests/team/abaykrishna.jpg",
+    linkedin: "https://www.linkedin.com/in/abhay-krishna-k-654321987",
   },
   {
-    id: 23,
-    img: "/assests/thinkercad.jpg",
     name: "Krishna S",
-    des: "Treasurer",
-    link: "https://www.linkedin.com/in/krishna-s-39a27b260/",
+    role: "Treasurer",
+    image: "/assests/team/krishna.jpg",
+    linkedin: "https://www.linkedin.com/in/krishna-s-789123456",
   },
   {
-    id: 22,
-    img: "/assests/thinkercad.jpg",
-    name: "Irene Mary Froyd",
-    des: "Editor",
-    link: "https://www.linkedin.com/in/irene-mary-froyd-626423247/",
-  },
-  {
-    id: 21,
-    img: "/assests/thinkercad.jpg",
-    name: "Vishnu Divakar",
-    des: "Sponership & P.R. Head",
-    link: "https://www.linkedin.com/in/vishnu-dk24/",
-  },
-  {
-    id: 20,
-    img: "/assests/thinkercad.jpg",
-    name: "Harichandana M",
-    des: "Creative Director",
-    link: "https://www.linkedin.com/in/harichandana-m/",
-  },
-  {
-    id: 19,
-    img: "/assests/thinkercad.jpg",
-    name: "Anjana RB",
-    des: "Content Head",
-    link: "https://www.linkedin.com/in/anjana-r-b-2238941bb/",
-  },
-  {
-    id: 18,
-    img: "/assests/thinkercad.jpg",
     name: "Athul S",
-    des: "Project Head (Circuital)",
-    link: "",
+    role: "Project Head (Circuital)",
+    image: "/assests/team/athuls.jpg",
+    linkedin: "linkedin: https://www.linkedin.com/",
   },
   {
-    id: 17,
-    img: "/assests/thinkercad.jpg",
     name: "Akash C",
-    des: "Project Head (Non Circuital)",
-    link: "https://www.linkedin.com/in/akash-c-2bb12a24a/",
+    role: "Project Head (Non Circuital)",
+    image:"/assests/team/Akash.jpeg",
+    linkedin: "https://www.linkedin.com/in/akash-c-2bb12a24a/",
   },
   {
-    id: 16,
-    img: "/assests/thinkercad.jpg",
     name: "Naveen P Suresh",
-    des: "Electronics Lab Coordinator",
-    link: "https://www.linkedin.com/in/naveen-p-suresh-9461762a1/",
+    role: "Electronics Lab Coordinator",
+    image: "/assests/team/suresh.jpg",
+    linkedin: "https://www.linkedin.com/in/naveen-p-suresh-9461762a1/",
   },
   {
-    id: 15,
-    img: "/assests/thinkercad.jpg",
     name: "Akhil Roy",
-    des: "Tools & Machines Coordinator",
-    link: "https://www.linkedin.com/in/akhil-roy-abb034271/",
+    role: "Tools & Machines Coordinator",
+    image: "/assests/team/akhilroy.jpeg",
+    linkedin: "https://www.linkedin.com/in/akhil-roy-abb034271/",
   },
   {
-    id: 14,
-    img: "/assests/thinkercad.jpg",
-    name: "Devika P",
-    des: "Program Head",
-    link: "https://www.linkedin.com/in/devika-p-a7b741245/",
-  },
-  {
-    id: 13,
-    img: "/assests/thinkercad.jpg",
-    name: "Rishikeshan MD",
-    des: "Robogames Head",
-    link: "",
-  },
-  {
-    id: 12,
-    img: "/assests/thinkercad.jpg",
     name: "Anjana V",
-    des: "Media & Publicity",
-    link: "https://www.linkedin.com/in/anjana-v-837b94305/",
+    role: "Program Head",
+    image: "/assests/team/anjanav.jpg",
+    linkedin: "https://www.linkedin.com/in/anjana-v-837b94305/",
   },
   {
-    id: 11,
-    img: "/assests/thinkercad.jpg",
+    name: "Rishikeshan MD",
+    role: "Robogames Head",
+    image: "/assests/team/rishikeshan.jpg",
+    linkedin: "linkedin: https://www.linkedin.com/",
+  },
+  {
+    name: "Abdul Hakkim",
+    role: "Media & Publicity",
+    image: "/assests/team/adwaithmk.jpg",
+    linkedin: "https://www.linkedin.com/in/abdul-hakkim-64a50123a/",
+  },
+  {
     name: "Sreerag R",
-    des: "Media & Publicity",
-    link: "https://www.linkedin.com/in/sreeragrayirath/",
+    role: "Media & Publicity",
+    image: "/assests/team/sreerag.jpg",
+    linkedin: "https://www.linkedin.com/in/sreeragrayirath/",
   },
+  
   {
-    id: 10,
-    img: "/assests/thinkercad.jpg",
-    name: "Dravid Desh D",
-    des: "Media & Publicity",
-    link: "https://www.linkedin.com/in/dravid-desh-d-b29a2a2bb/",
-  },
-  {
-    id: 9,
-    img: "/assests/thinkercad.jpg",
     name: "Anamika CS",
-    des: "Program Coordinators",
-    link: "https://www.linkedin.com/in/anamika-c-s-726414270/",
+    role: "Program Coordinator",
+    image:"/assests/team/anamika.jpg",
+    linkedin: "https://www.linkedin.com/in/anamika-c-s-726414270/",
   },
   {
-    id: 8,
-    img: "/assests/thinkercad.jpg",
-    name: "Abdul Hakkim S",
-    des: "Program Coordinators",
-    link: "https://www.linkedin.com/in/abdul-hakkim-64a50123a/",
+    name: "Hima TJ",
+    role: "Program Coordinator",
+    image:"/assests/team/hima.jpg",
+    linkedin: "https://www.linkedin.com/",
   },
   {
-    id: 7,
-    img: "/assests/thinkercad.jpg",
     name: "Navya MS",
-    des: "Department Coordinators(PE)",
-    link: "https://www.linkedin.com/in/navya-m-s-14803629b/",
+    role: "Department Coordinator (PE)",
+    image: "/assests/team/navyams.jpg",
+    linkedin: "https://www.linkedin.com/in/navya-m-s-14803629b/",
   },
   {
-    id: 6,
-    img: "/assests/thinkercad.jpg",
-    name: "Saran VS",
-    des: "Department Coordinators(CE)",
-    link: "",
+    name: "Sniya Sunil",
+    role: "Department Coordinator (CE)",
+    image:"/assests/team/sniyasunil.jpg",
+    linkedin: "https://www.linkedin.com/in/sniya-sunil?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
   },
   {
-    id: 5,
-    img: "/assests/thinkercad.jpg",
-    name: "V Gopika Unni",
-    des: "Department Coordinators(CS)",
-    link: "",
+    name: "Maria Denny",
+    role: "Department Coordinator (CS)",
+    image: "/assests/team/mariyadenny.jpg",
+    linkedin: "https://www.linkedin.com/in/maria-denny-042b91287?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
   },
   {
-    id: 4,
-    img: "/assests/thinkercad.jpg",
     name: "Irin Maria",
-    des: "Department Coordinators(ECE)",
-    link: "https://www.linkedin.com/in/irin-maria-bbb60b2b7/",
+    role: "Department Coordinator (ECE)",
+    image: "/assests/team/irinmaria.jpg",
+    linkedin: "https://www.linkedin.com/in/irin-maria-bbb60b2b7/",
   },
   {
-    id: 3,
-    img: "/assests/thinkercad.jpg",
-    name: "Harishankar",
-    des: "Department Coordinators(ME)",
-    link: "",
+    name: "Nandhukrishna B",
+    role: "Department Coordinator (ME)",
+    image:"/assests/team/nandhukrishna.jpg",
+    linkedin: "https://www.linkedin.com/in/nandhukrishnab?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
   },
   {
-    id: 2,
-    img: "/assests/thinkercad.jpg",
     name: "Diya Ravi",
-    des: "Department Coordinators(EEE)",
-    link: "",
+    role: "Department Coordinator (EEE)",
+    image: "/assests/team/Sidharthan.jpg",
+    linkedin: "https://www.linkedin.com/in/",
   },
   {
-    id: 1,
-    img: "/assests/thinkercad.jpg",
     name: "Naveen Venugopal",
-    des: "Department Coordinators(CHE)",
-    link: "",
+    role: "Department Coordinator (CHE)",
+    image:"/assests/team/naveen.jpg",
+    linkedin: "https://www.linkedin.com/in/",
   },
 ];
-const list = members.length;
-const Team = () => {
-  const [member, setMember] = useState(members[0]);
 
+
+export default function TeamSection() {
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      animate={{
-        opacity: 1,
-      }}
-      className="min-h-[80vh] w-full flex flex-col justify-center xl:px-0 "
-    >
-      <div>
-        <h1 className="text-center text-xl md:text-3xl  py-8 ">Introducing Our Team</h1>
-      </div>
-      <div className="container mx-auto text-center h-full">
-        <div className=" mx-auto py-8 text-left grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2">
-          {members.map((member, index) => {
-            return (
-              <div className="py-6 mx-auto text-center" key={index}>
-                <div className="">
-                  <div className="mx-auto flex  md:h-48 md:w-48 w-32 h-32 rounded-full bg-acccent md:pt-36 pt-24 pl-12 md:pl-20  ">
-                    <a href={member.link}>
-                      
-                      <div className=" md:h-10 md:w-10 h-6 w-6 my-auto mx-auto flex rounded-full bg-[white]  ">
-                        <RiLinkedinFill className="mx-auto my-auto h-3 md:h-6 text-[blue]" />
-                      </div>
-                    </a>
-                  </div>
-                </div>
-                <div className="text-sm md:text-base text-base3">{member.name}</div>
-                <div className="font-semibold text-xs md:text-sm text-base3">{member.des}</div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </motion.section>
-  );
-};
+    <section className="py-10 bg-gray-100">
+      <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
+        Introducing Our Team
+      </h2>
 
-export default Team;
+      <div className="flex flex-wrap justify-center gap-10">
+        {teamMembers.map((member, index) => (
+          <div key={index} className="flex flex-col items-center text-center">
+            {/* Circular Profile Image */}
+            <div className="w-48 h-48 rounded-full overflow-hidden shadow-lg bg-gray-200 border-4 border-gray-400">
+              {member.image ? (
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center text-gray-500">
+                  No Image
+                </div>
+              )}
+            </div>
+
+            {/* Name & Role (Outside the Circle) */}
+            <h3 className="mt-4 text-lg font-semibold text-gray-900">
+              {member.name}
+            </h3>
+            <p className="text-gray-600">{member.role}</p>
+
+            {/* Clickable LinkedIn Icon */}
+            {member.linkedin && (
+              <a
+                href={member.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 text-blue-500 hover:text-blue-700"
+              >
+                <FaLinkedin size={28} />
+              </a>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}

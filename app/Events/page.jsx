@@ -5,6 +5,102 @@ import Image from "next/image";
 
 const events = [
   {
+    id: 13,
+    img: "/assests/events1/dwsim.jpeg",
+    title: "DWSIM Workshop",
+    des: `DWSIM Workshop: A Resounding Success!
+
+Our exclusive DWSIM workshop for chemical engineering students was a huge hit! On January 8th, participants gathered to learn the fundamentals of process plant modeling using DWSIM. With rigorous thermodynamic and unit operations models, our attendees enhanced their skills in chemical engineering process design and optimization. We're thrilled with the outcome and grateful for the enthusiasm and engagement of our participants!`,
+    venue: "Online",
+    date: "25-06-2024",
+    time: "7:00pm",
+    link: "",
+    status: "Registration Closed",
+  },
+
+  {
+    id: 12,
+    img: "/assests/events1/ros.jpeg",
+    title: "ROS Workshop",
+    des: `We had an incredible ROS Software Workshop led by Harrison Seby, an esteemed alumnus and robotics expert from Black Coffee Robotics! Participants gained hands-on experience in building and programming virtual robots while exploring ROS fundamentals like navigation, motion planning, and sensor integration. The workshop sparked creativity and innovation, providing valuable insights that enriched our robotics community. Huge thanks to Harrison Seby for sharing his expertise and inspiring us all!`,
+    venue: "Online",
+    date: "25-06-2024",
+    time: "7:00pm",
+    link: "",
+    status: "Registration Closed",
+  },
+  {
+    id: 11,
+    img: "/assests/events1/robowar.jpeg",
+    title: "ROBO WARS",
+    des: `Step into the arena of Robowar, where power, precision, and passion collide! 🤖⚔️ This year’s battles showcased fierce bots, strategic mastery, and cutting-edge innovation. More than just a competition, it was a display of engineering brilliance and teamwork. Watch as these mighty machines clash, igniting sparks of creativity and determination.`,
+    venue: "Online",
+    date: "25-06-2024",
+    time: "7:00pm",
+    link: "",
+    status: "Registration Closed",
+  },
+
+  {
+    id: 10,
+    img: "/assests/events1/robotics.jpeg",
+    title: "Robotics Workshop",
+    des: `Robotics Workshop : Exploring the Future of Robotics
+
+Ideator GECT successfully hosted an engaging "Introduction to Robotics" workshop on September 10th, 2024. Our esteemed speaker, Christo Kollannur, Co-founder of Estro Tech Robotics, led the session.
+
+Key Highlights:
+- Comprehensive introduction to robotics fundamentals
+- Exploring potential applications in various industries (healthcare, manufacturing, transportation)
+- Inspiring examples of robots shaping the future (AI, machine learning, innovation)
+
+Special Thanks:
+- Christo Kollannur for sharing his expertise
+- Jayaraj Shankar for valuable support
+- Ideator volunteer coordinators Jishnu, Mohammed Safvan, and Execom member Anjana V for exceptional coordination efforts
+
+This workshop ignited a passion for robotics in our students. Stay tuned for future events that delve deeper into this fascinating field!`,
+    venue: "Online",
+    date: "25-06-2024",
+    time: "7:00pm",
+    link: "",
+    status: "Registration Closed",
+  },
+  {
+    id: 9,
+    img: "/assests/events1/javascript.jpeg",
+    title: "Javascript Workshop",
+    des: `javaScript Workshop
+
+Our offline JavaScript workshop, "Build, Create, Innovate," was a resounding success! From February 11-13, participants gathered at our venue, eager to master JavaScript fundamentals, intermediate concepts, and advanced techniques.
+
+Hands-on sessions, interactive discussions, and networking opportunities made this offline event an unforgettable experience. We're thrilled with the enthusiasm, engagement, and progress shown by our attendees!
+
+Thanks to our expert speakers, dedicated organizers, and passionate participants for making this event a huge hit!
+
+Stay tuned for more exciting offline events and workshops!`,
+    date: "25-06-2024",
+    time: "7:00pm",
+    link: "",
+    status: "Registration Closed",
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  {
     id: 8,
     img: "/assests/thinkercad.jpg",
     title: "ThinkerCad Workshop",

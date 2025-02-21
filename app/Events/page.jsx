@@ -20,7 +20,7 @@ Our exclusive DWSIM workshop for chemical engineering students was a huge hit! O
 
   {
     id: 12,
-    img: "/assests/events1/ros.jpeg",
+    img: "/assests/events1/Ros.jpeg",
     title: "ROS Workshop",
     des: `We had an incredible ROS Software Workshop led by Harrison Seby, an esteemed alumnus and robotics expert from Black Coffee Robotics! Participants gained hands-on experience in building and programming virtual robots while exploring ROS fundamentals like navigation, motion planning, and sensor integration. The workshop sparked creativity and innovation, providing valuable insights that enriched our robotics community. Huge thanks to Harrison Seby for sharing his expertise and inspiring us all!`,
     venue: "Online",
@@ -31,7 +31,7 @@ Our exclusive DWSIM workshop for chemical engineering students was a huge hit! O
   },
   {
     id: 11,
-    img: "/assests/events1/robowar.jpeg",
+    img: "/assests/events1/Robowar.jpeg",
     title: "ROBO WARS",
     des: `Step into the arena of Robowar, where power, precision, and passion collide! 🤖⚔️ This year’s battles showcased fierce bots, strategic mastery, and cutting-edge innovation. More than just a competition, it was a display of engineering brilliance and teamwork. Watch as these mighty machines clash, igniting sparks of creativity and determination.`,
     venue: "Online",

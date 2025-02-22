@@ -23,7 +23,7 @@ const alumni = [
     id: "3",
     name: "Don Paul ",
     image: "",
-    role: "Ideator Convenor : 2012 – 13",
+    role: "Ideator Convenor : 2015 – 16",
     linkedin: "https://www.linkedin.com/in/hidon/",
     
   },
@@ -63,7 +63,7 @@ const alumni = [
     id: "8",
     name: "Najeeb Kuzhiyil ",
     image: "",
-    role: "1993 -97 BTech Chemical Eng",
+    role: "BS Chemical Engineering",
     linkedin: "https://www.linkedin.com/in/najeeb-kuzhiyil/",
     
   },

@@ -11,7 +11,7 @@ const teamMembers = [
   {
     name: "Aysha PT",
     role: "Convenor",
-    image: "/assests/team/Ayshapt.jpg",
+    image: "/assests/team/Ayshapt.jpeg",
     linkedin: "https://www.linkedin.com/in/aysha-pt-987654321",
   },
   {

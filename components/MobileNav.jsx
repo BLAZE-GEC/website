@@ -6,14 +6,14 @@ import Link from "next/link";
 import { CiMenuFries } from "react-icons/ci";
 
 const links = [
-  //{ name: "HOME", path: },
+  { name: "HOME", path: "/" },
  // { name: "ABOUT", path: "/About" },
   { name: "PROJECTS", path: "/Projects" },
   { name: "EVENTS", path: "/Events" },
   { name: "TEAM", path: "/Team" },
   {name:"ALUMNI",path:"/Alumni"},
   { name: "CONTACT", path: "/Contact" },
-  { name: "SHRISTI", path:  "/" },  // Add this line
+  { name: "SHRISTI", path: "/Shristi" },  // Add this line
 ];
 
 

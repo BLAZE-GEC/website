@@ -47,7 +47,8 @@ const alumni = [
     <p style="text-align: justify;">He’s also the President of the charity organization Arise Kerala Inc, registered in the USA, engaged in humanitarian efforts in the fields of disaster relief, hunger elimination, education support, and healthcare support in his home state of Kerala.</p>
     <p style="text-align: justify;"><strong>Message</strong></p>
     <p style="text-align: justify;">The passion of students engaged in the Ideator Club is encouraging. Many of the students and teams that I have interacted with show purpose, skills, and capabilities required to become successful with the help of some guidance and mentoring. As an alumnus, I am glad to support and mentor some of these students in their journey in college and future career.</p>`
-  },  {
+  },
+  {
     id: "6",
     name: "Prasad Pillai",
     image: "/assests/nopic.png",
@@ -81,13 +82,21 @@ const alumni = [
   }
 ];
 
-
-
 const Alumni = () => {
   const [hoveredId, setHoveredId] = useState(null);
 
+  // Number of columns (4 for md:grid-cols-4 as in your original code)
+  const numColumns = 4;
+  const rows = [];
+  for (let i = 0; i < alumni.length; i += numColumns) {
+    rows.push(alumni.slice(i, i + numColumns));
+  }
+  
+  // Get the details of the hovered alumni item
+  const hoveredItem = alumni.find(item => item.id === hoveredId);
+
   return (
-    <section className="py-0 bg-gray-100 flex flex-col md:flex-row items-center h-screen">
+    <section className="py-0 bg-gray-100 flex flex-col md:flex-row items-center min-h-screen">
       {/* Left Side Content */}
       <div className="w-full md:w-1/4 px-6 mb-8 md:mb-0 bg-transparent p-6 rounded-lg shadow-md flex flex-col justify-center h-full">
         <h2 className="text-3xl font-bold text-gray-900 text-center">Guiding Lights</h2>
@@ -105,41 +114,80 @@ const Alumni = () => {
         <p className="text-gray-600 mt-2 text-justify">
           Are you an alumnus or industry professional looking to mentor young innovators?
         </p>
-        <button style={{ backgroundColor: '#808080', color: 'white', padding: '12px 24px', borderRadius: '8px', fontWeight: 'bold', boxShadow: '0px 4px 6px rgba(0,0,0,0.1)', cursor: 'pointer', transition: 'transform 0.2s' }}
+        <button
+          style={{
+            backgroundColor: '#808080',
+            color: 'white',
+            padding: '12px 24px',
+            borderRadius: '8px',
+            fontWeight: 'bold',
+            boxShadow: '0px 4px 6px rgba(0,0,0,0.1)',
+            cursor: 'pointer',
+            transition: 'transform 0.2s'
+          }}
           onMouseOver={(e) => e.target.style.backgroundColor = '#707070'}
-          onMouseOut={(e) => e.target.style.backgroundColor = '#808080'}>
+          onMouseOut={(e) => e.target.style.backgroundColor = '#808080'}
+        >
           Join as a Mentor/Supporter
         </button>
       </div>
 
       {/* Right Side Alumni List */}
-      <div className="w-full md:w-3/4 px-4 grid grid-cols-2 md:grid-cols-4 gap-4 justify-items-center relative">
-        {alumni.map((member) => (
-          <div
-            key={member.id}
-            className="flex flex-col items-center text-center relative cursor-pointer transition-all duration-300"
-            onMouseEnter={() => setHoveredId(member.id)}
-            onMouseLeave={() => setHoveredId(null)}
-            onClick={() => setHoveredId(hoveredId === member.id ? null : member.id)}
-          >
-            <div className="w-24 h-24 rounded-full overflow-hidden shadow-lg bg-gray-200 border-4 border-gray-400 flex items-center justify-center">
-              <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
+      <div className="w-full md:w-3/4 px-4">
+        {rows.map((row, rowIndex) => (
+          // Wrap each row (grid + its description row) in a container
+          <div key={rowIndex} onMouseLeave={() => setHoveredId(null)}>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 justify-items-center">
+              {row.map((member) => (
+                <div
+                  key={member.id}
+                  className="flex flex-col items-center text-center relative cursor-pointer transition-all duration-300"
+                  onMouseEnter={() => setHoveredId(member.id)}
+                  onClick={() =>
+                    setHoveredId(hoveredId === member.id ? null : member.id)
+                  }
+                >
+                  <div className="w-24 h-24 rounded-full overflow-hidden shadow-lg bg-gray-200 border-4 border-gray-400 flex items-center justify-center">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <h3 className="mt-2 text-base font-semibold text-gray-900">
+                    {member.name}
+                  </h3>
+                  <p className="text-gray-600 text-sm leading-tight">
+                    {member.role}
+                  </p>
+                </div>
+              ))}
             </div>
-            <h3 className="mt-2 text-base font-semibold text-gray-900">{member.name}</h3>
-            <p className="text-gray-600 text-sm leading-tight">{member.role}</p>
-            {hoveredId === member.id && (
-              <div className="mt-2 text-gray-700 text-sm px-4 bg-white p-2 rounded shadow-lg">
-                <div dangerouslySetInnerHTML={{ __html: member.description }}></div>
-                {member.linkedin && (
-                  <a
-                    href={member.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex justify-center items-center mt-2 text-blue-500 hover:text-blue-700"
-                  >
-                    <FaLinkedin size={24} />
-                  </a>
-                )}
+            {/* Render the full-width description row if any item in this row is active */}
+            {row.some((member) => member.id === hoveredId) && hoveredItem && (
+              <div
+                // Keep the hovered state active if mouse is inside this description div
+                onMouseEnter={() => setHoveredId(hoveredItem.id)}
+                onMouseLeave={() => setHoveredId(null)}
+                className="mt-2 px-4"
+              >
+                <div className="text-gray-700 text-sm p-4 bg-white rounded shadow-lg border border-gray-300">
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: hoveredItem.description,
+                    }}
+                  ></div>
+                  {hoveredItem.linkedin && (
+                    <a
+                      href={hoveredItem.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex justify-center items-center mt-2 text-blue-500 hover:text-blue-700"
+                    >
+                      <FaLinkedin size={24} />
+                    </a>
+                  )}
+                </div>
               </div>
             )}
           </div>

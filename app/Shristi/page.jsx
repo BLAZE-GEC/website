@@ -38,7 +38,7 @@ const Shristi = () => {
       <div className="relative w-full h-[80vh] bg-fixed bg-cover bg-center" style={{ backgroundImage: "url('/assests/s/sbg1.png')" }}>
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white bg-black/50 px-4">
           <h1 className={`${pixelFont.className} text-2xl md:text-4xl tracking-widest`}>Welcome to Shristi</h1>
-          <p className={`${pixelFont.className} mt-2 text-xs md:text-lg`}>This is the Shristi page.</p>
+          <p className={`${pixelFont.className} mt-2 text-xs md:text-lg`}>Experience the energy, passion, and innovation</p>
         </div>
       </div>
 

@@ -1,6 +1,6 @@
 "use client";
 import { FaLinkedin } from "react-icons/fa";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const alumni = [
   { 
@@ -82,39 +82,51 @@ const alumni = [
 ];
 
 
+
 const Alumni = () => {
   const [hoveredId, setHoveredId] = useState(null);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkScreenSize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    checkScreenSize();
-    window.addEventListener("resize", checkScreenSize);
-    return () => window.removeEventListener("resize", checkScreenSize);
-  }, []);
 
   return (
-    <section className="py-10 bg-gray-100">
-      <div className="max-w-6xl mx-auto px-4 text-center mb-8">
-        <h2 className="text-2xl font-bold text-gray-900">Thank You for Your Support</h2>
-        <p className="text-gray-600 mt-2">We deeply appreciate the guidance and mentorship of our esteemed alumni.</p>
+    <section className="py-0 bg-gray-100 flex flex-col md:flex-row items-center h-screen">
+      {/* Left Side Content */}
+      <div className="w-full md:w-1/4 px-6 mb-8 md:mb-0 bg-transparent p-6 rounded-lg shadow-md flex flex-col justify-center h-full">
+        <h2 className="text-3xl font-bold text-gray-900 text-center">Guiding Lights</h2>
+        <h2 className="text-3xl font-bold text-gray-900 text-center">Innovation Thrives</h2>
+        <p className="mt-2 text-gray-600 font-semibold text-justify">
+          when nurtured by those who believe in it.
+        </p>
+        <p className="text-gray-600 mt-2 text-justify">
+          At <strong>Ideator Club</strong>, we celebrate an inspiring network of alumni and supporters who mentor, guide, and empower future innovators.
+        </p>
+      
+        <h3 className="mt-4 text-2xl font-bold text-gray-900 flex items-center text-center">
+          🚀 Want to Give Back? Become a Supporter!
+        </h3>
+        <p className="text-gray-600 mt-2 text-justify">
+          Are you an alumnus or industry professional looking to mentor young innovators?
+        </p>
+        <button style={{ backgroundColor: '#808080', color: 'white', padding: '12px 24px', borderRadius: '8px', fontWeight: 'bold', boxShadow: '0px 4px 6px rgba(0,0,0,0.1)', cursor: 'pointer', transition: 'transform 0.2s' }}
+          onMouseOver={(e) => e.target.style.backgroundColor = '#707070'}
+          onMouseOut={(e) => e.target.style.backgroundColor = '#808080'}>
+          Join as a Mentor/Supporter
+        </button>
       </div>
-      <div className="max-w-6xl mx-auto px-4 grid grid-cols-2 md:grid-cols-3 gap-8 justify-items-center relative">
+
+      {/* Right Side Alumni List */}
+      <div className="w-full md:w-3/4 px-4 grid grid-cols-2 md:grid-cols-4 gap-4 justify-items-center relative">
         {alumni.map((member) => (
           <div
             key={member.id}
             className="flex flex-col items-center text-center relative cursor-pointer transition-all duration-300"
-            onMouseEnter={!isMobile ? () => setHoveredId(member.id) : undefined}
-            onMouseLeave={!isMobile ? () => setHoveredId(null) : undefined}
+            onMouseEnter={() => setHoveredId(member.id)}
+            onMouseLeave={() => setHoveredId(null)}
             onClick={() => setHoveredId(hoveredId === member.id ? null : member.id)}
           >
-            <div className="w-28 h-28 rounded-full overflow-hidden shadow-lg bg-gray-200 border-4 border-gray-400 flex items-center justify-center">
+            <div className="w-24 h-24 rounded-full overflow-hidden shadow-lg bg-gray-200 border-4 border-gray-400 flex items-center justify-center">
               <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
             </div>
-            <h3 className="mt-3 text-base font-semibold text-gray-900">{member.name}</h3>
-            <p className="text-gray-600 text-sm">{member.role}</p>
+            <h3 className="mt-2 text-base font-semibold text-gray-900">{member.name}</h3>
+            <p className="text-gray-600 text-sm leading-tight">{member.role}</p>
             {hoveredId === member.id && (
               <div className="mt-2 text-gray-700 text-sm px-4 bg-white p-2 rounded shadow-lg">
                 <div dangerouslySetInnerHTML={{ __html: member.description }}></div>
@@ -138,20 +150,3 @@ const Alumni = () => {
 };
 
 export default Alumni;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

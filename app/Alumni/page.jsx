@@ -1,6 +1,6 @@
 "use client";
 import { FaLinkedin } from "react-icons/fa";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const alumni = [
   { 
@@ -81,18 +81,33 @@ const alumni = [
   }
 ];
 
+
 const Alumni = () => {
   const [hoveredId, setHoveredId] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
 
   return (
     <section className="py-10 bg-gray-100">
+      <div className="max-w-6xl mx-auto px-4 text-center mb-8">
+        <h2 className="text-2xl font-bold text-gray-900">Thank You for Your Support</h2>
+        <p className="text-gray-600 mt-2">We deeply appreciate the guidance and mentorship of our esteemed alumni.</p>
+      </div>
       <div className="max-w-6xl mx-auto px-4 grid grid-cols-2 md:grid-cols-3 gap-8 justify-items-center relative">
         {alumni.map((member) => (
           <div
             key={member.id}
             className="flex flex-col items-center text-center relative cursor-pointer transition-all duration-300"
-            onMouseEnter={() => setHoveredId(member.id)}
-            onMouseLeave={() => setHoveredId(null)}
+            onMouseEnter={!isMobile ? () => setHoveredId(member.id) : undefined}
+            onMouseLeave={!isMobile ? () => setHoveredId(null) : undefined}
             onClick={() => setHoveredId(hoveredId === member.id ? null : member.id)}
           >
             <div className="w-28 h-28 rounded-full overflow-hidden shadow-lg bg-gray-200 border-4 border-gray-400 flex items-center justify-center">
@@ -103,6 +118,16 @@ const Alumni = () => {
             {hoveredId === member.id && (
               <div className="mt-2 text-gray-700 text-sm px-4 bg-white p-2 rounded shadow-lg">
                 <div dangerouslySetInnerHTML={{ __html: member.description }}></div>
+                {member.linkedin && (
+                  <a
+                    href={member.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex justify-center items-center mt-2 text-blue-500 hover:text-blue-700"
+                  >
+                    <FaLinkedin size={24} />
+                  </a>
+                )}
               </div>
             )}
           </div>
@@ -113,30 +138,6 @@ const Alumni = () => {
 };
 
 export default Alumni;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -1,177 +1,141 @@
+"use client";
 import { FaLinkedin } from "react-icons/fa";
-
-import Link from "next/link";
+import { useState } from "react";
 
 const alumni = [
-  {
-    id: "1",
-    name: "Libin Babu ",
-    image: "",
-    role: "Ideator Convenor : 2012 – 13",
-    linkedin: "https://www.linkedin.com/in/libin-babu-engineer/",
-    
+  { 
+    id: "1", 
+    name: "Libin Babu", 
+    role: "Ideator Convenor : 2012 – 13", 
+    linkedin: "https://www.linkedin.com/in/libin-babu-engineer/", 
+    image: "/assests/nopic.png",
+    description: "<p>Libin Babu was the convenor of Ideator Club for the year 2012-13, actively mentoring young innovators and driving multiple innovation-focused initiatives.</p>"
   },
   {
     id: "2",
     name: "Arvind SA",
-    image: "",
+    image: "/assests/nopic.png",
     role: "Ideator Convenor : 2011 – 12",
     linkedin: "https://www.linkedin.com/in/arvindsa90/",
-    
+    description: "<p>Arvind SA led the Ideator Club during 2011-12, fostering innovation and entrepreneurship among students.</p>"
   },
   {
     id: "3",
     name: "Don Paul ",
-    image: "",
+    image: "/assests/nopic.png",
     role: "Ideator Convenor : 2015 – 16",
     linkedin: "https://www.linkedin.com/in/hidon/",
-    
+    description: "<p>Don Paul served as the convenor for 2015-16, encouraging students to engage in creative problem-solving and technical projects.</p>"
   },
   {
     id: "4",
     name: "Nishanth Gopinathan",
-    image: "",
+    image: "/assests/nopic.png",
     role: "1993 -97 BTech Chemical Eng",
-    linkedin: "https://www.linkedin.com/in/nishanth-gopinathan-4457776?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    
+    linkedin: "https://www.linkedin.com/in/nishanth-gopinathan-4457776",
+    description: "<p>An experienced chemical engineer, Nishanth Gopinathan has contributed significantly to the field with his expertise and knowledge.</p>"
   },
   {
     id: "5",
     name: "Feroze Gani",
-    image: "",
+    image: "/assests/firoz.jpeg",
     role: "1988 – 92 BTech Electrical & Electronics Engineering",
     linkedin: "https://www.linkedin.com/in/ferozegani/",
-    
-  },
-  {
+    description: `<p style="text-align: justify;">Feroze Gani is an entrepreneur based in the USA. He is the President of iXi gAI, Inc and co-founded the company along with other MIT graduates. The company helps large enterprises enable AI in various solutions including ERP and Cyber security.</p>
+    <p style="text-align: justify;">Mr. Gani is the founder of Rational Foci, focused on large and complex ERP implementations and global solutions roll-out for mega cap companies. He was the co-founder of Inavista Solutions, a US-based technology company providing services in business consulting, enterprise architecture, ERP implementation, and program management. Mr. Gani is also the President of Ganisys group of companies with operations in the Middle East, USA, and India, providing various technology-related services in hardware, networking, infrastructure, and security.</p>
+    <p style="text-align: justify;">Mr. Gani is a passionate supporter of socially responsible initiatives. He is a co-founder of Grain-Ed, a non-profit educational initiative started by four college mates—alumni of Government Engineering College, Thrissur. Since 2007, he has been involved with the environmental project Punarjani, an afforestation model developed on the foothills of the ecologically fragile Western Ghats in Kerala.</p>
+    <p style="text-align: justify;">He’s also the President of the charity organization Arise Kerala Inc, registered in the USA, engaged in humanitarian efforts in the fields of disaster relief, hunger elimination, education support, and healthcare support in his home state of Kerala.</p>
+    <p style="text-align: justify;"><strong>Message</strong></p>
+    <p style="text-align: justify;">The passion of students engaged in the Ideator Club is encouraging. Many of the students and teams that I have interacted with show purpose, skills, and capabilities required to become successful with the help of some guidance and mentoring. As an alumnus, I am glad to support and mentor some of these students in their journey in college and future career.</p>`
+  },  {
     id: "6",
     name: "Prasad Pillai",
-    image: "",
-    role: "1996 – 99  BTech Electrical & Electronics Engineering",
+    image: "/assests/nopic.png",
+    role: "1996 – 99 BTech Electrical & Electronics Engineering",
     linkedin: "https://www.linkedin.com/in/prasadppillai/",
-    
+    description: "<p>Prasad Pillai has made notable contributions to the electrical and electronics engineering field, leveraging his technical acumen.</p>"
   },
   {
     id: "7",
     name: "Jayaraj Shankar",
-    image: "",
+    image: "/assests/nopic.png",
     role: "1995 – 99 BTech Mathematics & Computer Science",
     linkedin: "https://www.linkedin.com/in/jayarajshankar/",
-    
+    description: "<p>Jayaraj Shankar, with a strong background in mathematics and computer science, has been instrumental in developing cutting-edge solutions.</p>"
   },
   {
     id: "8",
     name: "Najeeb Kuzhiyil ",
-    image: "",
+    image: "/assests/nopic.png",
     role: "BS Chemical Engineering",
     linkedin: "https://www.linkedin.com/in/najeeb-kuzhiyil/",
-    
+    description: "<p>Najeeb Kuzhiyil is a chemical engineer known for his extensive work in process optimization and sustainable practices.</p>"
   },
   {
     id: "9",
     name: "Krishnakumar T",
-    image: "",
+    image: "/assests/nopic.png",
     role: "Former Ideator faculty Advisor ",
     linkedin: "https://www.linkedin.com/in/krishnakumar-t-bb559b18/",
-    
+    description: "<p>As a former faculty advisor, Krishnakumar T played a crucial role in guiding and mentoring young innovators at Ideator Club.</p>"
   }
-  
-
 ];
-const Alumni=()=>{
-  
-  
-  return(<>
-  <section className="py-10 bg-gray-100">
-      
-      <div className="text-center mb-6">
-        <h1 className="text-4xl font-bold text-gray-900">Guiding Lights – Our Alumni & Supporters</h1>
-      </div>
-      <div className="max-w-3xl mx-auto text-center mb-10 px-4">
-        <h2 className="text-3xl font-bold text-gray-800 mb-4">
-          Innovation doesn’t just come from ideas—it comes from people who nurture and support them.
-        </h2>
-        <p className="text-lg text-gray-700">
-          At <span className="font-semibold">Ideator Club</span>, we are proud to have an incredible network of alumni and supporters who continue to shape the future by mentoring, guiding, and investing in the next generation of innovators.
-        </p>
-        <div className="mt-6 space-y-2 text-gray-700 text-lg">
-          <p className="flex items-center justify-center gap-2">
-            <span className="text-blue-600 text-2xl">💡</span> They are founders, engineers, researchers, and leaders.
-          </p>
-          <p className="flex items-center justify-center gap-2">
-            <span className="text-blue-600 text-2xl">💡</span> They have been where we are today and walked the path ahead.
-          </p>
-          <p className="flex items-center justify-center gap-2">
-            <span className="text-blue-600 text-2xl">💡</span> They inspire, mentor, and empower students to turn ideas into reality.
-          </p>
-        </div>
-        <h3 className="mt-6 text-2xl font-semibold text-gray-900">
-          🌟 Meet Our Alumni & Supporters
-        </h3>
-      </div>
 
-      
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center">
-        {alumni.map((member, index) => (
-          <div key={index} className="flex flex-col  items-center text-center">
-            <div className="w-48 h-48 rounded-full  overflow-hidden shadow-lg bg-gray-200 border-4 border-gray-400">
-              {member.image ? (
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center text-gray-500">
-                  No Image
-                </div>
-              )}
+const Alumni = () => {
+  const [hoveredId, setHoveredId] = useState(null);
+
+  return (
+    <section className="py-10 bg-gray-100">
+      <div className="max-w-6xl mx-auto px-4 grid grid-cols-2 md:grid-cols-3 gap-8 justify-items-center relative">
+        {alumni.map((member) => (
+          <div
+            key={member.id}
+            className="flex flex-col items-center text-center relative cursor-pointer transition-all duration-300"
+            onMouseEnter={() => setHoveredId(member.id)}
+            onMouseLeave={() => setHoveredId(null)}
+            onClick={() => setHoveredId(hoveredId === member.id ? null : member.id)}
+          >
+            <div className="w-28 h-28 rounded-full overflow-hidden shadow-lg bg-gray-200 border-4 border-gray-400 flex items-center justify-center">
+              <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
             </div>
-            <h3 className="mt-4 text-lg font-semibold text-gray-900">
-              {member.name}
-            </h3>
-            <p className="text-gray-600">{member.role}</p>
-            
-            {member.linkedin && (
-              <a
-                href={member.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-2 text-blue-500 hover:text-blue-700"
-              >
-                <FaLinkedin size={28} />
-              </a>
+            <h3 className="mt-3 text-base font-semibold text-gray-900">{member.name}</h3>
+            <p className="text-gray-600 text-sm">{member.role}</p>
+            {hoveredId === member.id && (
+              <div className="mt-2 text-gray-700 text-sm px-4 bg-white p-2 rounded shadow-lg">
+                <div dangerouslySetInnerHTML={{ __html: member.description }}></div>
+              </div>
             )}
           </div>
         ))}
       </div>
-      
-      <div className="max-w-4xl mx-auto text-center mt-16 px-4">
-        <h2 className="text-3xl font-bold text-gray-800">🏆 Hall of Impact – Contributions Over the Years</h2>
-        <p className="text-lg text-gray-700 mt-4">
-          From mentoring product development to funding breakthrough projects, our supporters have played a key role in helping students build real-world solutions.
-        </p>
-      </div>
+    </section>
+  );
+};
 
-     
-      <div className="max-w-3xl mx-auto text-center mt-12 px-4">
-        <h3 className="text-2xl font-semibold text-gray-900">🚀 Want to Give Back? Become a Supporter!</h3>
-        <p className="text-lg text-gray-700 mt-4">
-          Are you an alumnus or industry professional looking to guide the next generation of innovators?
-        </p>
-        <p className="text-lg text-gray-700 mt-2">
-          👉 Sign up to mentor, support, or fund breakthrough student projects.
-        </p>
-        <Link href="https://ideator.gectcr.ac.in/">
-        <button className="mt-6 backgro bg-acccent-hover
- text-white px-6 py-3 rounded-lg text-lg font-semibold shadow-md hover:bg-base2" >
-          Join as a Mentor/Supporter
-        </button></Link>
-        
-      </div>
-    </section></>)
-}
 export default Alumni;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

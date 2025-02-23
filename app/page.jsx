@@ -1,130 +1,90 @@
-"use client"
+"use client";
 
-import Photo from '@/components/Photo';
-import { motion } from 'framer-motion';
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import "swiper/css";
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import { useState } from 'react';
-import Image from 'next/image';
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import { Press_Start_2P } from "next/font/google";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
+// Load Google Pixelated Font
+const pixelFont = Press_Start_2P({ subsets: ["latin"], weight: "400" });
 
-const lists=[
-  {
-    id:1,
-    img:"/assests/idtr_logo_nw.png",
-    title:"Empowering Innovation, Inspiring Change",
-des:"The Ideator Club at GECT is where visionary ideas become real-world solutions. We foster creativity and collaboration across engineering disciplines, igniting minds and fueling innovation."  },
-  {
-    id:2,
-    img:"/assests/inaugration.png",
-    title:"IDEATOR LAB",
-    des:"Ideator had its lab inaugurated at a grand function blessed by the presence of former ISRO Chairman Dr. G. Madhavan Nair on 15th August 2013. AASHRAYA-Role of science and technology in alleviating the suffering and bettering the quality of life,was the theme of the event based on the first project(SMART MOTIVE)."
-  },
-  {
-    id:3,
-    img:"/assests/smartmotive.jpg",
-    title:"Smart Motive",
-des:"Smart motive was one of the most successful project developed under ideator. It was of immense importance in the medical field.Smart motive received numerous prices in project expos all over Kerala."  },
-  {
-    id:4,
-    img:"/assests/completed/Bigmaclite.jpg",
-    title:"Big Mac Lite",
-des:"Big Mac Lite is a speech aid device designed to help bedridden individuals communicate with their caregivers. Our goal is to enhance their quality of life by providing a simple, effective, and user-friendly solution for essential communication."  }
-]
+const imageSlides = [
+  "/assests/s/p1.jpeg",
+  "/assests/s/p2.jpeg",
+  "/assests/s/p3.jpeg",
+  "/assests/s/p4.jpeg"
+];
 
+const Shristi = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-export default function Home() {
-
-
-  const [list, setlist] = useState(lists[0]);
-  const handleSlideChange = (swiper) => {
-    const currentIndex = swiper.activeIndex;
-    setlist(lists[currentIndex]);
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % imageSlides.length);
   };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + imageSlides.length) % imageSlides.length);
+  };
+
+  useEffect(() => {
+    const interval = setInterval(nextSlide, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className=" h-full w-screen  pt-24  ">
+    <div className="w-full min-h-screen flex flex-col">
       
-     {/*} <div className="absolute lg:h-[500px] z-0 lg:w-2/3 md:h-[750px] md:w-[750px] h-[400px] w-[400px] lg:-top-1/4  md:-top-1/3 md:-left-1/2 top-[100px] lg:-left-3/5 right-3/4 bg-base1  rounded-3xl rotate-45  opacity-85 "></div>
-
-      <div className="relative container mx-auto h-full  ">
-
-        <div className="flex flex-col lg:flex-row  items_center w-full justify-between lg:pt-32 lg:pb-24 ">
-          <div className="text-center mx-auto my-auto w-3/4 lg:w-1/2  lg:text-2xl text-lg  py-16 px-4 ">
-          <motion.span           initial={{ opacity: 0 }}
-          animate={{
-            opacity: 1,
-            transition: { delay: 2.4, duration: 0.4, ease: "easeInOut" },
-          }} className=''>orem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the standard
-                    dummy text ever since the 1500s,</motion.span>
-          </div>
-
-          <div className='mb-8 xl:mb-0 mx-auto lg:w-1/2 my-auto py-16 lg:py-0'>
-          <Photo/>
-        </div>
-        </div>
-
-      </div>*/}
-    <motion.section
-      initial={{ opacity: 0 }}
-      animate={{
-        opacity: 1,
-      }}
-      className=" w-screen flex flex-col justify-center xl:px-0 -z-10"
-    >
-      <div className="container mx-auto  h-full">
-      <div className="flex flex-col md:flex-row md:gap-[30px] mx-auto text-left bg-base1 bg-opacity-100 py-2 rounded-lg w-[90%] md:w-[100%] lg:w-[100%]">
-
-          <div className="w-full md:w-[70%] xl:h-[400px] flex flex-col md:justify-between order-2 md:order-none  ">
-            <div className="my-auto">
-              <div className="md:text-3xl text-lg py-4 px-2 font-semibold leading-none stroke-primary   text-center group-hover:text-acccent transition-all duration-500 capitalize">
-                {list.title}
-              </div>
-              <p className="text-base2 md:text-lg text-sm text-center  font-medium px-2 lg:px-5 lg:text-left">
-                {list.des}
-              </p>
-              
-             
-            </div>
-          </div>
-          <div className="w-full  my-auto md:w-[50%]  ">
-            <Swiper 
-              spaceBetween={30}
-              slidesPerView={1}
-              className="xl:h-[400px] mb-12"
-              onSlideChange={handleSlideChange}
-              
-              autoplay={{
-                delay: 2500,
-                disableOnInteraction: false,
-              }}
-
-              
-              modules={[Autoplay, Pagination, Navigation]}
-            >
-              {lists.map((list, index) => {
-                return (
-                  <SwiperSlide key={index} className="w-full ">
-                    <div className="h-1/2   w-full mx-auto flex justify-center items-center ">
-                      <div></div>
-                      <div className=" w-full h-[250px] ">
-                        <Image src={list.img} fill className="object-contain z-0" />
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                );
-              })}
-
-
-            </Swiper>
-          </div>
+      {/* Parallax Background Section */}
+      <div className="relative w-full h-[80vh] bg-fixed bg-cover bg-center" style={{ backgroundImage: "url('/assests/s/sbg1.png')" }}>
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white bg-black/50 px-4">
+          <h1 className={`${pixelFont.className} text-2xl md:text-4xl tracking-widest`}>Welcome to Shristi</h1>
+          <p className={`${pixelFont.className} mt-2 text-xs md:text-lg`}>Experience the energy, passion, and innovation</p>
         </div>
       </div>
-    </motion.section>
 
-    </section>
+      {/* Additional Pixelated Text Below the Image */}
+      <div className={`relative text-center mt-6 px-4 py-12 bg-fixed bg-cover bg-center`} style={{ backgroundImage: "url('/assets/s/sbg2.jpg')" }}>
+        <p className={`${pixelFont.className} text-sm md:text-xl text-white bg-black/50 p-4 inline-block`}>Not just an idea pitch – we craft, we engineer, and we deliver!</p>
+      </div>
+
+      {/* Pixelated Chatbox Section */}
+      <div className="relative w-full flex items-center justify-center text-center text-white px-6 py-20 bg-fixed bg-cover bg-center" style={{ backgroundImage: "url('/assets/s/sbg3.jpg')" }}>
+        <div className="relative z-10 max-w-4xl bg-black text-white p-6 border-4 border-white shadow-[4px_4px_0px_rgba(255,255,255,1)] clip-path-[polygon(5%_0%,95%_0%,100%_20%,100%_80%,95%_100%,5%_100%,0%_80%,0%_20%)]">
+          <h2 className={`${pixelFont.className} text-xl md:text-3xl font-bold`}>Get to know Shristi better</h2>
+          <p className="mt-4 text-sm md:text-lg leading-relaxed">Srishti 2025 is not just another idea pitch—it is about crafting, engineering, and delivering real solutions. Unlike traditional events that focus solely on presenting ideas, Srishti is a space where ideas are transformed into tangible prototypes. Participants will engage in hands-on problem-solving, designing, and executing their visions from start to finish.</p>
+          <p className="mt-4 text-sm md:text-lg leading-relaxed">This event stands apart by offering ten distinct challenge areas, guiding participants from concept to prototype, and providing long-term support for up to a year. There are no abandoned projects—every idea is nurtured with purpose and impact in mind.</p>
+        </div>
+      </div>
+
+      {/* New Section with Auto Image Carousel on the Right and Text on the Left */}
+      <div className="relative w-full flex flex-col md:flex-row items-center justify-center text-white px-6 py-20 bg-fixed bg-cover bg-center" style={{ backgroundImage: "url('/assests/s/sbg4.png')" }}>
+        {/* Text Section */}
+        <div className="md:w-1/2 p-6 text-black">
+          <h2 className={`${pixelFont.className} text-xl md:text-3xl font-bold`}>Discover the Experience</h2>
+          <p className="mt-4 text-sm md:text-lg leading-relaxed">Experience the energy, passion, and innovation that define Srishti. Explore cutting-edge projects, witness groundbreaking ideas, and be part of a movement that turns concepts into reality.</p>
+        </div>
+
+        {/* Auto Carousel Section */}
+        <div className="relative md:w-1/2 p-6 flex items-center justify-center w-full">
+          <button onClick={prevSlide} className="absolute left-0 bg-black/50 p-2 rounded-full">
+            <ChevronLeft className="text-white w-6 h-6" />
+          </button>
+          <div className="w-[400px] h-[400px] relative">
+            <Image src={imageSlides[currentSlide]} alt="Shristi Slide" layout="fill" objectFit="cover" className="rounded-lg" />
+          </div>
+          <button onClick={nextSlide} className="absolute right-0 bg-black/50 p-2 rounded-full">
+            <ChevronRight className="text-white w-6 h-6" />
+          </button>
+        </div>
+      </div>
+
+      {/* Register Now Button */}
+      <div className="w-full flex justify-center py-10">
+      <a href="https://example.com" className={`${pixelFont.className} px-6 py-3 bg-black text-white text-lg font-bold rounded-full shadow-lg transition duration-300 hover:bg-gray-800 !important`}
+      >Register Now</a>
+      </div>
+    </div>
   );
-}
+};
+
+export default Shristi;

@@ -138,7 +138,7 @@ const teamMembers = [
   {
     name: "Amal chandran c",
     role: "Media & publicity Lead",
-    image:"/amal.JPG",
+    image:"public\assests\team\amal.JPG",
     linkedin: "https://www.linkedin.com/in/amal-chandran-3776bb25a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
   }
 ];

@@ -47,7 +47,7 @@ const teamMembers = [
   {
     name: "Akhil Roy",
     role: "Tools & Machines Coordinator",
-    image: "/assests/team/royy.JPG",
+    image: "/assests/royy.jpg",
     linkedin: "https://www.linkedin.com/in/akhil-roy-abb034271/",
   },
   {
@@ -132,13 +132,13 @@ const teamMembers = [
   {
     name: "Harichandana M",
     role: "Creative Director",
-    image: "/assests/team/harich.jpeg",
+    image: "/assests/harich.jpeg",
     linkedin: "https://www.linkedin.com/in/harichandana-m/",
   },
   {
     name: "Amal chandran c",
     role: "Media & publicity Lead",
-    image:"/assests/team/anamika.jpg",
+    image:"/assests/amal.jpg",
     linkedin: "https://www.linkedin.com/in/amal-chandran-3776bb25a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
   }
 ];

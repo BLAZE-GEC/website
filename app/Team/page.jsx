@@ -133,7 +133,7 @@ const teamMembers = [
     name: "Harichandana M",
     role: "Creative Director",
     image: "/assests/team/harich.jpeg",
-    linkedin: "https://www.linkedin.com/in/akhil-roy-abb034271/",
+    linkedin: "https://www.linkedin.com/in/harichandana-m/",
   },
   {
     name: "Amal chandran c",

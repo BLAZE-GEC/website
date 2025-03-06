@@ -198,7 +198,12 @@ Water hyacinths (Eichhornia crassipes) are an invasive aquatic plant that can be
 
 Overall, using water hyacinths for paper production offers a sustainable and innovative solution for managing invasive aquatic plants while creating a unique and eco-friendly paper product.
 
-Currently, the project is in the design and research phase of different types of solar dryers and efficient ways of extracting water hyacinths. We are planning to add different types of additives to improve its properties. Also designing a solar dryer for even drying and to market its scope.
+Currently, the project is in the design and research phase of different types of solar dryers and efficient ways of extracting water hyacinths. We are planning to add different types of additives to improve its properties. Also designing a solar dryer for even drying and to market its scope. 
+&nbsp;&nbsp;\n\n
+Project heads:\n\n
+Akhil Roy\n\n
+Amalchandran \n\n
+Mentor : Dr L Rekha
 `
 
   },

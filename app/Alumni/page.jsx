@@ -59,10 +59,12 @@ const alumni = [
   {
     id: "7",
     name: "Jayaraj Shankar",
-    image: "/assests/nopic.png",
+    image: "/assests/jayashankar.jpeg",
     role: "1995 – 99 BTech Mathematics & Computer Science",
     linkedin: "https://www.linkedin.com/in/jayarajshankar/",
-    description: "<p>Jayaraj Shankar, with a strong background in mathematics and computer science, has been instrumental in developing cutting-edge solutions.</p>"
+    description: `<p>Jayaraj Shankar
+1995 – 99 BTech Computer Science & Engineering
+Jayaraj Shankar is an entrepreneur and business consultant with a background in Computer Science & Engineering (University of Calicut) and an MBA in Business Analytics (BITS Pilani). Through his consulting practice, Groovy Tusker, he focuses on R&D, conceptualizing, and building innovative solutions for industries and communities. A dedicated advocate for social impact, he serves as an Executive Member of the GEC Thrissur Alumni Association and actively participates in community-building efforts within and beyond the campus</p>`
   },
   {
     id: "8",

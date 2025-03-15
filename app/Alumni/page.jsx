@@ -149,7 +149,7 @@ const Alumni = () => {
                     setHoveredId(hoveredId === member.id ? null : member.id)
                   }
                 >
-                  <div className="w-24 h-24 rounded-full overflow-hidden shadow-lg bg-gray-200 border-4 border-gray-400 flex items-center justify-center">
+                  <div className="w-32 h-32 rounded-full overflow-hidden shadow-lg bg-gray-200 border-4 border-gray-400 flex items-center justify-center">
                     <img
                       src={member.image}
                       alt={member.name}

@@ -13,7 +13,7 @@ const links = [
   { name: "TEAM", path: "/Team" },
   {name:"ALUMNI",path:"/Alumni"},
   { name: "CONTACT", path: "/Contact" },
-  { name: "SHRISTI", path: "/Shristi" },  // Add this line
+  { name: "SRISHTI", path: "/Shristi" },  // Add this line
 ];
 
 

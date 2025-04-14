@@ -31,6 +31,13 @@ const Shristi = () => {
     return () => clearInterval(interval);
   }, []);
 
+  // Inline style object for the register buttons
+  const registerButtonStyle = {
+    margin: "auto",
+    display: "block",
+    backgroundColor: "#3b82f6", // Tailwind blue-500
+  };
+
   return (
     <div className="w-full min-h-screen flex flex-col">
       {/* Parallax Background Section */}
@@ -88,7 +95,9 @@ const Shristi = () => {
       >
         {/* Text Section */}
         <div className="md:w-1/2 p-6 text-black">
-          <h2 className={`${pixelFont.className} text-xl md:text-3xl font-bold`}>Discover the Experience</h2>
+          <h2 className={`${pixelFont.className} text-xl md:text-3xl font-bold`}>
+            Discover the Experience
+          </h2>
           <p className="mt-4 text-sm md:text-lg leading-relaxed">
             Experience the energy, passion, and innovation that define Srishti. Explore cutting-edge projects,
             witness groundbreaking ideas, and be part of a movement that turns concepts into reality.
@@ -103,8 +112,8 @@ const Shristi = () => {
             <Image
               src={imageSlides[currentSlide]}
               alt="Shristi Slide"
-              layout="fill"
-              objectFit="cover"
+              fill
+              style={{ objectFit: "cover" }}
               className="rounded-lg"
             />
           </div>
@@ -114,104 +123,139 @@ const Shristi = () => {
         </div>
       </div>
 
-      {/* Second IoT Section with spacing above */}
-      <div
-        className="relative w-full h-[60vh] flex items-center justify-center text-white bg-fixed bg-cover bg-center px-6 py-20 mt-8 mb-12"
-        style={{ backgroundImage: "url('/assests/s/sbg4.png')" }}
-      >
-        <div className="bg-black/60 p-6 shadow-lg text-white text-left w-full flex flex-col md:flex-row items-start">
-          {/* Text Content */}
-          <div className="w-full md:w-1/2 flex flex-col items-start">
-            <h2 className={`${pixelFont.className} text-xl md:text-3xl font-bold`}>
-              IoT for Health and Educational Institutions
-            </h2>
-            <p className="mt-4 text-sm md:text-lg leading-relaxed">
-              Explore the world of IoT in health and education. Innovate, create, and develop smart solutions that make an impact.
-            </p>
-            <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSca0Hxd4XqkPcCvq09yEvxx85-XO9zMvEvxQxvV-gyPFwt6PQ/viewform?usp=send_form"
-              className="mt-4 px-6 py-3 bg-black text-white text-lg md:text-xl font-bold uppercase tracking-wider rounded-full shadow-lg border-2 border-white transition duration-300 hover:bg-gray-800"
+      {/* Domains Section with Horizontally Stacked Cards */}
+      <div className="w-full py-10 bg-black/80">
+        <div className="flex flex-wrap justify-center gap-8 px-6">
+          {[
+            {
+              title: "IoT for Health and Educational Institutionss",
+              form: "https://docs.google.com/forms/d/e/1FAIpQLScznOIU430O5AFX48YnTTiCp-cO56a26kujrsV89c_4HVktzw/viewform?usp=send_form",
+              image: "/assests/s/IOT.jpg",
+            },
+            {
+              title: "Agri Tech",
+              form: "https://forms.gle/vg9TJ1AGXKRr2aZ99",
+              image: "/assests/s/Agri tech.jpg",
+            },
+            {
+              title: "Affordable Health Care Support",
+              form: "https://forms.gle/e1JTNeeyx7iqvNmb7",
+              image: "/assests/s/Affordable Health Care Support.jpg",
+            },
+            {
+              title: "Health and Wellbeing Innovations",
+              form: "https://forms.gle/eKzdsJUULBkGYd948",
+              image: "/assests/s/Health and Wellbeing Innovations.jpg",
+            },
+            {
+              title: "Sustainable Living Solutions",
+              form: "https://forms.gle/pWeviQt7kzSFysTB9",
+              image: "/assests/s/Sustainable Living Solutions.jpg",
+            },
+          ].map((domain, index) => (
+            <div
+              key={index}
+              className="relative w-[320px] md:w-[400px] h-[500px] bg-cover bg-center rounded-xl flex flex-col justify-between"
+              style={{ backgroundImage: "url('/assests/s/sbg4.png')" }}
             >
-              REGISTER NOW
-            </a>
-          </div>
-          {/* Image on the Right */}
-          <div className="w-full md:w-1/2 flex justify-end mt-6 md:mt-0">
+              <div className="bg-black/60 p-6 h-full flex flex-col justify-between rounded-xl shadow-lg">
+                <div>
+                  <h2 className={`${pixelFont.className} text-lg md:text-2xl font-bold text-white`}>
+                    {domain.title}
+                  </h2>
+                  <p className="mt-4 text-xs md:text-base text-white leading-relaxed">
+                    Explore the world of {domain.title}. Participate, innovate, and create solutions that shape the future.
+                  </p>
+                </div>
+                <div className="mt-4">
+                  <Image
+                    src={domain.image}
+                    alt={domain.title}
+                    width={300}
+                    height={200}
+                    className="rounded-md mb-4"
+                  />
+                  <a
+                    href={domain.form}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mx-auto block px-4 py-2 text-white font-bold uppercase rounded-full text-sm tracking-wider hover:bg-blue-600 transition"
+                    style={registerButtonStyle}
+                  >
+                    <center>REGISTER NOW</center>
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Latest Events Section with Translucent Background */}
+      <div className="w-full py-10">
+        <div className="px-6 bg-black/50 backdrop-blur-md rounded-lg p-6">
+          <h2 className={`${pixelFont.className} text-2xl md:text-4xl text-white text-center`}>
+            LATEST EVENTS
+          </h2>
+          <p className="mt-4 text-center text-white text-sm md:text-lg">
+            Check out our latest events and updates.
+          </p>
+          {/* Optionally, add event cards or additional content here */}
+        </div>
+     
+
+      {/* SRISHTI Inauguration Section with Horizontally Arranged Images */}
+      <div className="w-full py-10 bg-black/80">
+        <div className="px-6">
+          <h2 className={`${pixelFont.className} text-2xl md:text-4xl text-white text-center`}>
+            SRISHTI Inauguration | IDEATOR, GEC Thrissur
+          </h2>
+          <p className="mt-4 text-center text-white text-sm md:text-lg">
+            We proudly inaugurated SRISHTI on March 30, 2025, a platform to turn student ideas into impactful ventures.
+            The event featured inspiring talks from alumni Feroze Gani, Nishanth Gopinathan, and Jayaraj Shankar,
+            along with insights from Aysha P.T., Convenor of IDEATOR. A roadmap to startup success, reflections on
+            innovation, and the unveiling of SRISHTI’s five key domains marked the session. Grateful for the continued
+            support from our alumni and the enthusiasm of our student team. This is just the beginning—let’s innovate forward!
+          </p>
+          {/* Responsive horizontal image arrangement */}
+          <div className="mt-6 flex flex-wrap justify-center gap-4">
             <Image
-              src="/assests/s/IOT.jpg"
-              alt="IoT"
-              width={350}
-              height={350}
-              className="rounded-lg"
+              src="/assests/s/news1.jpg"
+              width={300}
+              height={200}
+              className="mx-4"
+              alt="Event 1"
+            />
+            <Image
+              src="/assests/s/news12.jpg"
+              width={300}
+              height={200}
+              className="mx-4"
+              alt="Event 2"
+            />
+            <Image
+              src="/assests/s/news13.jpg"
+              width={300}
+              height={200}
+              className="mx-4"
+              alt="Event 3"
+            />
+            <Image
+              src="/assests/s/news14.jpg"
+              width={300}
+              height={200}
+              className="mx-4"
+              alt="Event 4"
             />
           </div>
         </div>
       </div>
 
-      {/* Domains Section with Parallax Effect */}
-      {[
-        "Sustainable Living Solutions",
-        "Agri Tech",
-        "Affordable Health Care Support",
-        "Health and Wellbeing Innovations"
-      ].map((domain, index) => (
-        <div
-          key={index}
-          className="relative w-full h-[60vh] flex items-center justify-center text-white bg-fixed bg-cover bg-center px-6 py-20 mb-8"
-          style={{ backgroundImage: "url('/assests/s/sbg4.png')" }}
-        >
-          <div className="bg-black/60 p-6 shadow-lg text-white text-left w-full flex flex-col md:flex-row items-start">
-            {/* Text Content */}
-            <div className="w-full md:w-1/2 flex flex-col items-start">
-              <h2 className={`${pixelFont.className} text-xl md:text-3xl font-bold`}>{domain}</h2>
-              <p className="mt-4 text-sm md:text-lg leading-relaxed">
-                Explore the world of {domain}. Participate, innovate, and create solutions that shape the future.
-              </p>
-              <a
-                href={
-                  domain === "Sustainable Living Solutions"
-                    ? "https://forms.gle/pWeviQt7kzSFysTB9"
-                    : domain === "Agri Tech"
-                    ? "https://forms.gle/vg9TJ1AGXKRr2aZ99"
-                    : domain === "Affordable Health Care Support"
-                    ? "https://forms.gle/e1JTNeeyx7iqvNmb7"
-                    : domain === "Health and Wellbeing Innovations"
-                    ? "https://forms.gle/eKzdsJUULBkGYd948"
-                    : "https://example.com/register"
-                }
-                className="mt-4 px-6 py-3 bg-black text-white text-lg md:text-xl font-bold uppercase tracking-wider rounded-full shadow-lg border-2 border-white transition duration-300 hover:bg-gray-800"
-              >
-                REGISTER NOW
-              </a>
-            </div>
-            {/* Image on the Right */}
-            <div className="w-full md:w-1/2 flex justify-end mt-6 md:mt-0">
-              <Image
-                src={
-                  domain === "Sustainable Living Solutions"
-                    ? "/assests/s/Sustainable Living Solutions.jpg"
-                    : domain === "Agri Tech"
-                    ? "/assests/s/Agri tech.jpg"
-                    : domain === "Affordable Health Care Support"
-                    ? "/assests/s/Affordable Health Care Support.jpg"
-                    : domain === "Health and Wellbeing Innovations"
-                    ? "/assests/s/Health and Wellbeing Innovations.jpg"
-                    : ""
-                }
-                alt={domain}
-                width={350}
-                height={350}
-                className="rounded-lg"
-              />
-            </div>
-          </div>
-        </div>
-      ))}
-
-      {/* Register Now Button */}
+      {/* Global Register Now Button (Placeholder, if needed) */}
       <div className="w-full flex justify-center py-10">
-       
+        {/* Add any additional content or a global register button here */}
       </div>
+    </div>
     </div>
   );
 };

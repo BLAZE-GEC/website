@@ -234,7 +234,7 @@ const Shristi = () => {
               alt="Event 2"
             />
             <Image
-              src="/assests/s/news13.jpg"
+              src="/assests/s/news15.jpg"
               width={300}
               height={200}
               className="mx-4"

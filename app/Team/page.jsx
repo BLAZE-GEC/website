@@ -15,9 +15,9 @@ const teamMembers = [
     linkedin: "https://www.linkedin.com/in/aysha-pt-987654321",
   },
   {
-    name: "Abhay Krishna K",
+    name: "Emil Jose Maliakal",
     role: "Joint-Convenor",
-    image: "/assests/team/abaykrishna.jpg",
+    image: "/assests/team/EmilJoseMaliakal.jpg",
     linkedin: "https://www.linkedin.com/in/abhay-krishna-k-654321987",
   },
   {
@@ -39,21 +39,21 @@ const teamMembers = [
     linkedin: "https://www.linkedin.com/in/akash-c-2bb12a24a/",
   },
   {
-    name: "Naveen P Suresh",
+    name: "Kasinath Salim",
     role: "Electronics Lab Coordinator",
-    image: "/assests/team/suresh.jpg",
+    image: "/assests/team/KasinathSalim.jpg",
     linkedin: "https://www.linkedin.com/in/naveen-p-suresh-9461762a1/",
   },
   {
-    name: "Akhil Roy",
+    name: "Nandhukrishna B",
     role: "Tools & Machines Coordinator",
-    image: "/assests/R.png",
+    image: "/assests/team/NandhukrishnaB.jpg",
     linkedin: "https://www.linkedin.com/in/akhil-roy-abb034271/",
   },
   {
-    name: "Anjana V",
+    name: "Anamika c s",
     role: "Program Head",
-    image: "/assests/team/anjanav.jpg",
+    image: "/assests/team/Anamikacs.jpg",
     linkedin: "https://www.linkedin.com/in/anjana-v-837b94305/",
   },
   {

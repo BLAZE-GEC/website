@@ -76,10 +76,10 @@ const teamMembers = [
   },
   
   {
-    name: "Anamika CS",
+    name: "Akash M Vijay",
     role: "Program Coordinator",
-    image:"/assests/team/anamika.jpg",
-    linkedin: "https://www.linkedin.com/in/anamika-c-s-726414270/",
+    image: "/assests/team/akashmvijay.jpg",
+    linkedin: "https://www.linkedin.com/in/harichandana-m/",
   },
   {
     name: "Hima TJ",
@@ -118,12 +118,6 @@ const teamMembers = [
     linkedin: "https://www.linkedin.com/in/nandhukrishnab?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
   },
   {
-    name: "Diya Ravi",
-    role: "Department Coordinator (EEE)",
-    image: "/assests/team/Sidharthan.jpg",
-    linkedin: "https://www.linkedin.com/in/",
-  },
-  {
     name: "Naveen Venugopal",
     role: "Department Coordinator (CHE)",
     image:"/assests/team/naveen.jpg",
@@ -133,6 +127,36 @@ const teamMembers = [
     name: "Harichandana M",
     role: "Creative Director",
     image: "/assests/harichandhana.png",
+    linkedin: "https://www.linkedin.com/in/harichandana-m/",
+  },
+  {
+    name: "Diya Ravi",
+    role: "EEE Dept Innovation Lead",
+    image: "/assests/team/diyaravi.jpg",
+    linkedin: "https://www.linkedin.com/in/harichandana-m/",
+  },
+  {
+    name: "Adwaith Aswakumar",
+    role: "CSE Dept Innovation Lead",
+    image: "/assests/team/adwaithaswakumar.jpg",
+    linkedin: "https://www.linkedin.com/in/harichandana-m/",
+  },
+  {
+    name: "Harinanda V",
+    role: "CHE Dept Innovation Lead",
+    image: "/assests/team/harinandav.jpg",
+    linkedin: "https://www.linkedin.com/in/harichandana-m/",
+  },
+  {
+    name: "Muhammed Shazmil",
+    role: "CE Dept Innovation Lead",
+    image: "/assests/team/muhammedshazmil.jpg",
+    linkedin: "https://www.linkedin.com/in/harichandana-m/",
+  },
+  {
+    name: "Afnan A",
+    role: "PE Dept Innovation Lead",
+    image: "/assests/team/afnana.jpg",
     linkedin: "https://www.linkedin.com/in/harichandana-m/",
   },
   {

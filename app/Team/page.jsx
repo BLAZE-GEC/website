@@ -10,7 +10,7 @@ const teamMembers = [
   },
   {
     name: "Hima Tj",
-    role: "Convener",
+    role: "Convenor",
     image: "/assests/team/himatj.jpg",
     linkedin: "",
   },
@@ -36,6 +36,12 @@ const teamMembers = [
     name: "Saphal S Brijesh",
     role: "Joint Treasurer",
     image: "/assests/team/saphalsbrijesh.jpg",
+    linkedin: "",
+  },
+  {
+    name: "Naveen P Suresh",
+    role: "Project Head",
+    image: "/assests/team/naveenpsuresh.jpg",
     linkedin: "",
   },
   {
@@ -88,7 +94,7 @@ const teamMembers = [
   },
   {
     name: "Afnan A",
-    role: "Dept Innovation Lead",
+    role: "Dept Innovation Lead(PE)",
     image: "/assests/team/afnana.jpg",
     linkedin: "",
   },
@@ -111,6 +117,18 @@ const teamMembers = [
     linkedin: "",
   },
   {
+    name: "Nandana S",
+    role: "Sponsorship Head",
+    image: "/assests/team/nandanas.jpg",
+    linkedin: "",
+  },
+  {
+    name: "Aswin",
+    role: "Webmaster",
+    image: "/assests/team/aswin.jpg",
+    linkedin: "",
+  },
+  {
     name: "Varada Vinod",
     role: "Publicity Head",
     image: "/assests/team/varadavinod.jpg",
@@ -129,11 +147,11 @@ const teamMembers = [
     linkedin: "",
   },
   {
-    name: "Amal chandran c",
-    role: "Media & publicity Lead",
-    image:"/assests/team/a.jpg",
-    linkedin: ""
-  }
+    name: "Akash B",
+    role: "Video Editor",
+    image: "/assests/team/akashb.jpg",
+    linkedin: "",
+  },
 ];
 
 

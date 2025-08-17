@@ -5,8 +5,38 @@ const teamMembers = [
   {
     name: "Prof. Lalgy Gopi",
     role: "Staff Advisor",
-    image: "/assests/team/lalgysir.jpg", 
-    linkedin: "https://www.linkedin.com/in/lalgy-gopi-123456789",
+    image: "/assests/team/lalgygopi.jpg", 
+    linkedin: "",
+  },
+  {
+    name: "Prof. Soni",
+    role: "Faculty Advisor(CSE)",
+    image: "/assests/team/soni.jpg",
+    linkedin: "",
+  },
+  {
+    name: "Prof. Sajith babu c",
+    role: "Faculty Advisor(ME)",
+    image: "/assests/team/sajithbabuc.jpg",
+    linkedin: "",
+  },
+  {
+    name: "Prof. Sammil",
+    role: "Faculty Advisor(PE)",
+    image: "/assests/team/sammil.jpg",
+    linkedin: "",
+  },
+  {
+    name: "Prof. Sajith Kumar M",
+    role: "Faculty Advisor(ECE)",
+    image: "/assests/team/sajithkumarm.jpg",
+    linkedin: "",
+  },
+  {
+    name: "Prof. Saurabh Sahadev AP",
+    role: "Faculty Advisor(CHE)",
+    image: "/assests/team/saurabhsahadevap.jpg",
+    linkedin: "",
   },
   {
     name: "Hima Tj",

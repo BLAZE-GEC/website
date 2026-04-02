@@ -127,12 +127,12 @@ const Shristi = () => {
               {
                 domain: "IoT Solutions and AI",
                 winner: "Xenia",
-                image: "/assests/iot-ai.jpeg", // FIXED (no space)
+                image: "/assests/iotai.jpeg.jpeg", // FIXED (no space)
               },
               {
                 domain: "Affordable Healthcare",
                 winner: "Haptic Minds",
-                image: "/assests/health.jpeg", // FIXED (no space)
+                image: "/assests/affordabelheath.jpeg", // FIXED (no space)
               },
             ].map((item, index) => (
               <div

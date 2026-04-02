@@ -1,19 +1,41 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Input } from "@/components/ui/input";
 
 const Contact = () => {
+  const [status, setStatus] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Stop redirect
+    setStatus("loading");
+
+    const form = e.target;
+    const data = new FormData(form);
+
+    const res = await fetch("https://formspree.io/f/xldawlwe", {
+      method: "POST",
+      body: data,
+      headers: { Accept: "application/json" },
+    });
+
+    if (res.ok) {
+      setStatus("success");
+      form.reset();
+    } else {
+      setStatus("error");
+    }
+  };
+
   return (
     <motion.div>
       <div className="container mx-auto w-full ">
         <div className="flex flex-col md:pt-24 pb-8 xl:flex-row gap-[30px]">
           <div className="lg:h-[54%] lg:w-[50%] order-2 xl:order-none">
 
-            {/* ---------- FORM START ---------- */}
             <form
-              action="https://formspree.io/f/xldawlwe"
-              method="POST"
+              onSubmit={handleSubmit}
               className="flex flex-col gap-6 bg-base1 bg-opacity-90 rounded-xl p-10 shadow-lg"
             >
               <h3 className="md:text-3xl text-xl text-black font-bold">Contact Us</h3>
@@ -44,11 +66,23 @@ const Contact = () => {
                   type="submit"
                   className="bg-white text-black py-1.5 px-3 w-full rounded-xl font-bold shadow-md"
                 >
-                  Submit
+                  {status === "loading" ? "Sending..." : "Submit"}
                 </button>
               </div>
+
+              {/* SUCCESS / ERROR MESSAGE */}
+              {status === "success" && (
+                <p className="text-green-600 font-semibold text-center">
+                  Message sent successfully! 🎉
+                </p>
+              )}
+
+              {status === "error" && (
+                <p className="text-red-600 font-semibold text-center">
+                  Something went wrong. Please try again.
+                </p>
+              )}
             </form>
-            {/* ---------- FORM END ---------- */}
 
           </div>
         </div>

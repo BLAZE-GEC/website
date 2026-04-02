@@ -214,5 +214,3 @@ const Shristi = () => {
     </div>
   );
 };
-
-export default Shristi; is this handling thaat page layout

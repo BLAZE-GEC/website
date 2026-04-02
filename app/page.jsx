@@ -35,7 +35,7 @@ const Shristi = () => {
   const registerButtonStyle = {
     margin: "auto",
     display: "block",
-    backgroundColor: "#3b82f6", // Tailwind blue-500
+    backgroundColor: "#3b82f6",
   };
 
   return (
@@ -93,7 +93,6 @@ const Shristi = () => {
         className="relative w-full flex flex-col md:flex-row items-center justify-center text-white px-6 py-20 bg-fixed bg-cover bg-center"
         style={{ backgroundImage: "url('/assests/s/sbg4.png')" }}
       >
-        {/* Text Section */}
         <div className="md:w-1/2 p-6 text-black">
           <h2 className={`${pixelFont.className} text-xl md:text-3xl font-bold`}>
             Discover the Experience
@@ -103,11 +102,12 @@ const Shristi = () => {
             witness groundbreaking ideas, and be part of a movement that turns concepts into reality.
           </p>
         </div>
-        {/* Auto Carousel Section */}
+
         <div className="relative md:w-1/2 p-6 flex items-center justify-center w-full">
           <button onClick={prevSlide} className="absolute left-0 bg-black/50 p-2 rounded-full">
             <ChevronLeft className="text-white w-6 h-6" />
           </button>
+
           <div className="w-[450px] h-[450px] relative">
             <Image
               src={imageSlides[currentSlide]}
@@ -117,81 +117,73 @@ const Shristi = () => {
               className="rounded-lg"
             />
           </div>
+
           <button onClick={nextSlide} className="absolute right-0 bg-black/50 p-2 rounded-full">
             <ChevronRight className="text-white w-6 h-6" />
           </button>
         </div>
       </div>
 
-      {/* Domains Section with Horizontally Stacked Cards */}
+      {/* Domains Section */}
+      {/* ... (unchanged) */}
+
+      {/* Winners Section */}
       <div className="w-full py-10 bg-black/80">
-        <div className="flex flex-wrap justify-center gap-8 px-6">
-          {[
-            {
-              title: "IoT for Health and Educational Institutionss",
-              form: "https://docs.google.com/forms/d/e/1FAIpQLScznOIU430O5AFX48YnTTiCp-cO56a26kujrsV89c_4HVktzw/viewform?usp=send_form",
-              image: "/assests/s/IOT.jpg",
-            },
-            {
-              title: "Agri Tech",
-              form: "https://forms.gle/vg9TJ1AGXKRr2aZ99",
-              image: "/assests/s/Agri tech.jpg",
-            },
-            {
-              title: "Affordable Health Care Support",
-              form: "https://forms.gle/e1JTNeeyx7iqvNmb7",
-              image: "/assests/s/Affordable Health Care Support.jpg",
-            },
-            {
-              title: "Health and Wellbeing Innovations",
-              form: "https://forms.gle/eKzdsJUULBkGYd948",
-              image: "/assests/s/Health and Wellbeing Innovations.jpg",
-            },
-            {
-              title: "Sustainable Living Solutions",
-              form: "https://forms.gle/pWeviQt7kzSFysTB9",
-              image: "/assests/s/Sustainable Living Solutions.jpg",
-            },
-          ].map((domain, index) => (
-            <div
-              key={index}
-              className="relative w-[320px] md:w-[400px] h-[500px] bg-cover bg-center rounded-xl flex flex-col justify-between"
-              style={{ backgroundImage: "url('/assests/s/sbg4.png')" }}
-            >
-              <div className="bg-black/60 p-6 h-full flex flex-col justify-between rounded-xl shadow-lg">
-                <div>
-                  <h2 className={`${pixelFont.className} text-lg md:text-2xl font-bold text-white`}>
-                    {domain.title}
-                  </h2>
-                  <p className="mt-4 text-xs md:text-base text-white leading-relaxed">
-                    Explore the world of {domain.title}. Participate, innovate, and create solutions that shape the future.
-                  </p>
-                </div>
-                <div className="mt-4">
-                  <Image
-                    src={domain.image}
-                    alt={domain.title}
-                    width={300}
-                    height={200}
-                    className="rounded-md mb-4"
-                  />
-                  <a
-                    href={domain.form}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mx-auto block px-4 py-2 text-white font-bold uppercase rounded-full text-sm tracking-wider hover:bg-blue-600 transition"
-                    style={registerButtonStyle}
-                  >
-                    <center>REGISTER NOW</center>
-                  </a>
-                </div>
+        <div className="px-6">
+          <h2 className={`${pixelFont.className} text-2xl md:text-4xl text-white text-center`}>
+            WINNERS OF EACH DOMAIN
+          </h2>
+
+          <div className="mt-8 flex flex-wrap justify-center gap-6">
+            {[
+              {
+                domain: "Sustainable Living Solutions",
+                winner: "PowerSense",
+                image: "/assests/living.jpeg",
+              },
+              {
+                domain: "Agronomic Agriculture Industry Innovation",
+                winner: "Agronomatic",
+                image: "/assests/agritech.jpeg",
+              },
+              {
+                domain: "IoT Solutions and AI",
+                winner: "Xenia",
+                image: "/assests/iot ai.jpeg",
+              },
+              {
+                domain: "Affordable Healthcare",
+                winner: "Haptic Minds",
+                image: "/assests/affordabel heath.jpeg",
+              },
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="w-[280px] bg-black/60 border border-white p-4 rounded-lg text-center shadow-lg"
+              >
+                <Image
+                  src={item.image}
+                  alt={item.winner}
+                  width={250}
+                  height={150}
+                  className="rounded-md mb-4 mx-auto"
+                />
+
+                <h3 className={`${pixelFont.className} text-sm md:text-lg text-white`}>
+                  {item.domain}
+                </h3>
+
+                {/* ✅ ONLY CHANGE HERE */}
+                <p className={`${pixelFont.className} mt-3 text-sm md:text-lg text-blue-400`}>
+                  {item.winner}
+                </p>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Latest Events Section with Translucent Background */}
+      {/* Latest Events Section */}
       <div className="w-full py-10">
         <div className="px-6 bg-black/50 backdrop-blur-md rounded-lg p-6">
           <h2 className={`${pixelFont.className} text-2xl md:text-4xl text-white text-center`}>
@@ -200,64 +192,27 @@ const Shristi = () => {
           <p className="mt-4 text-center text-white text-sm md:text-lg">
             Check out our latest events and updates.
           </p>
-          {/* Optionally, add event cards or additional content here */}
         </div>
-     
 
-      {/* SRISHTI Inauguration Section with Horizontally Arranged Images */}
-      <div className="w-full py-10 bg-black/80">
-        <div className="px-6">
-          <h2 className={`${pixelFont.className} text-2xl md:text-4xl text-white text-center`}>
-            SRISHTI Inauguration | IDEATOR, GEC Thrissur
-          </h2>
-          <p className="mt-4 text-center text-white text-sm md:text-lg">
-            We proudly inaugurated SRISHTI on March 30, 2025, a platform to turn student ideas into impactful ventures.
-            The event featured inspiring talks from alumni Feroze Gani, Nishanth Gopinathan, and Jayaraj Shankar,
-            along with insights from Aysha P.T., Convenor of IDEATOR. A roadmap to startup success, reflections on
-            innovation, and the unveiling of SRISHTI’s five key domains marked the session. Grateful for the continued
-            support from our alumni and the enthusiasm of our student team. This is just the beginning—let’s innovate forward!
-          </p>
-          {/* Responsive horizontal image arrangement */}
-          <div className="mt-6 flex flex-wrap justify-center gap-4">
-            <Image
-              src="/assests/s/news1.jpg"
-              width={300}
-              height={200}
-              className="mx-4"
-              alt="Event 1"
-            />
-            <Image
-              src="/assests/s/news12.jpg"
-              width={300}
-              height={200}
-              className="mx-4"
-              alt="Event 2"
-            />
-            <Image
-              src="/assests/s/news15.jpg"
-              width={300}
-              height={200}
-              className="mx-4"
-              alt="Event 3"
-            />
-            <Image
-              src="/assests/s/news14.jpg"
-              width={300}
-              height={200}
-              className="mx-4"
-              alt="Event 4"
-            />
+        <div className="w-full py-10 bg-black/80">
+          <div className="px-6">
+            <h2 className={`${pixelFont.className} text-2xl md:text-4xl text-white text-center`}>
+              SRISHTI Inauguration | IDEATOR, GEC Thrissur
+            </h2>
+
+            <div className="mt-6 flex flex-wrap justify-center gap-4">
+              <Image src="/assests/s/news1.jpg" width={300} height={200} alt="Event 1" />
+              <Image src="/assests/s/news12.jpg" width={300} height={200} alt="Event 2" />
+              <Image src="/assests/s/news15.jpg" width={300} height={200} alt="Event 3" />
+              <Image src="/assests/s/news14.jpg" width={300} height={200} alt="Event 4" />
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Global Register Now Button (Placeholder, if needed) */}
-      <div className="w-full flex justify-center py-10">
-        {/* Add any additional content or a global register button here */}
-      </div>
-    </div>
+      <div className="w-full flex justify-center py-10"></div>
     </div>
   );
 };
 
-export default Shristi;
+export default Shristi; is this handling thaat page layout

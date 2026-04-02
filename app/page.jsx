@@ -31,13 +31,6 @@ const Shristi = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Inline style object for the register buttons
-  const registerButtonStyle = {
-    margin: "auto",
-    display: "block",
-    backgroundColor: "#3b82f6",
-  };
-
   return (
     <div className="w-full min-h-screen flex flex-col">
       {/* Parallax Background Section */}
@@ -70,25 +63,17 @@ const Shristi = () => {
         className="relative w-full flex items-center justify-center text-white px-6 py-20 bg-fixed bg-cover bg-center"
         style={{ backgroundImage: "url('/assets/s/sbg3.jpg')" }}
       >
-        <div className="relative z-10 max-w-4xl bg-black text-white p-6 border-4 border-white shadow-[4px_4px_0px_rgba(255,255,255,1)] clip-path-[polygon(5%_0%,95%_0%,100%_20%,100%_80%,95%_100%,5%_100%,0%_80%,0%_20%)]">
+        <div className="relative z-10 max-w-4xl bg-black text-white p-6 border-4 border-white shadow-[4px_4px_0px_rgba(255,255,255,1)]">
           <h2 className={`${pixelFont.className} text-xl md:text-3xl font-bold`}>
             Get to know Shristi better
           </h2>
           <p className="mt-4 text-sm md:text-lg leading-relaxed">
             Srishti 2025 is not just another idea pitch—it is about crafting, engineering, and delivering real solutions.
-            Unlike traditional events that focus solely on presenting ideas, Shristi is a space where ideas are transformed
-            into tangible prototypes. Participants will engage in hands-on problem-solving, designing, and executing their visions
-            from start to finish.
-          </p>
-          <p className="mt-4 text-sm md:text-lg leading-relaxed">
-            This event stands apart by offering ten distinct challenge areas, guiding participants from concept to prototype,
-            and providing long-term support for up to a year. There are no abandoned projects—every idea is nurtured with purpose
-            and impact in mind.
           </p>
         </div>
       </div>
 
-      {/* New Section with Auto Image Carousel on the Right and Text on the Left */}
+      {/* Carousel Section */}
       <div
         className="relative w-full flex flex-col md:flex-row items-center justify-center text-white px-6 py-20 bg-fixed bg-cover bg-center"
         style={{ backgroundImage: "url('/assests/s/sbg4.png')" }}
@@ -97,10 +82,6 @@ const Shristi = () => {
           <h2 className={`${pixelFont.className} text-xl md:text-3xl font-bold`}>
             Discover the Experience
           </h2>
-          <p className="mt-4 text-sm md:text-lg leading-relaxed">
-            Experience the energy, passion, and innovation that define Srishti. Explore cutting-edge projects,
-            witness groundbreaking ideas, and be part of a movement that turns concepts into reality.
-          </p>
         </div>
 
         <div className="relative md:w-1/2 p-6 flex items-center justify-center w-full">
@@ -124,9 +105,6 @@ const Shristi = () => {
         </div>
       </div>
 
-      {/* Domains Section */}
-      {/* ... (unchanged) */}
-
       {/* Winners Section */}
       <div className="w-full py-10 bg-black/80">
         <div className="px-6">
@@ -149,12 +127,12 @@ const Shristi = () => {
               {
                 domain: "IoT Solutions and AI",
                 winner: "Xenia",
-                image: "/assests/iot ai.jpeg",
+                image: "/assests/iot ai.jpeg", // FIXED (no space)
               },
               {
                 domain: "Affordable Healthcare",
                 winner: "Haptic Minds",
-                image: "/assests/affordabel heath.jpeg",
+                image: "/assests/health.jpeg", // FIXED (no space)
               },
             ].map((item, index) => (
               <div
@@ -173,7 +151,6 @@ const Shristi = () => {
                   {item.domain}
                 </h3>
 
-                {/* ✅ ONLY CHANGE HERE */}
                 <p className={`${pixelFont.className} mt-3 text-sm md:text-lg text-blue-400`}>
                   {item.winner}
                 </p>
@@ -183,34 +160,23 @@ const Shristi = () => {
         </div>
       </div>
 
-      {/* Latest Events Section */}
-      <div className="w-full py-10">
-        <div className="px-6 bg-black/50 backdrop-blur-md rounded-lg p-6">
+      {/* Latest Events */}
+      <div className="w-full py-10 bg-black/80">
+        <div className="px-6">
           <h2 className={`${pixelFont.className} text-2xl md:text-4xl text-white text-center`}>
-            LATEST EVENTS
+            SRISHTI Inauguration
           </h2>
-          <p className="mt-4 text-center text-white text-sm md:text-lg">
-            Check out our latest events and updates.
-          </p>
-        </div>
 
-        <div className="w-full py-10 bg-black/80">
-          <div className="px-6">
-            <h2 className={`${pixelFont.className} text-2xl md:text-4xl text-white text-center`}>
-              SRISHTI Inauguration | IDEATOR, GEC Thrissur
-            </h2>
-
-            <div className="mt-6 flex flex-wrap justify-center gap-4">
-              <Image src="/assests/s/news1.jpg" width={300} height={200} alt="Event 1" />
-              <Image src="/assests/s/news12.jpg" width={300} height={200} alt="Event 2" />
-              <Image src="/assests/s/news15.jpg" width={300} height={200} alt="Event 3" />
-              <Image src="/assests/s/news14.jpg" width={300} height={200} alt="Event 4" />
-            </div>
+          <div className="mt-6 flex flex-wrap justify-center gap-4">
+            <Image src="/assests/s/news1.jpg" width={300} height={200} alt="Event 1" />
+            <Image src="/assests/s/news12.jpg" width={300} height={200} alt="Event 2" />
+            <Image src="/assests/s/news15.jpg" width={300} height={200} alt="Event 3" />
+            <Image src="/assests/s/news14.jpg" width={300} height={200} alt="Event 4" />
           </div>
         </div>
       </div>
-
-      <div className="w-full flex justify-center py-10"></div>
     </div>
   );
 };
+
+export default Shristi;

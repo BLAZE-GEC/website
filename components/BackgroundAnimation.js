@@ -1,109 +1,145 @@
-"use client"; // Required for animations in Next.js (App Router)
+"use client";
 
 import { useEffect, useRef } from "react";
 
+/**
+ * Faithful port of the target design's background animation:
+ * a grid of small dashes that gently oscillate, and swing to point
+ * toward the mouse cursor when it's nearby.
+ */
 export default function BackgroundAnimation() {
   const canvasRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    // Set initial canvas size
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    resizeCanvas(); // Set size on load
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
 
-    const particles = [];
+    const spacing = 45;
+    const dashLength = 7;
+    const mouse = { x: null, y: null, radius: 240 };
+    let time = 0;
+    let animationId;
 
-    // Particle class
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 4 + 1; // Particle size
-        this.speedX = Math.random() * 2 - 1; // Horizontal speed
-        this.speedY = Math.random() * 2 - 1; // Vertical speed
-      }
+    // Cached gradient so we're not recalculating colors every frame
+    let gradient;
+    function updateGradient() {
+      gradient = ctx.createLinearGradient(0, 0, width, height);
+      gradient.addColorStop(0, "rgba(26, 38, 28, 0.04)"); // greenish charcoal
+      gradient.addColorStop(1, "rgba(210, 139, 38, 0.04)"); // gold
+    }
+    updateGradient();
 
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-
-        // Reset position if out of bounds
-        if (this.x > canvas.width || this.y > canvas.height || this.x < 0 || this.y < 0) {
-          this.x = Math.random() * canvas.width;
-          this.y = Math.random() * canvas.height;
-        }
-      }
-
-      draw() {
-        ctx.fillStyle = "rgba(0, 0, 0, 0.3)"; // Adjust opacity (0.3 for 30%)
- // Set particle color to black
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
+    function handleResize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      updateGradient();
     }
 
-    // Create particles
-    for (let i = 0; i < 100; i++) {
-      particles.push(new Particle());
+    function handleMouseMove(e) {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
     }
 
-    // Function to draw connecting lines between nearby particles
-    function drawLines() {
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
+    function handleMouseLeave() {
+      mouse.x = null;
+      mouse.y = null;
+    }
 
-          if (distance < 100) { // Adjust this value to change connection range
-            ctx.strokeStyle = "rgba(0, 0, 0, 0.1)"; // Line color
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseleave", handleMouseLeave);
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      time += 0.003;
+
+      // Batch 1 — all idle/base dashes drawn in a single stroke call
+      ctx.beginPath();
+      ctx.strokeStyle = gradient;
+      ctx.lineWidth = 1.0;
+      ctx.lineCap = "round";
+
+      const activeDashes = [];
+
+      for (let x = spacing / 2; x < width + spacing; x += spacing) {
+        for (let y = spacing / 2; y < height + spacing; y += spacing) {
+          let isNearMouse = false;
+          let angle = 0;
+
+          if (mouse.x !== null && mouse.y !== null) {
+            const dx = mouse.x - x;
+            const dy = mouse.y - y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < mouse.radius) {
+              isNearMouse = true;
+              activeDashes.push({ x, y, dx, dy, dist });
+            } else {
+              angle = Math.sin(x * 0.004 + y * 0.004 + time) * Math.PI;
+            }
+          } else {
+            angle = Math.sin(x * 0.004 + y * 0.004 + time) * Math.PI;
+          }
+
+          if (!isNearMouse) {
+            const x2 = x + Math.cos(angle) * dashLength;
+            const y2 = y + Math.sin(angle) * dashLength;
+            ctx.moveTo(x, y);
+            ctx.lineTo(x2, y2);
           }
         }
       }
-    }
+      ctx.stroke();
 
-    // Animation loop
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // Batch 2 — dashes near the mouse, drawn individually with a gradient tint
+      if (activeDashes.length > 0) {
+        activeDashes.forEach((dash) => {
+          const factor = (mouse.radius - dash.dist) / mouse.radius;
+          const opacity = 0.04 + factor * 0.16;
+          const length = dashLength + factor * 6;
+          const angle = Math.atan2(dash.dy, dash.dx);
 
-      particles.forEach((particle) => {
-        particle.update();
-        particle.draw();
-      });
+          const x2 = dash.x + Math.cos(angle) * length;
+          const y2 = dash.y + Math.sin(angle) * length;
 
-      drawLines(); // Call the function to draw connecting lines
+          const ratio = (dash.x + dash.y) / (width + height);
+          const r = Math.round(26 + ratio * (210 - 26));
+          const g = Math.round(38 + ratio * (139 - 38));
+          const b = Math.round(28 + ratio * (38 - 28));
 
-      requestAnimationFrame(animate);
+          ctx.beginPath();
+          ctx.moveTo(dash.x, dash.y);
+          ctx.lineTo(x2, y2);
+          ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${opacity})`;
+          ctx.lineWidth = 1.2;
+          ctx.lineCap = "round";
+          ctx.stroke();
+        });
+      }
+
+      animationId = requestAnimationFrame(animate);
     }
 
     animate();
 
-    // Handle window resizing
-    window.addEventListener("resize", resizeCanvas);
-
     return () => {
-      window.removeEventListener("resize", resizeCanvas);
+      cancelAnimationFrame(animationId);
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, []);
 
   return (
     <canvas
       ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full z-[-1]"
+      className="fixed top-0 left-0 w-full h-full pointer-events-none"
+      style={{ zIndex: -1, backgroundColor: "transparent" }}
     />
   );
 }

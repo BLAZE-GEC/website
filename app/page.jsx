@@ -1,182 +1,319 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import Link from "next/link";
 import Image from "next/image";
-import { Press_Start_2P } from "next/font/google";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import events from "./Events/eventsData";
+import galleryPhotos from "./Gallery/galleryData";
+import TiltCard from "@/components/ui/TiltCard";
+import RevealOnScroll from "@/components/ui/RevealOnScroll";
+import SupportersSection from "@/components/SupportersSection";
 
-// Load Google Pixelated Font
-const pixelFont = Press_Start_2P({ subsets: ["latin"], weight: "400" });
-
-const imageSlides = [
-  "/assests/s/p1.jpeg",
-  "/assests/s/p2.jpeg",
-  "/assests/s/p3.jpeg",
-  "/assests/s/p4.jpeg"
+// Hero slides — using real club photos already in /public/assests
+const heroSlides = [
+  {
+    img: "/assests/inaugration.jpg",
+    title: "Where Visionary Ideas Become Reality",
+    desc: "Join GECT's premier engineering and maker club. Build physical prototypes, participate in Srishti, and shape tomorrow's technology.",
+    cta: "EXPLORE LAB",
+    href: "/About",
+  },
+  {
+    img: "/assests/iotwork.jpg",
+    title: "Weekly Ideation & Build Nights",
+    desc: "Participate in regular technical sprints, embedded systems hackathons, and prototype reviews hosted by senior makers.",
+    cta: "VIEW PROJECTS",
+    href: "/Projects",
+  },
+  {
+    img: "/assests/cpwork2023.jpg",
+    title: "24/7 Student Managed Makerspace",
+    desc: "Access high-grade machinery, 3D printers, and active mentorship networks. Our workspace never sleeps because ideas don't either.",
+    cta: "JOIN OUR COMMUNITY",
+    href: "/Contact?type=apply",
+  },
 ];
 
-const Shristi = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
+const aboutGridImages = [
+  { src: "/assests/ideate.jpg", alt: "Lab Work" },
+  { src: "/assests/ideathon.jpg", alt: "3D Printing" },
+  { src: "/assests/placementpgm.jpg", alt: "Brainstorming" },
+];
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % imageSlides.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + imageSlides.length) % imageSlides.length);
-  };
+export default function Home() {
+  // ---- Hero Carousel state ----
+  const [slide, setSlide] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(nextSlide, 3000);
-    return () => clearInterval(interval);
+    const timer = setInterval(() => {
+      setSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 5000);
+    return () => clearInterval(timer);
   }, []);
 
+  // ---- Newsletter form state ----
+  const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    // Load confetti only when needed, keeps the page fast for everyone else
+    const confetti = (await import("canvas-confetti")).default;
+    confetti({
+      particleCount: 80,
+      spread: 50,
+      colors: ["#d28b26", "#1a261c"],
+    });
+    setSubscribed(true);
+    setEmail("");
+    setTimeout(() => setSubscribed(false), 4000);
+  };
+
+  // ---- RSVP placeholder ----
+  const handleRSVP = (eventTitle) => {
+    alert(`Thanks for your interest in "${eventTitle}"! We'll be in touch with details.`);
+  };
+
   return (
-    <div className="w-full min-h-screen flex flex-col">
-      {/* Parallax Background Section */}
-      <div
-        className="relative w-full h-[80vh] bg-fixed bg-cover bg-center"
-        style={{ backgroundImage: "url('/assests/s/sbg1.png')" }}
-      >
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-white bg-black/50 px-4">
-          <h1 className={`${pixelFont.className} text-2xl md:text-4xl tracking-widest`}>
-            Welcome to Srishti
-          </h1>
-          <p className={`${pixelFont.className} mt-2 text-xs md:text-lg`}>
-            Experience the energy, passion, and innovation
-          </p>
-        </div>
-      </div>
+    <main className="container mx-auto px-4 pt-8 pb-20">
+      <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-8">
 
-      {/* Additional Pixelated Text Below the Image */}
-      <div
-        className="relative text-center mt-6 px-4 py-12 bg-fixed bg-cover bg-center"
-        style={{ backgroundImage: "url('/assets/s/sbg2.jpg')" }}
-      >
-        <p className={`${pixelFont.className} text-sm md:text-xl text-white bg-black/50 p-4 inline-block`}>
-          Not just an idea pitch – we craft, we engineer, and we deliver!
-        </p>
-      </div>
+        {/* LEFT COLUMN — Carousel + About */}
+        <RevealOnScroll>
 
-      {/* Pixelated Chatbox Section */}
-      <div
-        className="relative w-full flex items-center justify-center text-white px-6 py-20 bg-fixed bg-cover bg-center"
-        style={{ backgroundImage: "url('/assets/s/sbg3.jpg')" }}
-      >
-        <div className="relative z-10 max-w-4xl bg-black text-white p-6 border-4 border-white shadow-[4px_4px_0px_rgba(255,255,255,1)]">
-          <h2 className={`${pixelFont.className} text-xl md:text-3xl font-bold`}>
-            Get to know Shristi better
-          </h2>
-          <p className="mt-4 text-sm md:text-lg leading-relaxed">
-            Srishti 2025 is not just another idea pitch—it is about crafting, engineering, and delivering real solutions.
-          </p>
-        </div>
-      </div>
-
-      {/* Carousel Section */}
-      <div
-        className="relative w-full flex flex-col md:flex-row items-center justify-center text-white px-6 py-20 bg-fixed bg-cover bg-center"
-        style={{ backgroundImage: "url('/assests/s/sbg4.png')" }}
-      >
-        <div className="md:w-1/2 p-6 text-black">
-          <h2 className={`${pixelFont.className} text-xl md:text-3xl font-bold`}>
-            Discover the Experience
-          </h2>
-        </div>
-
-        <div className="relative md:w-1/2 p-6 flex items-center justify-center w-full">
-          <button onClick={prevSlide} className="absolute left-0 bg-black/50 p-2 rounded-full">
-            <ChevronLeft className="text-white w-6 h-6" />
-          </button>
-
-          <div className="w-[450px] h-[450px] relative">
-            <Image
-              src={imageSlides[currentSlide]}
-              alt="Shristi Slide"
-              fill
-              style={{ objectFit: "cover" }}
-              className="rounded-lg"
-            />
-          </div>
-
-          <button onClick={nextSlide} className="absolute right-0 bg-black/50 p-2 rounded-full">
-            <ChevronRight className="text-white w-6 h-6" />
-          </button>
-        </div>
-      </div>
-
-      {/* Winners Section */}
-      <div className="w-full py-10 bg-black/80">
-        <div className="px-6">
-          <h2 className={`${pixelFont.className} text-2xl md:text-4xl text-white text-center`}>
-            WINNERS OF EACH DOMAIN
-          </h2>
-
-          <div className="mt-8 flex flex-wrap justify-center gap-6">
-            {[
-              {
-                domain: "Sustainable Living Solutions",
-                winner: "PowerSense",
-                image: "/assests/living.jpeg",
-              },
-              {
-                domain: "Agronomic Agriculture Industry Innovation",
-                winner: "Agronomatic",
-                image: "/assests/agritech.jpeg",
-              },
-              {
-                domain: "IoT Solutions and AI",
-                winner: "Xenia",
-                image: "/assests/iotai.jpeg.jpeg", // FIXED (no space)
-              },
-              {
-                domain: "Affordable Healthcare",
-                winner: "Haptic Minds",
-                image: "/assests/affordabelheath.jpeg", // FIXED (no space)
-              },
-            ].map((item, index) => (
+          {/* Hero Carousel */}
+          <div className="relative w-full h-[420px] md:h-[520px] rounded-2xl overflow-hidden shadow-lg">
+            {heroSlides.map((s, i) => (
               <div
-                key={index}
-                className="w-[280px] bg-black/60 border border-white p-4 rounded-lg text-center shadow-lg"
+                key={i}
+                className="absolute inset-0 transition-transform duration-700 ease-in-out"
+                style={{
+                  transform: `translateX(${(i - slide) * 100}%)`,
+                }}
               >
-                <Image
-                  src={item.image}
-                  alt={item.winner}
-                  width={250}
-                  height={150}
-                  className="rounded-md mb-4 mx-auto"
-                />
+                <Image src={s.img} alt={s.title} fill priority={i === 0} className="object-cover" />
 
-                <h3 className={`${pixelFont.className} text-sm md:text-lg text-white`}>
-                  {item.domain}
-                </h3>
-
-                <p className={`${pixelFont.className} mt-3 text-sm md:text-lg text-blue-400`}>
-                  {item.winner}
-                </p>
+                {/* Frosted glass strip — flush to the bottom edge, full width */}
+                <div
+                  className="absolute bottom-0 left-0 right-0 px-4 py-3 md:px-6 md:py-4"
+                  style={{
+                    background: "rgba(26, 38, 28, 0.6)",
+                    backdropFilter: "blur(10px)",
+                    WebkitBackdropFilter: "blur(10px)",
+                    borderTop: "1px solid rgba(255, 255, 255, 0.15)",
+                  }}
+                >
+                  <h2
+                    className="font-heading text-lg md:text-2xl font-bold mb-1 max-w-lg"
+                    style={{ color: "#ffffff" }}
+                  >
+                    {s.title}
+                  </h2>
+                  <p
+                    className="text-xs md:text-sm mb-3 max-w-md"
+                    style={{ color: "rgba(255,255,255,0.85)" }}
+                  >
+                    {s.desc}
+                  </p>
+                  <Link
+                    href={s.href}
+                    className="inline-block bg-accent hover:bg-accent-hover text-white text-xs md:text-sm font-semibold tracking-wide px-4 py-2 rounded-md transition-colors"
+                  >
+                    {s.cta}
+                  </Link>
+                </div>
               </div>
             ))}
-          </div>
-        </div>
-      </div>
 
-      {/* Latest Events */}
-      <div className="w-full py-10 bg-black/80">
-        <div className="px-6">
-          <h2 className={`${pixelFont.className} text-2xl md:text-4xl text-white text-center`}>
-            SRISHTI Inauguration
-          </h2>
-
-          <div className="mt-6 flex flex-wrap justify-center gap-4">
-            <Image src="/assests/s/news1.jpg" width={300} height={200} alt="Event 1" />
-            <Image src="/assests/s/news12.jpg" width={300} height={200} alt="Event 2" />
-            <Image src="/assests/s/news15.jpg" width={300} height={200} alt="Event 3" />
-            <Image src="/assests/s/news14.jpg" width={300} height={200} alt="Event 4" />
+            {/* Carousel dots */}
+            <div className="absolute top-4 right-6 z-20 flex gap-2">
+              {heroSlides.map((_, i) => (
+                <button
+                  key={i}
+                  aria-label={`Go to slide ${i + 1}`}
+                  onClick={() => setSlide(i)}
+                  className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                    i === slide ? "bg-accent" : "bg-white/50"
+                  }`}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      </div>
+
+          {/* About Us card */}
+          <TiltCard className="bg-cardBg rounded-2xl p-6 md:p-10 mt-8 shadow-sm" maxTilt={4}>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary mb-6">
+              About Us
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-[140px_1fr] gap-6">
+              <div className="flex justify-center md:justify-start">
+                <Image
+                  src="/assests/idtr_logo_nw.png"
+                  alt="Ideator Club Logo"
+                  width={110}
+                  height={110}
+                  className="object-contain"
+                />
+              </div>
+              <div className="flex flex-col gap-4">
+                <h3 className="font-bold text-lg text-primary">Who we are</h3>
+                <p className="text-secondary text-sm md:text-base leading-relaxed">
+                  Club Ideator is the premier innovation hub of Government Engineering College,
+                  Thrissur. Founded in 2014, the club bridges the gap between theoretical
+                  engineering and actual product prototyping. We manage a fully-equipped maker
+                  lab, offering 24/7 workspace access to active builders, hackers, and creators.
+                </p>
+                <p className="text-secondary text-sm md:text-base leading-relaxed">
+                  Inspired by the visionary work of the late DRDO scientist K.P. Shaju, we strive
+                  to bring technical excellence to life. We guide student teams through product
+                  development, patent drafting, and seed funding acquisitions.
+                </p>
+                <div className="grid grid-cols-3 gap-2 mt-2">
+                  {aboutGridImages.map((img) => (
+                    <div key={img.src} className="relative aspect-square rounded-lg overflow-hidden">
+                      <Image src={img.src} alt={img.alt} fill className="object-cover" />
+                    </div>
+                  ))}
+                </div>
+                <blockquote className="font-heading italic text-lg text-secondary border-l-4 border-accent pl-4 mt-2">
+                  "Innovation is seeing what everybody has seen, and thinking what nobody has thought."
+                </blockquote>
+              </div>
+            </div>
+          </TiltCard>
+        </RevealOnScroll>
+
+        {/* RIGHT COLUMN — Events, Gallery, Newsletter */}
+        <RevealOnScroll delay={0.15} className="flex flex-col gap-8">
+
+          {/* Upcoming Events widget */}
+{/* SMART GECT CHALLENGE */}
+<TiltCard
+  className="relative rounded-2xl overflow-hidden shadow-sm h-[340px]"
+  maxTilt={4}
+>
+  {/* Background */}
+{/* Dark Premium Background */}
+<div
+  className="absolute inset-0"
+  style={{
+    background: `
+      radial-gradient(circle at top right, rgba(210,139,38,0.18), transparent 40%),
+      radial-gradient(circle at bottom left, rgba(210,139,38,0.12), transparent 45%),
+      linear-gradient(135deg, #0b1114 0%, #111827 45%, #1a261c 100%)
+    `,
+  }}
+/>
+
+{/* Soft Glow */}
+<div
+  className="absolute inset-0"
+  style={{
+    boxShadow: "inset 0 0 120px rgba(0,0,0,0.45)",
+  }}
+/>
+
+  {/* Center Content */}
+  <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+    <h2
+      style={{ color: "#fff" }}
+      className="font-heading text-3xl md:text-4xl font-bold tracking-wide"
+    >
+      SMART GECT CHALLENGE
+    </h2>
+
+    <h3
+      style={{ color: "#fff" }}
+      className="font-heading text-5xl md:text-6xl font-bold mt-2"
+    >
+      2026
+    </h3>
+  </div>
+
+  {/* News Ticker */}
+  <div className="absolute bottom-0 left-0 w-full bg-accent overflow-hidden py-2">
+    <div className="ticker-track">
+      <span className="ticker-text">
+        ● COMING SOON • COMING SOON • COMING SOON • COMING SOON • COMING SOON •
+      </span>
+
+      <span className="ticker-text">
+        ● COMING SOON • COMING SOON • COMING SOON • COMING SOON • COMING SOON •
+      </span>
     </div>
-  );
-};
+  </div>
+</TiltCard>
 
-export default Shristi;
+          {/* Gallery widget */}
+          <TiltCard className="bg-cardBg rounded-2xl p-6 shadow-sm" maxTilt={4}>
+            <h3 className="font-heading text-2xl font-bold text-primary mb-4">Gallery</h3>
+            <div className="grid grid-cols-3 gap-2">
+              {galleryPhotos.slice(0, 6).map((photo) => (
+                <div key={photo.id} className="group relative aspect-square rounded-lg overflow-hidden cursor-pointer">
+                  <Image src={photo.src} alt={photo.title} fill className="object-cover transition-transform duration-500 group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors" />
+                </div>
+              ))}
+            </div>
+            <Link
+              href="/Gallery"
+              className="block text-center mt-5 border border-primary/20 hover:border-accent hover:text-accent text-primary text-sm font-semibold py-2.5 rounded-md transition-colors"
+            >
+              VIEW FULL GALLERY
+            </Link>
+          </TiltCard>
+
+          {/* Newsletter */}
+          <TiltCard className="relative rounded-2xl overflow-hidden shadow-sm min-h-[220px] flex items-end" maxTilt={4}>
+            <Image
+              src="/assests/iotwork.jpg"
+              alt="Makerspace Abstract"
+              fill
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-primary/85" />
+            <div className="relative z-10 p-6 w-full">
+<h3
+  className="font-heading text-xl font-bold mb-2"
+  style={{ color: "#FFFFFF" }}
+>
+  Stay Updated with Ideator
+</h3>
+
+<p
+  className="text-sm mb-4"
+  style={{ color: "rgba(255,255,255,0.85)" }}
+>
+  Never miss workshop alerts, recruitment drives, and project showcases.
+</p>
+              <form onSubmit={handleSubscribe} className="flex flex-col gap-2">
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Your email address"
+                  className="rounded-md px-3 py-2 text-sm text-primary outline-none"
+                />
+                <button
+                  type="submit"
+                  className="bg-accent hover:bg-accent-hover text-white text-sm font-semibold py-2.5 rounded-md transition-colors"
+                >
+                  SUBSCRIBE
+                </button>
+              </form>
+              {subscribed && (
+                <p className="text-accent-light text-xs mt-3">
+                  Awesome! You're subscribed to GECT Ideator updates. 🎉
+                </p>
+              )}
+            </div>
+          </TiltCard>
+
+        </RevealOnScroll>
+      </div>
+
+      <SupportersSection />
+    </main>
+  );
+}

@@ -13,7 +13,7 @@ const links = [
   { name: "EVENTS", path: "/Events" },
   { name: "TEAM", path: "/Team" },
   { name: "CONTACT", path: "/Contact" },
-  { name: "ALUMINI", path: "/Alumini" },
+  { name: "ALUMNI", path: "/Alumni" },
 ];
 
 const MobileNav = () => {

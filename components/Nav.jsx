@@ -15,7 +15,7 @@ const links = [
   { name: "EVENTS", path: "/Events" },
   { name: "TEAM", path: "/Team" },
   { name: "CONTACT", path: "/Contact" },
-  { name: "ALUMINI", path: "/Alumni" },
+  { name: "ALUMNI", path: "/Alumni" },
 ];
 
 const Nav = () => {

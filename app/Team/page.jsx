@@ -4,7 +4,7 @@ import TiltCard from "@/components/ui/TiltCard";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 
 const facultyAdvisors = [
-  { name: "Prof. Lalgy Gopi", role: "Staff Advisor", image: "/assests/team/lalgygopi.jpg" },
+  { name: "Prof. Lalgy Gopi", role: "Staff Advisor", image: "/assests/team/lalgygopi.JPG" },
 ];
 
 // Each section matches the official EXECOM list exactly, in the same order.

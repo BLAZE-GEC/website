@@ -29,13 +29,7 @@ const ProjectCall = () => {
   };
 
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      animate={{
-        opacity: 1,
-      }}
-      className="min-h-[80vh] lg:w-[1024px] flex flex-col justify-center xl:px-0 "
-    >
+    <section className="min-h-[80vh] lg:w-[1024px] flex flex-col justify-center xl:px-0">
       <div className="container mx-auto text-center h-full">
         <div className=" mx-auto text-left">
           {projects.map((project, index) => {
@@ -78,7 +72,7 @@ const ProjectCall = () => {
           })}
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 };
 

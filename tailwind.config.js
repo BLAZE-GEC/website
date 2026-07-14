@@ -13,25 +13,36 @@ module.exports = {
       center: true,
       padding: "2rem",
       screens: {
-        sm:"640px",
-        md:"768px",
-        lg:"960px",
-        xl:"1200px"
+        sm: "640px",
+        md: "768px",
+        lg: "960px",
+        xl: "1200px"
       },
     },
-    fontFamily:{
-      primary:"var(--font-inter)",
+    fontFamily: {
+      primary: "var(--font-body)",
+      heading: "var(--font-heading)",
     },
-    colors:{
-      primary:"#03120E",
-      acccent:{
-        DEFAULT:'#1A1D1A',
-        hover:"#8AB0AB"
+    colors: {
+      // --- Ideator design palette (from the target design) ---
+      primary: "#1a261c",        // main dark text / was #03120E
+      secondary: "#4a5c4e",      // secondary text
+      textMuted: "#728476",
+      bgPrimary: "#f6f4ee",      // main cream background
+      bgSecondary: "#edeae0",
+      bgTertiary: "#dfdacb",
+      cardBg: "#ece7dc",
+      accent: {
+        DEFAULT: "#d28b26",      // gold accent (buttons, highlights)
+        light: "#e5a953",
+        hover: "#b8731d",
       },
-      secondary:"#1A1D1A",
-      base3:"#26413C",
-      base2:"#3E505B",
-      base1:"#8AB0AB",
+      // --- Kept from the original project so nothing breaks ---
+      // Stairs.jsx, StairTransition.jsx, SideTransition.jsx and
+      // Contact/page.jsx all reference "base1" directly — do not remove it.
+      base3: "#26413C",
+      base2: "#3E505B",
+      base1: "#8AB0AB",
     },
     extend: {
       keyframes: {
@@ -47,6 +58,10 @@ module.exports = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      boxShadow: {
+        '3d': '4px 4px 0px rgba(26, 38, 28, 1)',
+        '3d-hover': '8px 8px 0px rgba(26, 38, 28, 1)',
       },
     },
   },

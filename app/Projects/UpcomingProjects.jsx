@@ -5,7 +5,7 @@ import projects from "./ProjectsData"; // Import project data
 
 const CompletedProjects = () => {
   return (
-    <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="min-h-[80vh] w-screen flex flex-col justify-center xl:px-0">
+    <section className="min-h-[80vh] w-screen flex flex-col justify-center xl:px-0">
       <div className="container mx-auto text-center">
         <h2 className="text-3xl font-bold mb-8 text-primary"></h2>
 
@@ -25,7 +25,7 @@ const CompletedProjects = () => {
           ))}
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 };
 

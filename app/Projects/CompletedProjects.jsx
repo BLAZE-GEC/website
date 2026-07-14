@@ -132,11 +132,7 @@ const projects = [
 
 const CompletedProjects = () => {
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="min-h-screen w-screen flex flex-col justify-center xl:px-0 py-1" // reduced padding here
-    >
+    <section className="min-h-screen w-screen flex flex-col justify-center xl:px-0 py-1">
       <div className="container mx-auto text-center mt-0"> {/* Added margin-top here */}
         <h2 className="text-4xl font-bold text-primary mb-8"></h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -164,7 +160,7 @@ const CompletedProjects = () => {
           ))}
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 };
 

@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BackgroundAnimation from "@/components/BackgroundAnimation";
 import PageLoader from "@/components/PageLoader";
+import ThemeProvider from "@/components/ThemeProvider";
 
 // Heading font — matches the target design's serif headings
 const playfair = Playfair_Display({
@@ -30,13 +31,15 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${playfair.variable} ${outfit.variable}`}>
-        <PageLoader />
-        <BackgroundAnimation />
-        <Header />
-        {children}
-        <Footer />
+        <ThemeProvider>
+          <PageLoader />
+          <BackgroundAnimation />
+          <Header />
+          {children}
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

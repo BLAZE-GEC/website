@@ -3,9 +3,40 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* Light mode (default) — values are R G B, space-separated, no commas,
+       so Tailwind's rgb(var(--x) / <alpha-value>) opacity syntax works. */
+    --color-primary: 26 38 28;
+    --color-secondary: 74 92 78;
+    --color-text-muted: 114 132 118;
+    --color-bg-primary: 246 244 238;
+    --color-bg-secondary: 237 234 224;
+    --color-bg-tertiary: 223 218 203;
+    --color-card-bg: 236 231 220;
+    --color-accent: 210 139 38;
+    --color-accent-light: 229 169 83;
+    --color-accent-hover: 184 115 29;
+  }
+
+  .dark {
+    /* Dark mode — dark green-black backgrounds, light text, slightly
+       brighter gold so it still pops against the dark background. */
+    --color-primary: 237 240 236;
+    --color-secondary: 176 188 178;
+    --color-text-muted: 140 152 142;
+    --color-bg-primary: 16 22 18;
+    --color-bg-secondary: 24 32 26;
+    --color-bg-tertiary: 34 44 36;
+    --color-card-bg: 28 37 30;
+    --color-accent: 224 158 61;
+    --color-accent-light: 237 187 115;
+    --color-accent-hover: 200 138 48;
+  }
+
   body {
     @apply font-primary text-primary leading-loose bg-bgPrimary;
     font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   /* Matches the target design: every heading tag automatically gets the
@@ -72,32 +103,4 @@
   font-size: 0.8rem;
   letter-spacing: 1px;
   padding-right: 0;
-}
-/* ==========================================
-   SMART GECT CHALLENGE NEWS TICKER
-========================================== */
-
-@keyframes tickerScroll {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-.ticker-track {
-  display: flex;
-  width: max-content;
-  animation: tickerScroll 12s linear infinite;
-}
-
-.ticker-text {
-  white-space: nowrap;
-  color: white;
-  font-weight: 700;
-  font-size: 0.9rem;
-  letter-spacing: 1px;
-  padding-right: 3rem;
 }

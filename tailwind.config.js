@@ -24,25 +24,30 @@ module.exports = {
       heading: "var(--font-heading)",
     },
     colors: {
-      // --- Ideator design palette (from the target design) ---
-      primary: "#1a261c",        // main dark text / was #03120E
-      secondary: "#4a5c4e",      // secondary text
-      textMuted: "#728476",
-      bgPrimary: "#f6f4ee",      // main cream background
-      bgSecondary: "#edeae0",
-      bgTertiary: "#dfdacb",
-      cardBg: "#ece7dc",
+      // All theme colors now read from CSS variables (defined in globals.css)
+      // so they can flip automatically between light and dark mode.
+      // The "/ <alpha-value>" pattern is what keeps opacity modifiers like
+      // bg-primary/10 or text-white/70 working correctly.
+      primary: "rgb(var(--color-primary) / <alpha-value>)",
+      secondary: "rgb(var(--color-secondary) / <alpha-value>)",
+      textMuted: "rgb(var(--color-text-muted) / <alpha-value>)",
+      bgPrimary: "rgb(var(--color-bg-primary) / <alpha-value>)",
+      bgSecondary: "rgb(var(--color-bg-secondary) / <alpha-value>)",
+      bgTertiary: "rgb(var(--color-bg-tertiary) / <alpha-value>)",
+      cardBg: "rgb(var(--color-card-bg) / <alpha-value>)",
       accent: {
-        DEFAULT: "#d28b26",      // gold accent (buttons, highlights)
-        light: "#e5a953",
-        hover: "#b8731d",
+        DEFAULT: "rgb(var(--color-accent) / <alpha-value>)",
+        light: "rgb(var(--color-accent-light) / <alpha-value>)",
+        hover: "rgb(var(--color-accent-hover) / <alpha-value>)",
       },
-      // --- Kept from the original project so nothing breaks ---
-      // Stairs.jsx, StairTransition.jsx, SideTransition.jsx and
-      // Contact/page.jsx all reference "base1" directly — do not remove it.
+      // Kept static — used by the original Stairs/PageTransition components,
+      // unrelated to the light/dark theme system.
       base3: "#26413C",
       base2: "#3E505B",
       base1: "#8AB0AB",
+      white: "#ffffff",
+      black: "#000000",
+      transparent: "transparent",
     },
     extend: {
       keyframes: {

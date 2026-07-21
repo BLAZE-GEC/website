@@ -34,7 +34,7 @@ const sections = [
   {
     title: "Technical Committee Members",
     members: [
-      { name: "Mohammed Midhlaj", role: "Technical Committee Member", image: null }, // TODO: photo needed
+      { name: "Mohammed Midhlaj", role: "Technical Committee Member", image: "/assests/team/Mohammad Midhilaj Technical Committee.jpg" }, // TODO: photo needed
       { name: "Siddarth S Pramod", role: "Technical Committee Member", image: "/assests/team/11-siddarth-s-pramod.jpg" },
       { name: "Muhammed Irfan", role: "Technical Committee Member", image: "/assests/team/12-muhammed-irfan.jpg" },
       { name: "Abhishek R S", role: "Technical Committee Member", image: "/assests/team/13-abhishek-r-s.jpg" },
@@ -67,16 +67,16 @@ const sections = [
       { name: "Akash M Vijay", role: "Program Committee Member", image: "/assests/team/akashmvijay.jpg" },
       { name: "Diya Ravi", role: "Program Committee Member", image: "/assests/team/diyaravi.jpg" },
       { name: "Nafiha Nazar", role: "Program Committee Member", image: "/assests/team/27-nafiha-nazar.jpg" },
-      { name: "Muhammed Shazmil", role: "Program Committee Member", image: "/assests/team/muhammedshazmil.jpg" },
-      { name: "Fathima Rinsha", role: "Program Committee Member", image: null }, // TODO: photo needed
+      { name: "Nandana Raju", role: "Program Committee Member", image: "/assests/team/28-nandana-raju.jpeg" },
+      { name: "Akshay P M", role: "Program Committee Member", image: "/assests/team/29-akshay-p-m.jpeg" }, // TODO: photo needed
     ],
   },
   {
     title: "Media, Publicity & Outreach",
     members: [
       { name: "Gauri Kalyani", role: "Publicity Head", image: "/assests/team/30-gauri-kalyani.jpg" },
-      { name: "Jyothis", role: "Poster Lead", image: "/assests/team/31-jyothis.jpg" },
-      { name: "Vaiga Biju", role: "Poster Sub", image: null }, // TODO: photo needed
+      { name: "Shyamraj T", role: "Design Lead", image: "/assests/team/Shyamraj T.jpeg" },
+      { name: "Vaiga Biju", role: "Designer", image: "/assests/team/vaiga-biju.jpg" }, // TODO: photo needed
       { name: "Grace Mary Sunil", role: "Content Lead", image: "/assests/team/Grace Mary Sunil.png" },
       { name: "Aysha M Shaji", role: "Content Lead", image: "/assests/team/34-aysha-m-shaji.jpg" },
       { name: "Pavan", role: "Video Editor", image: "/assests/team/35-pavan.jpg" },

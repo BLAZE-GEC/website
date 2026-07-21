@@ -1,4 +1,4 @@
-"use client";
+ "use client";
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -187,62 +187,88 @@ export default function Home() {
         <RevealOnScroll delay={0.15} className="flex flex-col gap-8">
 
           {/* Upcoming Events widget */}
-{/* SMART GECT CHALLENGE */}
-<TiltCard
-  className="relative rounded-2xl overflow-hidden shadow-sm h-[340px]"
-  maxTilt={4}
->
-  {/* Background */}
-{/* Dark Premium Background */}
-<div
-  className="absolute inset-0"
-  style={{
-    background: `
-      radial-gradient(circle at top right, rgba(210,139,38,0.18), transparent 40%),
-      radial-gradient(circle at bottom left, rgba(210,139,38,0.12), transparent 45%),
-      linear-gradient(135deg, #0b1114 0%, #111827 45%, #1a261c 100%)
-    `,
-  }}
-/>
+          {/* SMART GECT CHALLENGE */}
+          <TiltCard
+            className="relative rounded-2xl overflow-hidden shadow-sm h-[340px]"
+            maxTilt={4}
+          >
+            {/* Dark Premium Background */}
+            <div
+              className="absolute inset-0"
+              style={{
+                background: `
+                  radial-gradient(circle at top right, rgba(210,139,38,0.18), transparent 40%),
+                  radial-gradient(circle at bottom left, rgba(210,139,38,0.12), transparent 45%),
+                  linear-gradient(135deg, #0b1114 0%, #111827 45%, #1a261c 100%)
+                `,
+              }}
+            />
 
-{/* Soft Glow */}
-<div
-  className="absolute inset-0"
-  style={{
-    boxShadow: "inset 0 0 120px rgba(0,0,0,0.45)",
-  }}
-/>
+            {/* Soft Glow */}
+            <div
+              className="absolute inset-0"
+              style={{
+                boxShadow: "inset 0 0 120px rgba(0,0,0,0.45)",
+              }}
+            />
 
-  {/* Center Content */}
-  <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-    <h2
-      style={{ color: "#fff" }}
-      className="font-heading text-3xl md:text-4xl font-bold tracking-wide"
-    >
-      SMART GECT CHALLENGE
-    </h2>
+            {/* Center Content */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+              <h2
+                style={{ color: "#fff" }}
+                className="font-heading text-3xl md:text-4xl font-bold tracking-wide"
+              >
+                SMART GECT CHALLENGE
+              </h2>
 
-    <h3
-      style={{ color: "#fff" }}
-      className="font-heading text-5xl md:text-6xl font-bold mt-2"
-    >
-      2026
-    </h3>
-  </div>
+              <h3
+                style={{ color: "#fff" }}
+                className="font-heading text-5xl md:text-6xl font-bold mt-2"
+              >
+                2026
+              </h3>
+            </div>
 
-  {/* News Ticker */}
-  <div className="absolute bottom-0 left-0 w-full bg-accent overflow-hidden py-2">
-    <div className="ticker-track">
-      <span className="ticker-text">
-        ● COMING SOON • COMING SOON • COMING SOON • COMING SOON • COMING SOON •
-      </span>
+            {/* News Ticker */}
+            <div className="absolute bottom-0 left-0 w-full bg-accent overflow-hidden py-2">
+              <div className="ticker-track">
+                <span className="ticker-text">
+                  ● COMING SOON • COMING SOON • COMING SOON • COMING SOON • COMING SOON •
+                </span>
 
-      <span className="ticker-text">
-        ● COMING SOON • COMING SOON • COMING SOON • COMING SOON • COMING SOON •
-      </span>
-    </div>
-  </div>
-</TiltCard>
+                <span className="ticker-text">
+                  ● COMING SOON • COMING SOON • COMING SOON • COMING SOON • COMING SOON •
+                </span>
+              </div>
+            </div>
+
+            {/* Animation lives right here in the component — can't drift out
+                of sync with globals.css again, since it's self-contained. */}
+            <style jsx>{`
+              .ticker-track {
+                display: flex;
+                width: max-content;
+                white-space: nowrap;
+                animation: tickerScrollLocal 10s linear infinite;
+              }
+              .ticker-text {
+                color: white;
+                font-weight: 700;
+                font-size: 0.8rem;
+                letter-spacing: 1px;
+                display: inline-block;
+                padding-right: 0;
+              }
+              @keyframes tickerScrollLocal {
+                from {
+                  transform: translateX(0);
+                }
+                to {
+                  transform: translateX(-50%);
+                }
+              }
+            `}</style>
+          </TiltCard>
 
           {/* Gallery widget */}
           <TiltCard className="bg-cardBg rounded-2xl p-6 shadow-sm" maxTilt={4}>
@@ -273,19 +299,19 @@ export default function Home() {
             />
             <div className="absolute inset-0 bg-primary/85" />
             <div className="relative z-10 p-6 w-full">
-<h3
-  className="font-heading text-xl font-bold mb-2"
-  style={{ color: "#FFFFFF" }}
->
-  Stay Updated with Ideator
-</h3>
+              <h3
+                className="font-heading text-xl font-bold mb-2"
+                style={{ color: "#FFFFFF" }}
+              >
+                Stay Updated with Ideator
+              </h3>
 
-<p
-  className="text-sm mb-4"
-  style={{ color: "rgba(255,255,255,0.85)" }}
->
-  Never miss workshop alerts, recruitment drives, and project showcases.
-</p>
+              <p
+                className="text-sm mb-4"
+                style={{ color: "rgba(255,255,255,0.85)" }}
+              >
+                Never miss workshop alerts, recruitment drives, and project showcases.
+              </p>
               <form onSubmit={handleSubscribe} className="flex flex-col gap-2">
                 <input
                   type="email"

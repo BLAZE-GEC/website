@@ -84,6 +84,15 @@ const sections = [
       { name: "Albin Joby", role: "Web Master", image: "/assests/team/37-albin-joby.jpg" },
     ],
   },
+  {
+    title: "3D Printing Coordinators",
+    members: [
+      { name: "Ardra A P", role: "3D Printing Coordinator", image:"/assests/team/Ardra A P.jpeg"},
+      { name: "Nandhana Raju", role: "3D Printing Coordinator", image:"/assests/team/28-nandana-raju.jpeg"}, // TODO: photo needed
+      { name: "Shyamraj T", role: "3D Printing Coordinator", image: "/assests/team/Shyamraj T.jpeg" },
+      { name: "Nile Varghese", role: "3D Printing Coordinator", image:"/assests/team/nile.jpeg"},
+    ],
+  },
 ];
 
 function TeamTile({ member }) {

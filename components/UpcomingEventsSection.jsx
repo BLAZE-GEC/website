@@ -3,10 +3,14 @@
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import ComingSoonTile from "@/components/ComingSoonTile";
 
-// Add upcoming events here
+// Add more entries here as new upcoming events get announced.
+// "image" is optional — leave it out to get the dark gradient look
+// (like Smart GECT Challenge), or set a path to use a real poster instead.
+// "hideBanner" removes the moving Coming Soon strip for tiles whose poster
+// already has its own "coming soon" messaging baked in (like Ignite.X).
 const upcomingEvents = [
-  "SMART GECT CHALLENGE",
-  "IGNITE.X WORKSHOP SERIES 2026",
+  { title: "SMART GECT CHALLENGE" },
+  { title: null, image: "/assests/ignitex-poster.jpeg", hideBanner: true },
 ];
 
 export default function UpcomingEventsSection() {
@@ -16,9 +20,14 @@ export default function UpcomingEventsSection() {
         Upcoming Events
       </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 justify-items-center max-w-4xl mx-auto">
-        {upcomingEvents.map((title) => (
-          <ComingSoonTile key={title} title={title} />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {upcomingEvents.map((event) => (
+          <ComingSoonTile
+            key={event.title || event.image}
+            title={event.title}
+            image={event.image}
+            hideBanner={event.hideBanner}
+          />
         ))}
       </div>
     </RevealOnScroll>

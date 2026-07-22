@@ -12,7 +12,7 @@ import {
 
 const contacts = [
   {
-    role: "Convener",
+    role: "Convenor",
     name: "Naveen P Suresh",
     phone: "+91 98468 51957",
     image: "/assests/team/01-naveen-p-suresh.jpg",
@@ -37,6 +37,29 @@ const contacts = [
   },
 ];
 
+// 3D Printing Coordinators — clicking "Connect" below picks one of these at
+// random each time, so requests spread out evenly across all of them.
+// TODO: replace each "whatsapp" link with their real wa.me link once you
+// have their numbers — just swap the URL, nothing else needs to change.
+const printingCoordinators = [
+  {
+    name: "Ardra A P",
+    whatsapp: "https://wa.me/917356653064?text=Hi%2C%20I'm%20interested%20in%203D%20printing%20access.",
+  },
+  {
+    name: "Nandhana Raju",
+    whatsapp: "https://wa.me/919037459760?text=Hi%2C%20I'm%20interested%20in%203D%20printing%20access.",
+  },
+  {
+    name: "Shyamraj T",
+    whatsapp: "https://wa.me/918281200642?text=Hi%2C%20I'm%20interested%20in%203D%20printing%20access.",
+  },
+  {
+    name: "Nile",
+    whatsapp: "https://wa.me/918590127205?text=Hi%2C%20I'm%20interested%20in%203D%20printing%20access.",
+  },
+];
+
 const Contact = () => {
   const [copied, setCopied] = useState("");
 
@@ -51,6 +74,14 @@ const Contact = () => {
     } catch (err) {
       console.error(err);
     }
+  };
+
+  // Picks a random 3D Printing Coordinator each time "Connect" is clicked,
+  // so requests spread out evenly instead of always going to one person.
+  const handlePrintingConnect = () => {
+    const randomIndex = Math.floor(Math.random() * printingCoordinators.length);
+    const chosen = printingCoordinators[randomIndex];
+    window.open(chosen.whatsapp, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -68,7 +99,7 @@ const Contact = () => {
             Contact Our Team
           </h2>
 
-          <p className="text-white/70 mt-4 max-w-2xl mx-auto">
+          <p className="text-secondary mt-4 max-w-2xl mx-auto">
             Have questions about Ideator or want to join our community?
             Connect directly with our team through WhatsApp.
           </p>
@@ -155,6 +186,29 @@ const Contact = () => {
           ))}
 
         </div>
+
+        {/* 3D Printing Technology access — routes to a random coordinator each click */}
+        <motion.div
+          whileHover={{ y: -6 }}
+          transition={{ duration: 0.25 }}
+          className="max-w-2xl mx-auto mt-8 bg-base1 rounded-2xl shadow-xl border border-white/10 p-8 flex flex-col items-center text-center"
+        >
+          <h3 className="text-2xl font-bold text-primary">
+            Access 3D Printing Technology
+          </h3>
+          <p className="text-white/80 mt-2 max-w-md">
+            Reach out to our 3D Printing Coordinators to get started with a print job or ask
+            about the lab's printing setup.
+          </p>
+          <button
+            onClick={handlePrintingConnect}
+            className="mt-6 inline-flex items-center gap-2 bg-accent hover:bg-accent-hover transition-all duration-300 text-white font-semibold px-6 py-2.5 rounded-full"
+          >
+            <span>Connect</span>
+            <MessageCircle size={18} />
+          </button>
+        </motion.div>
+
       </div>
     </motion.section>
   );

@@ -11,8 +11,11 @@ import { useRef, useState } from "react";
  *   <TiltCard className="bg-cardBg rounded-2xl p-6">
  *     ...your card content...
  *   </TiltCard>
+ *
+ * Any extra props (onClick, etc.) are forwarded to the underlying div,
+ * so this can also be used as a clickable card.
  */
-export default function TiltCard({ children, className = "", maxTilt = 8 }) {
+export default function TiltCard({ children, className = "", maxTilt = 8, ...rest }) {
   const ref = useRef(null);
   const [style, setStyle] = useState({});
 
@@ -46,6 +49,7 @@ export default function TiltCard({ children, className = "", maxTilt = 8 }) {
       onMouseLeave={handleMouseLeave}
       style={{ transition: "transform 0.15s ease-out", ...style }}
       className={className}
+      {...rest}
     >
       {children}
     </div>

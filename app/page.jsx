@@ -8,6 +8,7 @@ import galleryPhotos from "./Gallery/galleryData";
 import TiltCard from "@/components/ui/TiltCard";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import SupportersSection from "@/components/SupportersSection";
+import MerchTile from "@/components/MerchTile";
 
 // Hero slides — using real club photos already in /public/assests
 const heroSlides = [
@@ -269,7 +270,8 @@ export default function Home() {
               }
             `}</style>
           </TiltCard>
-
+{/* Merch Store */}
+<MerchTile />
           {/* Gallery widget */}
           <TiltCard className="bg-cardBg rounded-2xl p-6 shadow-sm" maxTilt={4}>
             <h3 className="font-heading text-2xl font-bold text-primary mb-4">Gallery</h3>

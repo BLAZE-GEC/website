@@ -3,6 +3,18 @@
 
 const events = [
   {
+  id: 14,
+  img: "/assests/events1/ignitex-poster.jpg",
+  title: "IGNITE.X Workshop Series",
+  des: "A series of hands-on technical workshops covering engineering, design, programming, and emerging technologies.",
+  venue: "GEC Thrissur",
+  date: "29-07-2026 — 05-08-2026",
+  time: "",
+  link: "/Events/ignitex",
+  status: "View Workshop Series",
+},
+
+  {
     id: 13,
     img: "/assests/events1/dwsim.jpeg",
     title: "DWSIM Workshop",

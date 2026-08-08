@@ -40,20 +40,20 @@ const Events = () => {
                       <div className="text-sm font-semibold text-textMuted py-1">{event.venue}</div>
                     )}
                     <div className="mt-auto pt-3">
-                      {isOpen ? (
-                        <a href={event.link || "#"} className="block">
-                          <button className="w-full bg-accent hover:bg-accent-hover text-white text-sm font-semibold py-2.5 rounded-full transition-colors">
-                            {event.status}
-                          </button>
-                        </a>
-                      ) : (
-                        <button
-                          disabled
-                          className="w-full bg-primary/8 text-primary/40 text-sm font-semibold py-2.5 rounded-full cursor-not-allowed"
-                        >
-                          {event.status}
-                        </button>
-                      )}
+{event.link ? (
+  <a href={event.link} className="block">
+    <button className="w-full bg-accent hover:bg-accent-hover text-white text-sm font-semibold py-2.5 rounded-full transition-colors">
+      {event.status}
+    </button>
+  </a>
+) : (
+  <button
+    disabled
+    className="w-full bg-primary/8 text-primary/40 text-sm font-semibold py-2.5 rounded-full cursor-not-allowed"
+  >
+    {event.status}
+  </button>
+)}
                     </div>
                   </div>
                 </TiltCard>

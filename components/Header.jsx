@@ -39,7 +39,7 @@ const Header = () => {
           </div>
         </Link>
 
-        <div className="hidden xl:flex items-center gap-8">
+        <div className="hidden xl:flex items-center mx-8">
           <Nav />
         </div>
 
@@ -48,7 +48,7 @@ const Header = () => {
     href="https://chat.whatsapp.com/I2rhnqfn3W26f3y0CMqY4a"
     target="_blank"
     rel="noopener noreferrer"
-    className="bg-accent hover:bg-accent-hover text-white font-semibold text-sm tracking-wide px-5 py-2.5 rounded-full transition-all duration-300 hover:scale-105"
+    className="inline-block whitespace-nowrap shrink-0 bg-accent hover:bg-accent-hover text-white font-semibold text-sm tracking-wide px-5 py-2.5 rounded-full transition-all duration-300 hover:scale-105"
   >
     JOIN OUR COMMUNITY
   </a>

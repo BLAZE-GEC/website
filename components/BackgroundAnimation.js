@@ -12,9 +12,7 @@ export default function BackgroundAnimation() {
   const pathname = usePathname();
   const canvasRef = useRef(null);
 
-  if (pathname?.toLowerCase().startsWith("/matrix")) {
-    return null;
-  }
+
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -140,6 +138,10 @@ export default function BackgroundAnimation() {
       window.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, []);
+
+  if (pathname?.toLowerCase().startsWith("/matrix")) {
+    return null;
+  }
 
   return (
     <canvas

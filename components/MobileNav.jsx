@@ -14,6 +14,7 @@ const links = [
   { name: "TEAM", path: "/Team" },
   { name: "CONTACT", path: "/Contact" },
   { name: "ALUMNI", path: "/Alumni" },
+  { name: "MATRIX", path: "/Matrix" },
 ];
 
 const MobileNav = () => {

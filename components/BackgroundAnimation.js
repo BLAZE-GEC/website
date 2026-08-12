@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 
 /**
  * Faithful port of the target design's background animation:
@@ -8,7 +9,12 @@ import { useEffect, useRef } from "react";
  * toward the mouse cursor when it's nearby.
  */
 export default function BackgroundAnimation() {
+  const pathname = usePathname();
   const canvasRef = useRef(null);
+
+  if (pathname?.toLowerCase().startsWith("/matrix")) {
+    return null;
+  }
 
   useEffect(() => {
     const canvas = canvasRef.current;

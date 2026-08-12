@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100" width="400" height="100">
+  <g transform="translate(10, 10)">
+    <!-- MATLAB L-shaped Membrane Surface 3D Icon -->
+    <path d="M10 65 Q 25 15 45 40 T 75 25 T 90 70 Z" fill="url(#mwGrad)" stroke="#E16725" stroke-width="2"/>
+    <path d="M20 60 Q 35 25 50 45 T 70 35" fill="none" stroke="#0076A8" stroke-width="2.5"/>
+    <path d="M15 70 Q 40 50 80 65" fill="none" stroke="#E16725" stroke-width="2"/>
+    <defs>
+      <linearGradient id="mwGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#E16725" stop-opacity="0.9"/>
+        <stop offset="100%" stop-color="#0076A8" stop-opacity="0.9"/>
+      </linearGradient>
+    </defs>
+  </g>
+  <!-- MathWorks Text -->
+  <text x="110" y="58" font-family="'Inter', sans-serif" font-weight="800" font-size="38" fill="currentColor" tracking="tight">MathWorks<tspan font-size="18" font-weight="400" dy="-18">®</tspan></text>
+</svg>

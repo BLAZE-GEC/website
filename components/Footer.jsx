@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { FaLinkedin, FaInstagram, FaGithub } from "react-icons/fa";
+import { usePathname } from "next/navigation";
 
 const quickLinks = [
   { name: "Home", path: "/" },
@@ -28,7 +31,12 @@ const socials = [
   },
 ];
 const Footer = () => {
+  const pathname = usePathname();
   const year = new Date().getFullYear();
+
+  if (pathname?.toLowerCase().startsWith("/matrix")) {
+    return null;
+  }
 
   return (
     <footer className="bg-primary text-bgPrimary mt-20">

@@ -1,9 +1,17 @@
+"use client";
+
 import Link from "next/link";
 import Nav from "./Nav";
 import MobileNav from "./MobileNav";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
+  const pathname = usePathname();
+  if (pathname?.toLowerCase().startsWith("/matrix")) {
+    return null;
+  }
+
   return (
     <header className="py-4 md:py-5 bg-bgPrimary/95 backdrop-blur-sm sticky top-0 z-50 border-b border-primary/10">
       <div className="container mx-auto flex justify-between items-center">

@@ -12,10 +12,11 @@ export default function BackgroundAnimation() {
   const pathname = usePathname();
   const canvasRef = useRef(null);
 
-  const isMatrix = pathname?.toLowerCase().startsWith("/matrix");
+  if (pathname?.toLowerCase().startsWith("/matrix")) {
+    return null;
+  }
 
   useEffect(() => {
-    if (isMatrix) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
@@ -136,10 +137,9 @@ export default function BackgroundAnimation() {
       cancelAnimationFrame(animationId);
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseleave", handleMouseLeave);
     };
-  }, [isMatrix]);
-
-  if (isMatrix) return null;
+  }, []);
 
   return (
     <canvas

@@ -13,6 +13,13 @@ import MerchTile from "@/components/MerchTile";
 // Hero slides — using real club photos already in /public/assests
 const heroSlides = [
   {
+    img: "/assests/matrix_poster.jpeg",
+    title: "Matrix 2026: Ideate, Build, Innovate",
+    desc: "Join Ideator's flagship hackathon Matrix",
+    cta: "Know More",
+    href: "/Matrix",
+  },
+  {
     img: "/assests/inaugration.jpg",
     title: "Where Visionary Ideas Become Reality",
     desc: "Join GECT's premier engineering and maker club. Build physical prototypes, participate in Srishti, and shape tomorrow's technology.",
@@ -177,7 +184,7 @@ export default function Home() {
                   ))}
                 </div>
                 <blockquote className="font-heading italic text-lg text-secondary border-l-4 border-accent pl-4 mt-2">
-                  "Innovation is seeing what everybody has seen, and thinking what nobody has thought."
+                  &quot;Innovation is seeing what everybody has seen, and thinking what nobody has thought.&quot;
                 </blockquote>
               </div>
             </div>
@@ -332,7 +339,7 @@ export default function Home() {
               </form>
               {subscribed && (
                 <p className="text-accent-light text-xs mt-3">
-                  Awesome! You're subscribed to GECT Ideator updates. 🎉
+                  Awesome! You&apos;re subscribed to GECT Ideator updates. 🎉
                 </p>
               )}
             </div>

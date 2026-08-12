@@ -1,9 +1,17 @@
+"use client";
+
 import Link from "next/link";
 import Nav from "./Nav";
 import MobileNav from "./MobileNav";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
+  const pathname = usePathname();
+  if (pathname?.toLowerCase().startsWith("/matrix")) {
+    return null;
+  }
+
   return (
     <header className="py-4 md:py-5 bg-bgPrimary/95 backdrop-blur-sm sticky top-0 z-50 border-b border-primary/10">
       <div className="container mx-auto flex justify-between items-center">
@@ -31,7 +39,7 @@ const Header = () => {
           </div>
         </Link>
 
-        <div className="hidden xl:flex items-center gap-8">
+        <div className="hidden xl:flex items-center mx-8">
           <Nav />
         </div>
 
@@ -40,7 +48,7 @@ const Header = () => {
     href="https://chat.whatsapp.com/I2rhnqfn3W26f3y0CMqY4a"
     target="_blank"
     rel="noopener noreferrer"
-    className="bg-accent hover:bg-accent-hover text-white font-semibold text-sm tracking-wide px-5 py-2.5 rounded-full transition-all duration-300 hover:scale-105"
+    className="inline-block whitespace-nowrap shrink-0 bg-accent hover:bg-accent-hover text-white font-semibold text-sm tracking-wide px-5 py-2.5 rounded-full transition-all duration-300 hover:scale-105"
   >
     JOIN OUR COMMUNITY
   </a>

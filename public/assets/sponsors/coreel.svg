@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 100" width="450" height="100">
+  <g transform="translate(10, 15)">
+    <!-- CoreEL Orange Shell Wave Vector Icon -->
+    <path d="M40 0 C 15 0 0 20 0 40 C 0 65 25 70 45 60 C 65 50 60 25 40 25 C 25 25 20 40 35 40" fill="none" stroke="#FF5722" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="40" cy="35" r="6" fill="#FF5722"/>
+  </g>
+  <!-- CoreEL Text -->
+  <text x="95" y="55" font-family="'Inter', sans-serif" font-weight="900" font-size="40" fill="currentColor">CoreEL</text>
+  <text x="95" y="78" font-family="'Inter', sans-serif" font-weight="500" font-size="16" fill="#FF5722" letter-spacing="3">TECHNOLOGIES<tspan font-size="10" dy="-8">®</tspan></text>
+</svg>

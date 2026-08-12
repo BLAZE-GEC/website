@@ -16,12 +16,13 @@ const links = [
   { name: "TEAM", path: "/Team" },
   { name: "CONTACT", path: "/Contact" },
   { name: "ALUMNI", path: "/Alumni" },
+  { name: "MATRIX", path: "/Matrix" },
 ];
 
 const Nav = () => {
   const pathname = usePathname();
   return (
-    <nav className="flex gap-7">
+    <nav className="flex gap-5 xl:gap-6">
       {links.map((link, index) => {
         const isActive = link.path === pathname;
         return (

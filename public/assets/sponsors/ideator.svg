@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 100" width="420" height="100">
+  <g transform="translate(10, 15)">
+    <!-- Ideator Paper Plane Vector Logo -->
+    <path d="M50 5 L5 40 L25 45 L35 65 L45 48 L70 58 Z" fill="none" stroke="#39FF14" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M25 45 L50 5 L45 48" fill="none" stroke="#39FF14" stroke-width="3"/>
+  </g>
+  <!-- Text -->
+  <text x="95" y="52" font-family="'JetBrains Mono', monospace" font-weight="900" font-size="36" fill="currentColor" letter-spacing="1">IDEATOR</text>
+  <text x="96" y="75" font-family="'Inter', sans-serif" font-weight="600" font-size="14" fill="#39FF14" letter-spacing="4">CENTRE FOR INNOVATION</text>
+</svg>

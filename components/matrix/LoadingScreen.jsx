@@ -69,7 +69,7 @@ const LoadingScreen = ({ onComplete }) => {
               transition={{ duration: 2, repeat: Infinity }}
               className="mb-4"
             >
-              <Image src="/assets/MATRIX.png" alt="MATRIX" width={200} height={96} className="h-20 sm:h-24 object-contain" />
+              <Image src="/assets/MATRIX.png" alt="MATRIX" width={400} height={192} className="h-20 sm:h-24 object-contain" />
             </motion.div>
             
             <p className="text-white text-sm mb-12 tracking-widest uppercase opacity-80 text-center">

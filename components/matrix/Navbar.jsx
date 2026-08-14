@@ -134,7 +134,7 @@ export default function Navbar() {
         {/* Action CTAs */}
         <div className="hidden md:flex items-center gap-3">
           <a
-            href="https://unstop.com/"
+            href="https://unstop.com/o/sIzxCAY?utm_medium=Share&utm_source=iecyrqwn36473&utm_campaign=Online_coding_challenge"
             target="_blank"
             rel="noopener noreferrer"
             className="relative group px-4 py-2.5 rounded-lg bg-[#39FF14] text-[#060A07] hover:scale-105 shadow-[0_0_20px_rgba(57,255,20,0.5)] transition-all cursor-pointer flex items-center gap-1.5 font-bold"
@@ -222,7 +222,7 @@ export default function Navbar() {
               {/* Bottom CTA */}
               <div className="p-4 border-t border-gray-800/80 space-y-2.5 bg-[#060A07] shrink-0">
                 <a
-                  href="https://unstop.com/"
+                  href="https://unstop.com/o/sIzxCAY?utm_medium=Share&utm_source=iecyrqwn36473&utm_campaign=Online_coding_challenge"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full py-3 rounded-xl block bg-[#39FF14] text-[#060A07] font-bold text-center shadow-[0_0_20px_rgba(57,255,20,0.5)] cursor-pointer active:scale-98 transition-all"

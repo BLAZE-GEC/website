@@ -2,15 +2,15 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Bell, ChevronLeft, ChevronRight, Sparkles, ExternalLink } from 'lucide-react';
+import { Bell, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function AnnouncementsTicker() {
   const announcements = [
     {
       id: 1,
       badge: 'BOOTCAMP KICKOFF',
-      text: '📢 MATLAB & Simulink Technical Bootcamp starts August 28 conducted by MathWorks experts.',
-      date: 'AUG 28',
+      text: '📢 MATLAB & Simulink Technical Bootcamp on August 27 & 28 conducted by MathWorks experts.',
+      date: 'AUG 27 & 28',
       color: 'border-[#39FF14] text-[#39FF14]'
     },
     {
@@ -30,8 +30,8 @@ export default function AnnouncementsTicker() {
     {
       id: 4,
       badge: 'GRAND FINALE',
-      text: '🏆 Grand Finale & Live Challenge on Sept 25 (Friday) at GEC Thrissur! ₹25,000 Prize Pool.',
-      date: 'SEP 25',
+      text: '🏆 Grand Finale & Live Challenge at GEC Thrissur! ₹30,000 Prize Pool.',
+      date: 'Announced Later',
       color: 'border-[#39FF14] text-[#39FF14]'
     }
   ];
@@ -41,9 +41,10 @@ export default function AnnouncementsTicker() {
 
   useEffect(() => {
     if (isPaused) return;
+    // Set to 5000ms (5 seconds) so contestants have plenty of time to read each message
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % announcements.length);
-    }, 2000); // 2-second cycle requirement!
+    }, 5000);
 
     return () => clearInterval(interval);
   }, [isPaused, announcements.length]);
@@ -59,7 +60,7 @@ export default function AnnouncementsTicker() {
       <div className="flex items-center justify-between gap-4">
         
         {/* Left Icon Badge */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 shrink-0">
           <div className="p-2 rounded-xl bg-emerald-950 border border-[#39FF14]/50 text-[#39FF14] animate-pulse">
             <Bell className="w-4 h-4" />
           </div>
@@ -76,7 +77,7 @@ export default function AnnouncementsTicker() {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -20, opacity: 0 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.45, ease: [0.25, 0.1, 0.25, 1.0] }}
               className="flex items-center gap-3 w-full"
             >
               <span className={`text-[10px] font-mono font-bold px-2.5 py-0.5 rounded border ${item.color} shrink-0`}>
@@ -90,16 +91,18 @@ export default function AnnouncementsTicker() {
         </div>
 
         {/* Navigation Controls */}
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1 shrink-0">
           <button
             onClick={() => setCurrentIndex((prev) => (prev === 0 ? announcements.length - 1 : prev - 1))}
-            className="p-1 rounded-lg bg-gray-900 border border-gray-800 text-gray-400 hover:text-white"
+            className="p-1 rounded-lg bg-gray-900 border border-gray-800 text-gray-400 hover:text-white transition-colors"
+            aria-label="Previous announcement"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
           <button
             onClick={() => setCurrentIndex((prev) => (prev + 1) % announcements.length)}
-            className="p-1 rounded-lg bg-gray-900 border border-gray-800 text-gray-400 hover:text-white"
+            className="p-1 rounded-lg bg-gray-900 border border-gray-800 text-gray-400 hover:text-white transition-colors"
+            aria-label="Next announcement"
           >
             <ChevronRight className="w-4 h-4" />
           </button>

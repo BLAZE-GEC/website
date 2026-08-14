@@ -7,28 +7,22 @@ import { HelpCircle, ChevronDown } from 'lucide-react';
 const faqs = [
   {
     q: "Who is eligible to participate in Ideator Hackathon 2026?",
-    a: "The hackathon is open to engineering college students across Kerala. Teams must consist of 2 to 4 members."
+    a: "The hackathon is open to engineering college students across Kerala. Teams must consist of 3 to 4 members."
   },
   {
     q: "What software tools are required for the hackathon?",
-    a: "The primary tools for the hackathon are MATLAB and Simulink. Participants will gain technical training through the MATLAB Technical Bootcamp starting August 28."
+    a: "The primary tools for the hackathon are MATLAB and Simulink. Participants will gain technical training through the MATLAB Technical Bootcamp starting August 27 & 28."
   },
-  {
-    q: "What is the mentorship policy during the development phase?",
-    a: "To ensure maximum fairness across all teams, organizers and mentors will NOT provide direct technical assistance, solution strategies, or code debugging. Participants work independently using bootcamp learnings, MATLAB documentation, and official resources. Platform & administrative support is provided."
-  },
+   
   {
     q: "What is required in the final online submission package?",
-    a: "Submissions are due by September 14 on the official portal. The package must include: (1) Project Abstract, (2) MATLAB / Simulink Files, (3) Source Code (where applicable), (4) Presentation Deck, and (5) Demonstration Video."
+    a: "Submissions are due by September 14 on the official portal. The package must include: (1) Project Abstract, (2) MATLAB / Simulink Files, (3) Source Code (where applicable), (4) Demonstration Video."
   },
   {
     q: "How does the screening and evaluation process work?",
     a: "Stage 4 uses a two-tier screening process: First, the Ideator Technical Committee reviews all submissions to shortlist the Top 20 teams. Then, the MathWorks Jury Panel evaluates the Top 20 to select the Top 12 finalist teams, announced on September 18."
   },
-  {
-    q: "Where and when is the Grand Finale conducted?",
-    a: "The Grand Finale takes place on-site at Government Engineering College, Thrissur on September 25 (Friday). Shortlisted finalists deliver a 20-minute presentation & demo (50% weightage) and participate in a Live Engineering Challenge using MathWorks 'Hackathon in a Box' problem statements (50% weightage)."
-  }
+   
 ];
 
 const FAQSection = () => {

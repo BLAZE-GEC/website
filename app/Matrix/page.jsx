@@ -10,6 +10,7 @@ import AIThemesSection from '@/components/matrix/AIThemesSection';
 import PrizesSection from '@/components/matrix/PrizesSection';
 import SponsorsSection from '@/components/matrix/SponsorsSection';
 import FAQSection from '@/components/matrix/FAQSection';
+import ContactSection from '@/components/matrix/ContactSection';
 import MatrixBackground from '@/components/matrix/MatrixBackground';
 import MatrixFooter from '@/components/matrix/Footer';
 import MatrixNavbar from '@/components/matrix/Navbar';
@@ -41,6 +42,7 @@ export default function MatrixPage() {
             <PrizesSection />
             <SponsorsSection />
             <FAQSection />
+            <ContactSection />
             <MatrixFooter />
           </motion.main>
         )}

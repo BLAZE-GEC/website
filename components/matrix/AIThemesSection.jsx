@@ -1,196 +1,466 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Cpu, Eye, Activity, Zap, ChevronRight, Layers, Sparkles } from 'lucide-react';
-import ThemeDetailModal from './ThemeDetailModal';
-import TiltCard from './TiltCard';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  ChevronDown,
+  Sprout,
+  ShieldAlert,
+  ArrowRight,
+} from 'lucide-react';
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: (i = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, delay: i * 0.12, ease: [0.25, 0.46, 0.45, 0.94] }
-  })
-};
+const domains = [
+  {
+    id: 1,
+    number: '01',
+    title: 'AI IN AGRICULTURE',
+    description:
+      'Apply artificial intelligence and computational thinking to real-world challenges in agriculture.',
+    icon: Sprout,
+    accent: '#39FF14',
+    topics: [
+      '4 problem statements will be provided upon registration.',
+      'Choose only ONE problem statement from respective domain.',
+    ],
+  },
+  {
+    id: 2,
+    number: '02',
+    title: 'AI IN DISASTER MANAGEMENT',
+    description:
+      'Develop AI-driven solutions for real-world challenges related to disaster management.',
+    icon: ShieldAlert,
+    accent: '#00E5FF',
+    topics: [
+      '4 problem statements will be provided upon registration.',
+      'Choose only ONE problem statement from respective domain.',
+    ],
+  },
+];
 
 export default function AIThemesSection() {
-  const [selectedTheme, setSelectedTheme] = useState(null);
+  const [openDomain, setOpenDomain] = useState(null);
 
-  const themes = [
-    {
-      id: 'autonomous',
-      category: 'TRACK 01',
-      title: 'Autonomous Systems & Robotics',
-      shortDescription: 'Design intelligent path planning, SLAM navigation, and obstacle avoidance models using MATLAB Robotics System Toolbox.',
-      fullDescription: 'Develop autonomous mobile robot (AMR) control algorithms capable of real-time multi-sensor fusion, LiDAR-based map building, and path optimization in unpredictable environments. Build digital twins in Simulink.',
-      icon: <Cpu className="w-6 h-6" />,
-      gradient: 'from-emerald-500/20 to-cyan-500/20',
-      objectives: [
-        'SLAM & 2D/3D Map Generation',
-        'Trajectory Planning & Obstacle Avoidance',
-        'Sensor Fusion (LiDAR + Camera + IMU)',
-        'ROS 2 Node Integration in MATLAB'
-      ],
-      toolboxes: ['Robotics System Toolbox', 'Navigation Toolbox', 'Automated Driving Toolbox', 'ROS Toolbox']
-    },
-    {
-      id: 'vision',
-      category: 'TRACK 02',
-      title: 'Signal Processing & Computer Vision',
-      shortDescription: 'Build deep learning models for real-time automated visual defect detection, biometric security, and radar signal classification.',
-      fullDescription: 'Leverage MATLAB Deep Learning & Computer Vision Toolboxes to train high-accuracy convolutional neural networks (YOLO, ResNet) for automated industrial inspection, thermal vision analysis, and audio signal filtering.',
-      icon: <Eye className="w-6 h-6" />,
-      gradient: 'from-cyan-500/20 to-blue-500/20',
-      objectives: [
-        'Automated Industrial Surface Inspection',
-        'Real-time Multi-Object Detection (YOLOv8)',
-        'Audio/Radar Signal Spectrogram Classification',
-        'Edge AI C/C++ Code Generation'
-      ],
-      toolboxes: ['Computer Vision Toolbox', 'Image Processing Toolbox', 'Signal Processing Toolbox', 'Deep Learning Toolbox']
-    },
-    {
-      id: 'healthcare',
-      category: 'TRACK 03',
-      title: 'Predictive AI in Healthcare & Bio-Engineering',
-      shortDescription: 'Develop predictive diagnostic AI models analyzing physiological ECG/EEG signals, medical imaging, and patient vital telemetry.',
-      fullDescription: 'Utilize MATLAB signal feature extraction and neural network classifiers to build non-invasive diagnostic tools that detect cardiac arrhythmia, neurological anomalies, and bio-telemetry patterns early.',
-      icon: <Activity className="w-6 h-6" />,
-      gradient: 'from-rose-500/20 to-orange-500/20',
-      objectives: [
-        'ECG / EEG Wavelet Feature Extraction',
-        'Arrhythmia & Anomaly Detection',
-        'Medical Image Segmentation (MRI/CT)',
-        'Predictive Patient Telemetry Alerting'
-      ],
-      toolboxes: ['Bio-Signal Processing', 'Deep Learning Toolbox', 'Statistics & Machine Learning', 'Medical Imaging Toolbox']
-    },
-    {
-      id: 'energy',
-      category: 'TRACK 04',
-      title: 'Smart Energy & MATLAB Simulation',
-      shortDescription: 'Optimize renewable energy micro-grids, smart battery management systems (BMS), and predictive power grid maintenance.',
-      fullDescription: 'Engineers will simulate green micro-grids using MATLAB Simscape to predict battery state-of-health (SOH), balance peak solar/wind grid loads, and prevent power failures using reinforcement learning algorithms.',
-      icon: <Zap className="w-6 h-6" />,
-      gradient: 'from-amber-500/20 to-emerald-500/20',
-      objectives: [
-        'Simscape Micro-grid Digital Twin',
-        'BMS Battery State of Health Estimation',
-        'Predictive Maintenance & Fault Diagnosis',
-        'Reinforcement Learning Load Balancing'
-      ],
-      toolboxes: ['Simscape Electrical', 'Reinforcement Learning Toolbox', 'Predictive Maintenance Toolbox', 'Simulink']
-    }
-  ];
+  const toggleDomain = (id) => {
+    setOpenDomain((current) => (current === id ? null : id));
+  };
 
   return (
-    <section id="themes" className="py-24 relative">
-      {/* Decorative ambient glow */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#39FF14]/5 dark:bg-[#39FF14]/5 light:bg-emerald-500/5 rounded-full blur-3xl pointer-events-none -translate-y-1/2" />
-      <div className="absolute top-1/3 right-0 w-80 h-80 bg-[#00E5FF]/5 dark:bg-[#00E5FF]/5 light:bg-sky-500/5 rounded-full blur-3xl pointer-events-none" />
+    <section
+      id="themes"
+      className="relative py-20 md:py-28 overflow-hidden"
+    >
+      {/* Ambient background glow */}
+      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-72 h-72 bg-[#39FF14]/5 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeUp}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full dark:bg-emerald-950/60 light:bg-emerald-100 border border-[#39FF14]/30 dark:border-[#39FF14]/30 light:border-emerald-400/40 text-xs font-mono dark:text-[#39FF14] light:text-emerald-800 mb-4 font-semibold"
-          >
-            <Layers className="w-3.5 h-3.5" />
-            <span>AI ENGINEERING TRACKS</span>
-          </motion.div>
-          <motion.h2
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            custom={1}
-            variants={fadeUp}
-            className="text-3xl sm:text-5xl font-black dark:text-white light:text-slate-900 tracking-tight mb-5"
-          >
-            Choose Your AI Domain
-          </motion.h2>
-          <motion.p
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            custom={2}
-            variants={fadeUp}
-            className="dark:text-gray-400 light:text-slate-600 text-sm sm:text-base"
-          >
-            Select a focus domain powered by MathWorks AI toolsets. Click any card to explore the full problem scope.
-          </motion.p>
-        </div>
+      <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-[#00E5FF]/5 rounded-full blur-3xl pointer-events-none" />
 
-        {/* 4 Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {themes.map((theme, index) => (
-            <motion.div
-              key={theme.id}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              custom={index}
-              variants={fadeUp}
-              className="h-full flex flex-col"
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+        {/* ===================================================== */}
+        {/* SECTION HEADER */}
+        {/* ===================================================== */}
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
+        >
+
+          {/* Small label */}
+          <div
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-5"
+            style={{
+              background: 'rgba(13, 17, 14, 0.9)',
+              border: '1px solid rgba(57,255,20,0.25)',
+            }}
+          >
+            <span className="w-2 h-2 rounded-full bg-[#39FF14] animate-pulse" />
+
+            <span
+              className="text-[#39FF14] text-xs uppercase tracking-[0.18em]"
+              style={{
+                fontFamily: "'Outfit', sans-serif",
+                fontWeight: 600,
+              }}
             >
-              <TiltCard maxTilt={8} className="h-full">
+              HACKATHON DOMAINS
+            </span>
+          </div>
+
+          {/* Main heading */}
+<h2
+  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white"
+  style={{
+    fontFamily: "'Space Mono', monospace",
+    fontWeight: 900,
+    letterSpacing: '-0.04em',
+    lineHeight: '1.05',
+    textShadow: `
+      2px 2px 0 #061006,
+      4px 4px 0 #0b2410,
+      6px 6px 0 #123b18,
+      8px 8px 0 rgba(57,255,20,0.12),
+      0 0 20px rgba(57,255,20,0.2)
+    `,
+  }}
+>
+  CHOOSE YOUR DOMAIN
+</h2>
+
+          {/* Subtitle */}
+          <p
+            className="max-w-2xl mx-auto text-gray-400 mt-5"
+            style={{
+              fontFamily: "'Outfit', sans-serif",
+              fontSize: '16px',
+              fontWeight: 400,
+              lineHeight: '1.7',
+            }}
+          >
+            Select one domain and work on one problem statement.
+          </p>
+
+        </motion.div>
+
+
+        {/* ===================================================== */}
+        {/* DOMAIN CARDS */}
+        {/* ===================================================== */}
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          {domains.map((domain, index) => {
+            const Icon = domain.icon;
+            const isOpen = openDomain === domain.id;
+
+            return (
+              <motion.div
+                key={domain.id}
+                initial={{ opacity: 0, y: 35 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.12,
+                }}
+              >
+
+                {/* Card */}
                 <div
-                  onClick={() => setSelectedTheme(theme)}
-                  className="glass-card glass-card-hover rounded-3xl p-8 cursor-pointer relative group overflow-hidden h-full flex flex-col justify-between"
+                  className="relative overflow-hidden rounded-2xl transition-all duration-500"
+                  style={{
+                    background: 'rgba(7, 11, 8, 0.92)',
+                    border: `1px solid ${
+                      isOpen
+                        ? domain.accent
+                        : 'rgba(255,255,255,0.08)'
+                    }`,
+                    boxShadow: isOpen
+                      ? `0 0 35px ${domain.accent}18`
+                      : '0 0 20px rgba(0,0,0,0.35)',
+                  }}
                 >
-                  {/* Subtle gradient overlay on hover */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${theme.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none`} />
 
-                  <div className="relative z-10">
-                    <div className="flex items-start justify-between gap-4 mb-6">
-                      <span className="text-xs font-mono font-bold tracking-widest dark:text-[#39FF14] light:text-emerald-700 dark:bg-emerald-950/80 light:bg-emerald-100 px-3 py-1 rounded-full border border-[#39FF14]/30 dark:border-[#39FF14]/30 light:border-emerald-400/40">
-                        {theme.category}
-                      </span>
-                      <div className="p-3 rounded-2xl dark:bg-gray-900/90 light:bg-slate-100 border dark:border-gray-700 light:border-slate-300 dark:text-[#39FF14] light:text-emerald-700 group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
-                        {theme.icon}
-                      </div>
-                    </div>
+                  {/* Top glow */}
+                  <div
+                    className="absolute top-0 left-0 right-0 h-px"
+                    style={{
+                      background: `linear-gradient(
+                        90deg,
+                        transparent,
+                        ${domain.accent},
+                        transparent
+                      )`,
+                      opacity: isOpen ? 1 : 0.4,
+                    }}
+                  />
 
-                    <h3 className="text-2xl font-bold dark:text-white light:text-slate-900 mb-3 group-hover:text-[#39FF14] dark:group-hover:text-[#39FF14] light:group-hover:text-emerald-700 transition-colors">
-                      {theme.title}
-                    </h3>
-                    
-                    <p className="text-sm dark:text-gray-400 light:text-slate-600 leading-relaxed mb-6">
-                      {theme.shortDescription}
-                    </p>
+                  {/* ================================================= */}
+                  {/* CLICKABLE CARD HEADER */}
+                  {/* ================================================= */}
 
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {theme.toolboxes.slice(0, 3).map((tb, i) => (
-                        <span key={i} className="text-[11px] font-mono dark:text-gray-300 light:text-slate-700 dark:bg-gray-900/80 light:bg-slate-100 px-2.5 py-1 rounded-lg border dark:border-gray-800 light:border-slate-300">
-                          {tb}
+                  <button
+                    type="button"
+                    onClick={() => toggleDomain(domain.id)}
+                    aria-expanded={isOpen}
+                    className="w-full text-left p-6 sm:p-8 focus:outline-none"
+                  >
+
+                    <div className="flex items-start justify-between gap-5">
+
+                      {/* Number */}
+                      <div
+                        className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center"
+                        style={{
+                          background: `${domain.accent}10`,
+                          border: `1px solid ${domain.accent}40`,
+                        }}
+                      >
+                        <span
+                          className="text-sm"
+                          style={{
+                            color: domain.accent,
+                            fontFamily: "'Space Mono', monospace",
+                            fontWeight: 700,
+                          }}
+                        >
+                          {domain.number}
                         </span>
-                      ))}
-                    </div>
-                  </div>
+                      </div>
 
-                  <div className="relative z-10 flex items-center gap-1.5 text-xs font-mono font-bold dark:text-[#39FF14] light:text-emerald-700 group-hover:translate-x-2 transition-transform duration-300">
-                    <span>VIEW DOMAIN DETAILS & OBJECTIVES</span>
-                    <ChevronRight className="w-4 h-4" />
-                  </div>
+
+                      {/* Content */}
+                      <div className="flex-1 min-w-0">
+
+                        {/* Domain label */}
+                        <div className="flex items-center gap-3 mb-3">
+
+                          <Icon
+                            className="w-5 h-5"
+                            style={{
+                              color: domain.accent,
+                            }}
+                          />
+
+                          <span
+                            className="text-xs tracking-[0.18em] text-gray-500 uppercase"
+                            style={{
+                              fontFamily: "'Outfit', sans-serif",
+                              fontWeight: 600,
+                            }}
+                          >
+                            DOMAIN {domain.number}
+                          </span>
+
+                        </div>
+
+
+                        {/* Domain title */}
+                        <h3
+                          className="text-2xl sm:text-3xl text-white mb-3"
+                          style={{
+                            fontFamily: "'Playfair Display', serif",
+                            fontWeight: 700,
+                            letterSpacing: '-0.02em',
+                            lineHeight: '1.15',
+                          }}
+                        >
+                          {domain.title}
+                        </h3>
+
+
+                        {/* Description */}
+                        <p
+                          className="text-gray-400"
+                          style={{
+                            fontFamily: "'Outfit', sans-serif",
+                            fontSize: '15px',
+                            fontWeight: 400,
+                            lineHeight: '1.7',
+                          }}
+                        >
+                          {domain.description}
+                        </p>
+
+                      </div>
+
+
+                      {/* Dropdown icon */}
+                      <div
+                        className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300"
+                        style={{
+                          background: isOpen
+                            ? `${domain.accent}15`
+                            : 'rgba(255,255,255,0.04)',
+                          border: `1px solid ${
+                            isOpen
+                              ? `${domain.accent}50`
+                              : 'rgba(255,255,255,0.08)'
+                          }`,
+                        }}
+                      >
+                        <ChevronDown
+                          className="w-5 h-5 transition-transform duration-300"
+                          style={{
+                            transform: isOpen
+                              ? 'rotate(180deg)'
+                              : 'rotate(0deg)',
+                            color: isOpen
+                              ? domain.accent
+                              : '#d1d5db',
+                          }}
+                        />
+                      </div>
+
+                    </div>
+
+                  </button>
+
+
+                  {/* ================================================= */}
+                  {/* DROPDOWN CONTENT */}
+                  {/* ================================================= */}
+
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{
+                          height: 0,
+                          opacity: 0,
+                        }}
+                        animate={{
+                          height: 'auto',
+                          opacity: 1,
+                        }}
+                        exit={{
+                          height: 0,
+                          opacity: 0,
+                        }}
+                        transition={{
+                          duration: 0.35,
+                          ease: [0.22, 1, 0.36, 1],
+                        }}
+                        className="overflow-hidden"
+                      >
+
+                        <div className="px-6 sm:px-8 pb-8">
+
+                          {/* Divider */}
+                          <div
+                            className="h-px mb-6"
+                            style={{
+                              background: `linear-gradient(
+                                90deg,
+                                ${domain.accent}50,
+                                transparent
+                              )`,
+                            }}
+                          />
+
+                          {/* Problem statement heading */}
+                          <div className="flex items-center gap-2 mb-5">
+
+                            <span
+                              className="w-1.5 h-1.5 rounded-full"
+                              style={{
+                                background: domain.accent,
+                                boxShadow:
+                                  `0 0 8px ${domain.accent}`,
+                              }}
+                            />
+
+                            <span
+                              className="text-xs tracking-[0.15em] text-gray-400 uppercase"
+                              style={{
+                                fontFamily: "'Outfit', sans-serif",
+                                fontWeight: 600,
+                              }}
+                            >
+                              PROBLEM STATEMENTS
+                            </span>
+
+                          </div>
+
+
+                          {/* Topics */}
+                          <div className="space-y-3">
+
+                            {domain.topics.map((topic, topicIndex) => (
+                              <div
+                                key={topicIndex}
+                                className="flex items-start gap-3 p-4 rounded-xl"
+                                style={{
+                                  background:
+                                    topicIndex === 0
+                                      ? `${domain.accent}08`
+                                      : 'rgba(255,255,255,0.025)',
+                                  border:
+                                    topicIndex === 0
+                                      ? `1px solid ${domain.accent}20`
+                                      : '1px solid rgba(255,255,255,0.06)',
+                                }}
+                              >
+
+                                {topicIndex === 0 ? (
+                                  <span
+                                    className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0"
+                                    style={{
+                                      background: domain.accent,
+                                      boxShadow:
+                                        `0 0 7px ${domain.accent}`,
+                                    }}
+                                  />
+                                ) : (
+                                  <ArrowRight
+                                    className="w-4 h-4 mt-0.5 flex-shrink-0"
+                                    style={{
+                                      color: domain.accent,
+                                    }}
+                                  />
+                                )}
+
+                                <p
+                                  className="text-gray-300"
+                                  style={{
+                                    fontFamily: "'Outfit', sans-serif",
+                                    fontSize: '15px',
+                                    fontWeight: 400,
+                                    lineHeight: '1.65',
+                                  }}
+                                >
+                                  {topic}
+                                </p>
+
+                              </div>
+                            ))}
+
+                          </div>
+
+                        </div>
+
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
                 </div>
-              </TiltCard>
-            </motion.div>
-          ))}
+
+              </motion.div>
+            );
+          })}
+
         </div>
+
+
+        {/* ===================================================== */}
+        {/* BOTTOM NOTE */}
+        {/* ===================================================== */}
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{
+            duration: 0.6,
+            delay: 0.3,
+          }}
+          className="mt-8 text-center"
+        >
+          <p
+            className="text-gray-500"
+            style={{
+              fontFamily: "'Outfit', sans-serif",
+              fontSize: '14px',
+              fontWeight: 400,
+            }}
+          >
+            A Team can only choose one domain  
+          </p>
+        </motion.div>
 
       </div>
-
-      {/* Theme Detail Modal */}
-      <ThemeDetailModal
-        theme={selectedTheme}
-        onClose={() => setSelectedTheme(null)}
-      />
     </section>
   );
 }

@@ -89,7 +89,7 @@ const PrizesSection = () => {
             transition={{ delay: 0.1 }}
             className="retro-heading text-3xl sm:text-5xl font-black text-white tracking-tight mb-4"
           >
-            Total Prize Pool of <span className="text-[#39FF14]">₹ 25,000</span> + Certificates
+            Total Prize Pool of <span className="text-[#39FF14]">₹ 30,000</span> + Certificates + Perks
           </motion.h2>
 
           <motion.p

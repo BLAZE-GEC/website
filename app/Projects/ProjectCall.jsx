@@ -34,7 +34,7 @@ const ProjectCall = () => {
         <div className=" mx-auto text-left">
           {projects.map((project, index) => {
             return (
-              <div className=" h-full my-auto  md:py-24 py-20 md:flex ">
+              <div key={index} className=" h-full my-auto  md:py-24 py-20 md:flex ">
                 <div className="w-full my-auto h-full flex flex-col md:w-[50%] xl:h-[400px]  md:justify-between order-2 md:order-none  ">
                   <div className="my-auto flex flex-col">
                     <div className="md:text-3xl px-1 text-lg py-2 font-bold leading-none text-base2 group-hover:text-acccent transition-all duration-500 capitalize">
@@ -61,7 +61,7 @@ const ProjectCall = () => {
                     <div className="lg:h-[400px] h-[200px] relative group w-3/4 mx-auto flex justify-center items-center bg-base2 ">
                       <div></div>
                       <div className="relative w-full h-full">
-  <Image src="/assests/original-removebg-preview.png" fill className="object-cover" />
+  <Image src="/assests/original-removebg-preview.png" fill alt="Project" className="object-cover" />
 </div>
 
                     </div>

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&family=VT323&family=JetBrains+Mono:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -16,6 +18,25 @@
     --color-accent: 210 139 38;
     --color-accent-light: 229 169 83;
     --color-accent-hover: 184 115 29;
+
+    /* Matrix Page Tokens */
+    --bg-main: #060A07;
+    --bg-card: rgba(13, 17, 14, 0.94);
+    --bg-card-solid: #0D110E;
+    --bg-input: rgba(18, 24, 20, 0.95);
+    --accent-green: #39FF14;
+    --accent-glow: #00FF66;
+    --accent-orange: #E16725;
+    --accent-cyan: #00E5FF;
+    --text-primary: #F3F4F6;
+    --text-secondary: #9CA3AF;
+    --text-muted: #6B7280;
+    --border-neon: rgba(57, 255, 20, 0.35);
+    --border-subtle: rgba(255, 255, 255, 0.12);
+    --border-card: rgba(57, 255, 20, 0.28);
+    --signal-line: rgba(57, 255, 20, 0.08);
+    --shadow-neon: 0 8px 32px 0 rgba(0, 0, 0, 0.4), inset 0 1px 1px 0 rgba(255, 255, 255, 0.1), 0 0 25px rgba(57, 255, 20, 0.15);
+    --logo-filter: drop-shadow(0 0 12px #39FF14);
   }
 
   .dark {
@@ -53,8 +74,104 @@
   h3 { font-size: 1.35rem; }
 }
 
-/* Page transition — pure CSS, plays automatically on every new page,
-   no JavaScript timing dependency (this is what fixed the blank-page bug). */
+@layer components {
+  /* ─── Premium Glassmorphism Cards for Matrix ─── */
+  .glass-card {
+    background: linear-gradient(135deg, rgba(22, 30, 24, 0.93) 0%, rgba(13, 17, 14, 0.96) 100%);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid var(--border-card);
+    box-shadow: var(--shadow-neon);
+    border-radius: 24px;
+  }
+
+  .glass-card-hover {
+    transition: transform 0.3s cubic-bezier(0.03, 0.98, 0.52, 0.99), box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  .glass-card-hover:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5), inset 0 1px 2px 0 rgba(255, 255, 255, 0.2), 0 0 45px rgba(57, 255, 20, 0.45);
+    border-color: var(--accent-green);
+  }
+
+  /* ─── Signal Lines ─── */
+  .matrix-signal-lines {
+    background-image: linear-gradient(to right, var(--signal-line) 1px, transparent 1px);
+    background-size: 36px 100%;
+  }
+
+  /* ─── Accent Text ─── */
+  .neon-text-green { color: var(--accent-green); }
+  .neon-text-orange { color: var(--accent-orange); }
+
+  /* ─── Retro / Glitch Text Effect ─── */
+  .retro-text {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    text-shadow:
+      0 0 10px rgba(57, 255, 20, 0.5),
+      0 0 20px rgba(57, 255, 20, 0.3);
+  }
+
+  .retro-heading {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    letter-spacing: 0.08em;
+    text-shadow:
+      0 0 8px rgba(57, 255, 20, 0.4),
+      2px 2px 0 rgba(0, 229, 255, 0.15);
+  }
+
+  /* ─── Animation Utilities ─── */
+  .animate-float-3d { animation: float3d 6s ease-in-out infinite; }
+  .animate-pulse-glow { animation: pulseGlow 2s ease-in-out infinite; }
+  .animate-shimmer { animation: shimmer 2s linear infinite; }
+  .animate-spin-slow { animation: spinSlow 20s linear infinite; }
+  .animate-slide-up { animation: slideUp 0.6s ease-out forwards; }
+  .animate-fade-in-scale { animation: fadeInScale 0.5s ease-out forwards; }
+  .animate-gradient-shift { animation: gradientShift 8s ease infinite; background-size: 200% 200%; }
+  .animate-border-glow { animation: borderGlow 3s ease-in-out infinite; }
+}
+
+/* ─── Matrix Keyframes ─── */
+@keyframes float3d {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(1.5deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+@keyframes pulseGlow {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes spinSlow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes slideUp {
+  0% { transform: translateY(30px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+@keyframes fadeInScale {
+  0% { transform: scale(0.95); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes borderGlow {
+  0% { border-color: var(--accent-green); }
+  50% { border-color: var(--accent-cyan); }
+  100% { border-color: var(--accent-green); }
+}
+
+/* Page transition — pure CSS, plays automatically on every new page */
 @keyframes pageFadeIn {
   from {
     opacity: 0;

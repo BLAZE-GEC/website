@@ -198,7 +198,7 @@ const Contact = () => {
           </h3>
           <p className="text-white/80 mt-2 max-w-md">
             Reach out to our 3D Printing Coordinators to get started with a print job or ask
-            about the lab's printing setup.
+            about the lab&apos;s printing setup.
           </p>
           <button
             onClick={handlePrintingConnect}

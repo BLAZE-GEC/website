@@ -21,28 +21,24 @@ const fadeUp = {
 export default function ContactSection() {
   const teamContacts = [
     {
-      role: 'CONVENOR',
-      name: 'Naveen P Suresh',
-      phone: '+91 98468 51957',
+      name: 'Akhil Madhu',
+      phone: '+91 9846851957',
       accent: 'border-[#39FF14]/40 text-[#39FF14] bg-[#39FF14]/10',
     },
     {
-      role: 'JOINT CONVENOR',
-      name: 'Pooja Deependran',
-      phone: '+91 87141 69436',
+      name: 'Sooraj V Suresh',
+      phone: '+91 9895955027',
       accent: 'border-[#00E5FF]/40 text-[#00E5FF] bg-[#00E5FF]/10',
     },
     {
-      role: 'PROGRAM HEAD',
-      name: 'Diya D',
-      phone: '+91 79026 95940',
+      name: 'Muhammad Shamrin',
+      phone: '+91 9995618474',
       accent: 'border-[#E16725]/40 text-[#E16725] bg-[#E16725]/10',
     },
     {
-      role: 'FOR ENQUIRIES',
-      name: 'Sreya K',
-      phone: '+91 94974 91591',
-      accent: 'border-purple-400/40 text-purple-400 bg-purple-400/10',
+      name: 'Harinanda V',
+      phone: '+91 9895413060',
+      accent: 'border-[#39FF14]/40 text-[#39FF14] bg-[#39FF14]/10',
     },
   ];
 
@@ -73,26 +69,15 @@ export default function ContactSection() {
             className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mb-3"
             style={{ fontFamily: "'Press Start 2P', monospace", lineHeight: '1.4' }}
           >
-            CONTACT ORGANIZERS
+            FOR ENQUIRIES:
           </motion.h2>
-
-          <motion.p
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            custom={2}
-            variants={fadeUp}
-            className="text-gray-400 text-xs sm:text-sm font-mono"
-          >
-            Reach out to our organizing team or connect through our official channels.
-          </motion.p>
         </div>
 
-        {/* 4 Team Leads Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+        {/* 4 Contact Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 mb-8">
           {teamContacts.map((contact, i) => (
             <motion.div
-              key={contact.role}
+              key={contact.name}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
@@ -103,23 +88,19 @@ export default function ContactSection() {
               <TiltCard maxTilt={8} className="h-full">
                 <div className="glass-card glass-card-hover rounded-2xl p-5 border border-gray-800 flex flex-col justify-between h-full group">
                   <div>
-                    <span
-                      className={`inline-block text-[8px] font-bold px-2.5 py-1 rounded-full border mb-3 ${contact.accent}`}
-                      style={{ fontFamily: "'Press Start 2P', monospace" }}
-                    >
-                      {contact.role}
-                    </span>
-                    <h3 className="text-base font-bold text-white mb-4 group-hover:text-[#39FF14] transition-colors font-mono">
+                    {/* Status Pill */}
+                    <div className={`w-8 h-2.5 rounded-full border mb-4 ${contact.accent}`} />
+                    <h3 className="text-sm sm:text-base font-bold text-white mb-6 group-hover:text-[#39FF14] transition-colors font-mono truncate">
                       {contact.name}
                     </h3>
                   </div>
 
                   <a
                     href={`tel:${contact.phone.replace(/\s+/g, '')}`}
-                    className="inline-flex items-center justify-between w-full px-3 py-2 rounded-xl bg-gray-900/80 border border-gray-800 text-gray-300 group-hover:border-[#39FF14]/50 group-hover:text-[#39FF14] transition-all font-mono text-xs font-bold"
+                    className="inline-flex items-center justify-between w-full px-3 py-2.5 rounded-xl bg-gray-900/80 border border-gray-800 text-gray-300 group-hover:border-[#39FF14]/50 group-hover:text-[#39FF14] transition-all font-mono text-[11px] xl:text-xs font-bold"
                   >
                     <span>{contact.phone}</span>
-                    <Phone className="w-3.5 h-3.5 text-[#39FF14]" />
+                    <Phone className="w-3.5 h-3.5 text-[#39FF14] shrink-0" />
                   </a>
                 </div>
               </TiltCard>
@@ -127,7 +108,7 @@ export default function ContactSection() {
           ))}
         </div>
 
-        {/* Quick Social / Direct Channel Cards */}
+        {/* 3 Quick Social / Channel Cards Centered */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -141,12 +122,12 @@ export default function ContactSection() {
             href="mailto:matrix.ideator@gmail.com"
             className="glass-card glass-card-hover p-5 rounded-2xl border border-gray-800 flex items-center gap-4 group transition-all"
           >
-            <div className="p-3 rounded-xl bg-emerald-950/70 border border-[#39FF14]/30 text-[#39FF14] group-hover:scale-110 transition-transform">
+            <div className="p-3 rounded-xl bg-emerald-950/70 border border-[#39FF14]/30 text-[#39FF14] group-hover:scale-110 transition-transform shrink-0">
               <Mail className="w-5 h-5" />
             </div>
-            <div>
+            <div className="min-w-0">
               <span className="block text-[8px] font-mono text-gray-500 font-bold uppercase mb-0.5">Official Mail</span>
-              <span className="text-xs font-mono text-white group-hover:text-[#39FF14] transition-colors">
+              <span className="text-xs font-mono text-white group-hover:text-[#39FF14] transition-colors truncate block">
                 matrix.ideator@gmail.com
               </span>
             </div>
@@ -159,12 +140,12 @@ export default function ContactSection() {
             rel="noopener noreferrer"
             className="glass-card glass-card-hover p-5 rounded-2xl border border-gray-800 flex items-center gap-4 group transition-all"
           >
-            <div className="p-3 rounded-xl bg-orange-950/70 border border-[#E16725]/30 text-[#E16725] group-hover:scale-110 transition-transform">
+            <div className="p-3 rounded-xl bg-orange-950/70 border border-[#E16725]/30 text-[#E16725] group-hover:scale-110 transition-transform shrink-0">
               <Instagram className="w-5 h-5" />
             </div>
-            <div>
+            <div className="min-w-0">
               <span className="block text-[8px] font-mono text-gray-500 font-bold uppercase mb-0.5">Instagram Feed</span>
-              <span className="text-xs font-mono text-white group-hover:text-[#E16725] transition-colors">
+              <span className="text-xs font-mono text-white group-hover:text-[#E16725] transition-colors truncate block">
                 @matri.xlive
               </span>
             </div>
@@ -177,12 +158,12 @@ export default function ContactSection() {
             rel="noopener noreferrer"
             className="glass-card glass-card-hover p-5 rounded-2xl border border-gray-800 flex items-center gap-4 group transition-all"
           >
-            <div className="p-3 rounded-xl bg-cyan-950/70 border border-[#00E5FF]/30 text-[#00E5FF] group-hover:scale-110 transition-transform">
+            <div className="p-3 rounded-xl bg-cyan-950/70 border border-[#00E5FF]/30 text-[#00E5FF] group-hover:scale-110 transition-transform shrink-0">
               <Globe className="w-5 h-5" />
             </div>
-            <div>
+            <div className="min-w-0">
               <span className="block text-[8px] font-mono text-gray-500 font-bold uppercase mb-0.5">Host Portal</span>
-              <span className="text-xs font-mono text-white group-hover:text-[#00E5FF] transition-colors">
+              <span className="text-xs font-mono text-white group-hover:text-[#00E5FF] transition-colors truncate block">
                 ideator.gectcr.ac.in
               </span>
             </div>

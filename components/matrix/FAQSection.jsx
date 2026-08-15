@@ -18,10 +18,7 @@ const faqs = [
     q: "What is required in the final online submission package?",
     a: "Submissions are due by September 14 on the official portal. The package must include: (1) Project Abstract, (2) MATLAB / Simulink Files, (3) Source Code (where applicable), (4) Demonstration Video."
   },
-  {
-    q: "How does the screening and evaluation process work?",
-    a: "Stage 4 uses a two-tier screening process: First, the Ideator Technical Committee reviews all submissions to shortlist the Top 20 teams. Then, the MathWorks Jury Panel evaluates the Top 20 to select the Top 12 finalist teams, announced on September 18."
-  },
+ 
    
 ];
 

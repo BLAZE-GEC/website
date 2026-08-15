@@ -19,7 +19,7 @@ const fadeUp = {
 };
 
 export default function ContactSection() {
-  const teamContacts = [
+  const enquiryContacts = [
     {
       name: 'Akhil Madhu',
       phone: '+91 9846851957',
@@ -32,13 +32,34 @@ export default function ContactSection() {
     },
     {
       name: 'Muhammad Shamrin',
-      phone: '+91 9995618474',
+      phone: '+91 9995618472',
       accent: 'border-[#E16725]/40 text-[#E16725] bg-[#E16725]/10',
     },
     {
       name: 'Harinanda V',
       phone: '+91 9895413060',
       accent: 'border-[#39FF14]/40 text-[#39FF14] bg-[#39FF14]/10',
+    },
+  ];
+
+  const programOrganizers = [
+    {
+      role: 'Convenor',
+      name: 'Naveen P Suresh',
+      phone: '+91 9846851957',
+      accent: 'border-[#39FF14]/40 text-[#39FF14] bg-[#39FF14]/10',
+    },
+    {
+      role: 'Joint Convenor',
+      name: 'Pooja Deependran',
+      phone: '+91 8714169436',
+      accent: 'border-[#00E5FF]/40 text-[#00E5FF] bg-[#00E5FF]/10',
+    },
+    {
+      role: 'Program Head',
+      name: 'Diya D',
+      phone: '+91 7902695940',
+      accent: 'border-[#E16725]/40 text-[#E16725] bg-[#E16725]/10',
     },
   ];
 
@@ -73,9 +94,9 @@ export default function ContactSection() {
           </motion.h2>
         </div>
 
-        {/* 4 Contact Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 mb-8">
-          {teamContacts.map((contact, i) => (
+        {/* 4 Enquiry Contacts Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 mb-14">
+          {enquiryContacts.map((contact, i) => (
             <motion.div
               key={contact.name}
               initial="hidden"
@@ -88,8 +109,62 @@ export default function ContactSection() {
               <TiltCard maxTilt={8} className="h-full">
                 <div className="glass-card glass-card-hover rounded-2xl p-5 border border-gray-800 flex flex-col justify-between h-full group">
                   <div>
-                    {/* Status Pill */}
                     <div className={`w-8 h-2.5 rounded-full border mb-4 ${contact.accent}`} />
+                    <h3 className="text-sm sm:text-base font-bold text-white mb-6 group-hover:text-[#39FF14] transition-colors font-mono truncate">
+                      {contact.name}
+                    </h3>
+                  </div>
+
+                  <a
+                    href={`tel:${contact.phone.replace(/\s+/g, '')}`}
+                    className="inline-flex items-center justify-between w-full px-3 py-2.5 rounded-xl bg-gray-900/80 border border-gray-800 text-gray-300 group-hover:border-[#39FF14]/50 group-hover:text-[#39FF14] transition-all font-mono text-[11px] xl:text-xs font-bold"
+                  >
+                    <span>{contact.phone}</span>
+                    <Phone className="w-3.5 h-3.5 text-[#39FF14] shrink-0" />
+                  </a>
+                </div>
+              </TiltCard>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Program Organisers Subheader */}
+        <div className="text-center max-w-3xl mx-auto mb-8">
+          <motion.h3
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            custom={2}
+            variants={fadeUp}
+            className="text-lg sm:text-xl font-bold text-gray-300 tracking-wider font-mono uppercase flex items-center justify-center gap-3"
+          >
+            <span className="h-px w-10 bg-emerald-500/30"></span>
+            Program Organizers
+            <span className="h-px w-10 bg-emerald-500/30"></span>
+          </motion.h3>
+        </div>
+
+        {/* 3 Organizers Grid (Centered beneath the 4) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto gap-4 md:gap-5 mb-14">
+          {programOrganizers.map((contact, i) => (
+            <motion.div
+              key={contact.name}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              custom={i + 4}
+              variants={fadeUp}
+              className="h-full"
+            >
+              <TiltCard maxTilt={8} className="h-full">
+                <div className="glass-card glass-card-hover rounded-2xl p-5 border border-gray-800 flex flex-col justify-between h-full group">
+                  <div>
+                    <div className="flex items-center justify-between mb-3">
+                      <div className={`w-8 h-2.5 rounded-full border ${contact.accent}`} />
+                      <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-md bg-gray-800/80 text-gray-400 border border-gray-700/60">
+                        {contact.role}
+                      </span>
+                    </div>
                     <h3 className="text-sm sm:text-base font-bold text-white mb-6 group-hover:text-[#39FF14] transition-colors font-mono truncate">
                       {contact.name}
                     </h3>
@@ -113,7 +188,7 @@ export default function ContactSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          custom={4}
+          custom={7}
           variants={fadeUp}
           className="grid grid-cols-1 md:grid-cols-3 gap-5"
         >

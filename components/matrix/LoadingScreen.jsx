@@ -73,7 +73,7 @@ const LoadingScreen = ({ onComplete }) => {
             </motion.div>
             
             <p className="text-white text-sm mb-12 tracking-widest uppercase opacity-80 text-center">
-              A MathWorks AI Engineering Hackathon
+              Matlab-Simulink AI Engineering Hackathon
             </p>
 
             {/* Progress Bar */}

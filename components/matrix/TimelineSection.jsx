@@ -27,10 +27,10 @@ export default function TimelineSection() {
 
     {
       id: '02',
-      date: 'AUG 25',
+      date: 'AUG 26',
       title: 'Hackathon Kick-off',
       description:
-        'The hackathon officially begins on August 25. Participants are introduced to the MATRIX challenge, domains, workflow, and development process.',
+        'The hackathon officially begins on August 26. Participants are introduced to the MATRIX challenge, domains, workflow, and development process.',
       icon: Calendar,
       accent:
         'border-[#00E5FF] text-[#00E5FF] bg-[#00E5FF]/10',
@@ -63,7 +63,7 @@ export default function TimelineSection() {
 
     {
       id: '05',
-      date: 'SEP 14',
+      date: 'SEP 10- SEP14',
       title: 'Online Submission & Preliminary Evaluation',
       description:
         'Teams submit their completed project through the official Ideator MATRIX Hackathon Portal. Submitted projects proceed through the preliminary evaluation process.',
@@ -78,7 +78,7 @@ export default function TimelineSection() {
       date: 'GRAND FINALE',
       title: 'Grand Finale at GEC Thrissur',
       description:
-        'Selected teams advance to the Grand Finale at Government Engineering College Thrissur, where the final stage of the MATRIX hackathon takes place.',
+        'The top teams present at the Grand Finale, which includes a Live Engineering Challenge, held at GEC Thrissur.',
       icon: CheckCircle2,
       accent:
         'border-purple-400 text-purple-400 bg-purple-400/10',

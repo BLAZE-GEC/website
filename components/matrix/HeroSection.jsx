@@ -197,7 +197,7 @@ export default function HeroSection() {
 
             {/* Register Button */}
             <a
-              href="https://unstop.com/o/sIzxCAY?utm_medium=Share&utm_source=iecyrqwn36473&utm_campaign=Online_coding_challenge"
+              href="https://unstop.com/o/pNE0AoV?lb=useZi1fZ&utm_medium=Share&utm_source=iecyrqwn36473&utm_campaign=Online_coding_challenge"
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-3.5 rounded-xl bg-gradient-to-r from-[#39FF14] to-[#00FF66] text-[#060A07] font-extrabold text-sm font-mono tracking-wider shadow-[0_0_30px_rgba(57,255,20,0.6)] hover:scale-105 transition-all flex items-center gap-2 cursor-pointer"

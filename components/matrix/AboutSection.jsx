@@ -36,7 +36,7 @@ export default function AboutSection() {
       iconBg: 'dark:bg-cyan-950/60 light:bg-sky-100 dark:border-[#00E5FF]/40 light:border-sky-300',
       iconColor: 'dark:text-[#00E5FF] light:text-sky-700',
       title: 'Mentorship & Problem-Solving',
-      desc: 'To ensure a fair and level playing field, organizers and mentors will provide structured learning support through official bootcamps and orientation sessions.Teams are expected to independently apply the concepts and skills gained during the bootcamps to develop and implement their solutions.',
+      desc: 'To ensure a fair and level playing field, organizers and mentors will provide structured learning support through official bootcamps and orientation sessions. Teams are expected to independently apply the concepts and skills gained during the bootcamps to develop and implement their solutions.',
       bullets: ['Structured Learning Support', 'Independent Solution Development', 'Fair & Equal Participation']
     }
   ];
@@ -48,7 +48,7 @@ export default function AboutSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-20">
+        <div className="text-center max-w-4xl mx-auto mb-20">
           <motion.div
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
             className="lt-badge-bg inline-flex items-center gap-2 px-4 py-1.5 rounded-full dark:bg-emerald-950/60 light:bg-emerald-50 border dark:border-[#39FF14]/30 light:border-emerald-300 text-xs font-mono dark:text-[#39FF14] light:text-emerald-800 mb-4 font-semibold"
@@ -64,10 +64,23 @@ export default function AboutSection() {
           </motion.h2>
           <motion.p
             initial="hidden" whileInView="visible" viewport={{ once: true }} custom={2} variants={fadeUp}
-            className="dark:text-gray-300 light:text-slate-700 text-sm sm:text-base leading-relaxed"
+            className="dark:text-gray-300 light:text-slate-700 text-sm sm:text-base leading-relaxed mb-8"
           >
-            Organized by <strong className="dark:text-white light:text-slate-900 font-bold">Ideator Club</strong> for engineering college students across Kerala, <strong className="text-[#39FF14] font-bold">Ideator Hackathon 2026</strong> is a 4-week program centered on MATLAB & Simulink innovation. Teams of 3 to 4 members compete for a total prize pool of <strong className="text-[#E16725] font-bold">₹30,000 + certificates+ perks</strong> for winners and finalists.
+            Organized by <strong className="dark:text-white light:text-slate-900 font-bold">Ideator Club</strong> for engineering college students across Kerala, <strong className="text-[#39FF14] font-bold">Ideator Hackathon 2026</strong> is a 4-week program centered on MATLAB &amp; Simulink innovation. Teams of 3 to 4 members compete for top honors and exciting rewards.
           </motion.p>
+
+          {/* 2-Line Formatted Heading */}
+          <motion.h3
+            initial="hidden" whileInView="visible" viewport={{ once: true }} custom={3} variants={fadeUp}
+            className="retro-heading text-2xl sm:text-4xl md:text-5xl font-black dark:text-white light:text-slate-900 tracking-tight"
+          >
+            <span className="block">
+              Total Prize Pool of
+            </span>
+            <span className="block mt-2">
+              <span className="text-[#39FF14] whitespace-nowrap">₹30,000</span> + Certificates + Perks
+            </span>
+          </motion.h3>
         </div>
 
         {/* Feature Grid */}

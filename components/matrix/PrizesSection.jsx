@@ -71,7 +71,7 @@ const PrizesSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
-        <div className="text-center mb-20 max-w-3xl mx-auto">
+        <div className="text-center mb-20 max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -89,7 +89,12 @@ const PrizesSection = () => {
             transition={{ delay: 0.1 }}
             className="retro-heading text-3xl sm:text-5xl font-black text-white tracking-tight mb-4"
           >
-            Total Prize Pool of <span className="text-[#39FF14]">₹ 30,000</span> + Certificates + Perks
+            <span className="block">
+              Total Prize Pool of
+            </span>
+            <span className="block mt-2">
+              <span className="text-[#39FF14] whitespace-nowrap">₹30,000</span> + Certificates + Perks
+            </span>
           </motion.h2>
 
           <motion.p

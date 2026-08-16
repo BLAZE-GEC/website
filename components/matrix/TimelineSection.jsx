@@ -124,7 +124,7 @@ export default function TimelineSection() {
               letterSpacing: '-0.02em',
             }}
           >
-            Interactive Milestone Track
+            EVENT TIMELINE
           </motion.h2>
 
           <motion.p
@@ -138,7 +138,7 @@ export default function TimelineSection() {
               lineHeight: '1.7',
             }}
           >
-            Follow the key MATRIX milestones from registration
+            Follow MATRIX from registration
             to the Grand Finale.
           </motion.p>
 

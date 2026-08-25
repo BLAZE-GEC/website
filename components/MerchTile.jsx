@@ -5,7 +5,6 @@ import TiltCard from "@/components/ui/TiltCard";
 
 const shirts = [
   { front: "/assests/merch/polo-front.png", back: "/assests/merch/polo-back.png", label: "Polo Fit" },
-  { front: "/assests/merch/crew-front.png", back: "/assests/merch/crew-back.png", label: "Classic Fit" },
 ];
 
 // Club Convener's WhatsApp — clicking the tile opens a chat here.
@@ -84,7 +83,8 @@ export default function MerchTile() {
         Official Ideator merch — tap to grab yours before the batch runs out.
       </p>
 
-      <div className="grid grid-cols-2 gap-4 mb-5">
+      {/* Changed grid-cols-2 to grid-cols-1 to center the single shirt */}
+      <div className="grid grid-cols-1 gap-4 mb-5">
         {shirts.map((shirt) => (
           <div key={shirt.label} className="flex flex-col items-center">
             <div className="w-full h-40">

@@ -140,7 +140,7 @@ export default function Navbar() {
             className="relative group px-4 py-2.5 rounded-lg bg-[#39FF14] text-[#060A07] hover:scale-105 shadow-[0_0_20px_rgba(57,255,20,0.5)] transition-all cursor-pointer flex items-center gap-1.5 font-bold"
             style={{ fontFamily: "'Press Start 2P', monospace", fontSize: '9px' }}
           >
-            <span>REGISTER</span>
+            <span>REGISTRATION CLOSED</span>
             <ChevronRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
           </a>
         </div>
@@ -228,7 +228,7 @@ export default function Navbar() {
                   className="w-full py-3 rounded-xl block bg-[#39FF14] text-[#060A07] font-bold text-center shadow-[0_0_20px_rgba(57,255,20,0.5)] cursor-pointer active:scale-98 transition-all"
                   style={{ fontFamily: "'Press Start 2P', monospace", fontSize: '8px' }}
                 >
-                  REGISTER TEAM
+                  REGISTRATION CLOSED
                 </a>
               </div>
             </motion.div>

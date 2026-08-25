@@ -22,7 +22,7 @@ export default function TimelineSection() {
       icon: Rocket,
       accent:
         'border-[#39FF14] text-[#39FF14] bg-[#39FF14]/10',
-      status: 'REGISTRATION OPEN',
+      status: 'REGISTRATION CLOSED',
     },
 
     {

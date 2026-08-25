@@ -30,7 +30,7 @@ export default function Footer() {
               style={{ fontFamily: "'Press Start 2P', monospace", fontSize: '8px' }}
             >
               <Terminal className="w-3 h-3 text-[#39FF14]" />
-              <span>[!] REGISTRATION PORTAL OPEN</span>
+              <span>[!] REGISTRATION PORTAL CLOSED</span>
             </div>
             <h3
               className="text-lg sm:text-xl font-bold text-white tracking-tight text-shadow-[#39FF14]"
@@ -46,7 +46,7 @@ export default function Footer() {
             className="px-5 py-3 rounded-xl bg-[#39FF14] text-[#060A07] font-bold text-xs shadow-[0_0_20px_rgba(57,255,20,0.5)] hover:scale-105 transition-all flex items-center gap-2 cursor-pointer shrink-0"
             style={{ fontFamily: "'Press Start 2P', monospace", fontSize: '8px' }}
           >
-            <span>REGISTER NOW</span>
+            <span>REGISTRATION CLOSED</span>
             <ChevronRight className="w-3.5 h-3.5" />
           </a>
         </div>

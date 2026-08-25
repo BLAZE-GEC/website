@@ -182,7 +182,7 @@ export default function HeroSection() {
               </span>
             </div>
 
-            <CountdownTimer targetDate="2026-08-25T23:59:59+05:30" />
+<CountdownTimer targetDate="2026-08-25T19:00:00+05:30" />
           </motion.div>
 
           {/* Dual CTAs */}

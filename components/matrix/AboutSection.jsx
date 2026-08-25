@@ -28,8 +28,8 @@ export default function AboutSection() {
       iconBg: 'dark:bg-emerald-950/60 light:bg-emerald-100 dark:border-[#39FF14]/40 light:border-emerald-300',
       iconColor: 'dark:text-[#39FF14] light:text-emerald-700',
       title: 'Ideator Club & Host Venue',
-      desc: 'Organized by Ideator Club for engineering college students across Kerala. Grand Finale hosted at Government Engineering College, Thrissur',
-      bullets: ['Target: Kerala Engineering Students', 'Team Size: 3 to 4 Members', 'Venue: Government Engineering College, Thrissur']
+      desc: 'Organized by Ideator Club for engineering college students all over India. Grand Finale hosted at Government Engineering College, Thrissur',
+      bullets: ['Target: All Engineering Students', 'Team Size: 3 to 4 Members', 'Venue: Government Engineering College, Thrissur']
     },
     {
       icon: <ShieldCheck className="w-6 h-6" />,
@@ -66,7 +66,7 @@ export default function AboutSection() {
             initial="hidden" whileInView="visible" viewport={{ once: true }} custom={2} variants={fadeUp}
             className="dark:text-gray-300 light:text-slate-700 text-sm sm:text-base leading-relaxed mb-8"
           >
-            Organized by <strong className="dark:text-white light:text-slate-900 font-bold">Ideator Club</strong> for engineering college students across Kerala, <strong className="text-[#39FF14] font-bold">Ideator Hackathon 2026</strong> is a 4-week program centered on MATLAB &amp; Simulink innovation. Teams of 3 to 4 members compete for top honors and exciting rewards.
+            Organized by <strong className="dark:text-white light:text-slate-900 font-bold">Ideator Club</strong> for engineering college students all over India, <strong className="text-[#39FF14] font-bold">Ideator Hackathon 2026</strong> is a 4-week program centered on MATLAB &amp; Simulink innovation. Teams of 3 to 4 members compete for top honors and exciting rewards.
           </motion.p>
 
           {/* 2-Line Formatted Heading */}

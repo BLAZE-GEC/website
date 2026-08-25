@@ -18,7 +18,7 @@ export default function TimelineSection() {
       date: 'AUG 15 – AUG 25',
       title: 'Registration & Team Onboarding',
       description:
-        'Teams of 3 to 4 members from colleges across Kerala can register for MATRIX. After registration, teams receive access to the challenge information and can select one domain and one problem statement.',
+        'Teams of 3 to 4 members from colleges all over India can register for MATRIX. After registration, teams receive access to the challenge information and can select one domain and one problem statement.',
       icon: Rocket,
       accent:
         'border-[#39FF14] text-[#39FF14] bg-[#39FF14]/10',

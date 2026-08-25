@@ -7,7 +7,7 @@ import { HelpCircle, ChevronDown } from 'lucide-react';
 const faqs = [
   {
     q: "Who is eligible to participate in Ideator Hackathon 2026?",
-    a: "The hackathon is open to engineering college students across Kerala. Teams must consist of 3 to 4 members."
+    a: "The hackathon is open to engineering college students all over India. Teams must consist of 3 to 4 members."
   },
   {
     q: "What software tools are required for the hackathon?",

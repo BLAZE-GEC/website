@@ -155,7 +155,7 @@ export default function HeroSection() {
                 letterSpacing: '0.06em',
               }}
             >
-              An All-Kerala MATLAB Simulink AI Engineering Hackathon, Open to All
+              An All-IndiaMATLAB Simulink AI Engineering Hackathon, Open to All
               College Students
             </p>
           </motion.div>
@@ -245,7 +245,7 @@ export default function HeroSection() {
               {
                 icon: <Zap className="w-5 h-5 text-[#39FF14]" />,
                 val: '3–4 Members',
-                label: 'Open to All Kerala Colleges',
+                label: 'Open to All Indian Colleges',
               },
             ].map((item, i) => (
               <div

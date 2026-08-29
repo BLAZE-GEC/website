@@ -8,13 +8,6 @@ import teams from '@/app/data/teams.json';
 // ---------------------------------------------------------------------------
 // Reusable "spinning glow border" wrapper. Wrap ANY box in this and it gets
 // a green light sweeping around its edges, forever, on its own timer.
-//
-// IMPORTANT: this animation is pure CSS (@keyframes), not Framer Motion.
-// That's deliberate — a JS-driven "animate" prop restarts every time the
-// component re-renders (e.g. every keystroke in the search box), which is
-// why the old version looked like it kept glitching/resetting. A CSS
-// keyframe animation runs on the browser's own compositor thread and keeps
-// going smoothly no matter how often React re-renders around it.
 // ---------------------------------------------------------------------------
 function SpinBorder({ children, radius = 12, borderWidth = 2, duration = 3, gapDuration = 0 }) {
   const hasGap = gapDuration > 0;
@@ -56,8 +49,6 @@ function SpinBorder({ children, radius = 12, borderWidth = 2, duration = 3, gapD
           animation: spin-rotate var(--sb-duration) linear infinite;
           z-index: 0;
         }
-        /* Outer dialog uses this variant: does one full sweep, then goes
-           completely dark for a beat before the next lap starts. */
         .spin-border--gap::before {
           animation-name: spin-rotate-gap-${Math.round(sweepPct)};
           animation-timing-function: linear;
@@ -97,14 +88,12 @@ function SpinBorder({ children, radius = 12, borderWidth = 2, duration = 3, gapD
   );
 }
 
-// Normalize: lowercase, strip all whitespace, so "Team  Alpha", "team alpha",
-// "TEAM ALPHA" all match the same way.
+// Normalize: lowercase, strip all whitespace
 function normalize(str) {
   return str.toLowerCase().replace(/\s+/g, '').trim();
 }
 
-// Small edit-distance check so a one-letter typo ("Aplha" vs "Alpha")
-// still resolves, without ever showing the user a list to pick from.
+// Small edit-distance check
 function levenshtein(a, b) {
   const dp = Array.from({ length: a.length + 1 }, (_, i) =>
     Array(b.length + 1).fill(0)
@@ -122,20 +111,21 @@ function levenshtein(a, b) {
   return dp[a.length][b.length];
 }
 
-// Returns: { status: 'found', team } | { status: 'ambiguous' } | { status: 'not_found' }
+// Returns: { status: 'found', teams: [...] } | { status: 'not_found' }
 function resolveTeam(query) {
   const q = normalize(query);
   if (!q) return { status: 'empty' };
 
+  // Return ALL exact matches
   const exact = teams.filter((t) => normalize(t.teamName) === q);
-  if (exact.length === 1) return { status: 'found', team: exact[0] };
-  if (exact.length > 1) return { status: 'ambiguous' };
+  if (exact.length > 0) return { status: 'found', teams: exact };
 
   const threshold = q.length <= 5 ? 1 : 2;
+  // Return ALL close matches
   const close = teams.filter((t) => levenshtein(normalize(t.teamName), q) <= threshold);
 
-  if (close.length === 1) return { status: 'found', team: close[0] };
-  if (close.length > 1) return { status: 'ambiguous' };
+  if (close.length > 0) return { status: 'found', teams: close };
+  
   return { status: 'not_found' };
 }
 
@@ -143,16 +133,18 @@ export default function ProblemStatementModal({ onClose }) {
   const [query, setQuery] = useState('');
   const [result, setResult] = useState(null);
 
-  // Live suggestions as the user types (team name + leader name shown).
+// Live suggestions as the user types (team name + leader name shown).
   const matches = query.trim().length > 0
     ? teams
-        .filter((t) => normalize(t.teamName).includes(normalize(query)))
+        // Change from .includes() to .startsWith()
+        .filter((t) => normalize(t.teamName).startsWith(normalize(query)))
         .slice(0, 6)
     : [];
 
   const pickSuggestion = (team) => {
     setQuery(team.teamName);
-    setResult({ status: 'found', team });
+    // Wrap the single clicked suggestion in an array so the map function works
+    setResult({ status: 'found', teams: [team] });
   };
 
   const handleSearch = (e) => {
@@ -186,7 +178,7 @@ export default function ProblemStatementModal({ onClose }) {
               </button>
             </div>
 
-            {/* SEARCH INPUT — always-spinning glow #2 (unchanged) */}
+            {/* SEARCH INPUT — always-spinning glow #2 */}
             <SpinBorder radius={10} borderWidth={2} duration={2.2}>
               <form onSubmit={handleSearch} className="relative flex items-center">
                 <input
@@ -223,24 +215,26 @@ export default function ProblemStatementModal({ onClose }) {
               </ul>
             )}
 
-            {/* RESULT — always-spinning glow #3 (unchanged) */}
+            {/* RESULT — Maps through all matching teams */}
             {result?.status === 'found' && (
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mt-6"
+                className="mt-6 space-y-4 max-h-72 overflow-y-auto pr-2 custom-scrollbar"
               >
-                <SpinBorder radius={12} borderWidth={2} duration={4}>
-                  <div className="p-5 space-y-3 text-sm">
-                    <p><span className="text-green-500 font-semibold tracking-wide">TEAM:</span> <span className="text-green-50">{result.team.teamName}</span></p>
-                    <p><span className="text-green-500 font-semibold tracking-wide">LEADER:</span> <span className="text-green-50">{result.team.leaderName}</span></p>
-                    <p><span className="text-green-500 font-semibold tracking-wide">TRACK:</span> <span className="text-green-50">{result.team.track}</span></p>
-                    <div className="pt-2 border-t border-green-500/20">
-                      <span className="text-green-500 font-semibold tracking-wide block mb-1">PROBLEM STATEMENT:</span>
-                      <span className="text-green-50 leading-relaxed">{result.team.problemStatement}</span>
+                {result.teams.map((team, idx) => (
+                  <SpinBorder key={`${team.teamName}-${idx}`} radius={12} borderWidth={2} duration={4}>
+                    <div className="p-5 space-y-3 text-sm">
+                      <p><span className="text-green-500 font-semibold tracking-wide">TEAM:</span> <span className="text-green-50">{team.teamName}</span></p>
+                      <p><span className="text-green-500 font-semibold tracking-wide">LEADER:</span> <span className="text-green-50">{team.leaderName}</span></p>
+                      <p><span className="text-green-500 font-semibold tracking-wide">TRACK:</span> <span className="text-green-50">{team.track}</span></p>
+                      <div className="pt-2 border-t border-green-500/20">
+                        <span className="text-green-500 font-semibold tracking-wide block mb-1">PROBLEM STATEMENT:</span>
+                        <span className="text-green-50 leading-relaxed">{team.problemStatement}</span>
+                      </div>
                     </div>
-                  </div>
-                </SpinBorder>
+                  </SpinBorder>
+                ))}
               </motion.div>
             )}
 
@@ -249,16 +243,6 @@ export default function ProblemStatementModal({ onClose }) {
                 <SpinBorder radius={10} borderWidth={2} duration={2.5}>
                   <p className="p-3 text-sm text-red-300">
                     No team found with that name. Double-check the spelling used at registration.
-                  </p>
-                </SpinBorder>
-              </motion.div>
-            )}
-
-            {result?.status === 'ambiguous' && (
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-4">
-                <SpinBorder radius={10} borderWidth={2} duration={2.5}>
-                  <p className="p-3 text-sm text-yellow-300">
-                    Multiple teams are registered under a very similar name. Please enter your team name exactly as it was registered, or contact the organizers.
                   </p>
                 </SpinBorder>
               </motion.div>
@@ -278,6 +262,22 @@ export default function ProblemStatementModal({ onClose }) {
                   0 0 25px 6px rgba(74, 222, 128, 0.35),
                   0 0 55px 18px rgba(34, 197, 94, 0.15);
               }
+            }
+            
+            /* Optional: Custom scrollbar styling for the results container */
+            .custom-scrollbar::-webkit-scrollbar {
+              width: 4px;
+            }
+            .custom-scrollbar::-webkit-scrollbar-track {
+              background: rgba(34, 197, 94, 0.05);
+              border-radius: 4px;
+            }
+            .custom-scrollbar::-webkit-scrollbar-thumb {
+              background: rgba(34, 197, 94, 0.3);
+              border-radius: 4px;
+            }
+            .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+              background: rgba(34, 197, 94, 0.5);
             }
           `}</style>
         </motion.div>

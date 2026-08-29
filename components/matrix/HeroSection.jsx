@@ -162,7 +162,7 @@ export default function HeroSection() {
                   textShadow: '0 0 8px rgba(57,255,20,0.4)',
                 }}
               >
-                ⏱️ Registration Closes: August 25
+                ⏱️ Registration Closed 
               </span>
             </div>
             <CountdownTimer targetDate="2026-08-25T19:00:00+05:30" />

@@ -1,12 +1,13 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ChevronRight, Award, Layers, Code, Zap, Trophy } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 import TiltCard from './TiltCard';
 import AnnouncementsTicker from './AnnouncementsTicker';
+import ProblemStatementModal from './ProblemStatementModal'; // Make sure this path is correct
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -22,6 +23,9 @@ const fadeUp = {
 };
 
 export default function HeroSection() {
+  // 1. Added State for the Modal
+  const [isTeamModalOpen, setIsTeamModalOpen] = useState(false);
+
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
     if (el) {
@@ -31,18 +35,14 @@ export default function HeroSection() {
 
   return (
     <section className="relative pt-28 pb-20 md:pt-36 md:pb-28 overflow-hidden">
-
       {/* Ambient Orbs */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-[#39FF14]/10 rounded-full blur-3xl pointer-events-none animate-pulse" />
       <div className="absolute top-1/3 right-10 w-64 h-64 bg-[#00E5FF]/8 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-
         <div className="flex flex-col items-center text-center">
 
-          {/* =========================================================
-              COLLABORATION PILL (SYMMETRICAL)
-          ========================================================== */}
+          {/* COLLABORATION PILL */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -51,8 +51,6 @@ export default function HeroSection() {
             className="mb-8"
           >
             <div className="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full bg-black/60 border border-white/10 backdrop-blur-xl shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
-              
-              {/* Ideator Logo Pill */}
               <div className="h-8 px-3 py-1 bg-white rounded-lg flex items-center justify-center shadow-sm">
                 <Image
                   src="/assets/logos/ideator.png"
@@ -62,13 +60,9 @@ export default function HeroSection() {
                   className="h-5 w-auto object-contain"
                 />
               </div>
-
-              {/* Refined Cross */}
               <span className="text-gray-400 font-light text-xs tracking-widest select-none">
                 ✕
               </span>
-
-              {/* MathWorks Logo Pill */}
               <div className="h-8 px-3 py-1 bg-white rounded-lg flex items-center justify-center shadow-sm">
                 <Image
                   src="/assets/logos/Matlab.png"
@@ -78,7 +72,6 @@ export default function HeroSection() {
                   className="h-5 w-auto object-contain"
                 />
               </div>
-
             </div>
           </motion.div>
 
@@ -90,18 +83,12 @@ export default function HeroSection() {
             custom={1}
             variants={fadeUp}
             className="text-gray-300 mb-4 uppercase tracking-widest"
-            style={{
-              fontFamily: "'Silkscreen', monospace",
-              fontSize: '14px',
-            }}
+            style={{ fontFamily: "'Silkscreen', monospace", fontSize: '14px' }}
           >
             IDEATOR CLUB{' '}
             <span
               className="italic lowercase text-[#39FF14]"
-              style={{
-                fontFamily: "'VT323', monospace",
-                fontSize: '22px',
-              }}
+              style={{ fontFamily: "'VT323', monospace", fontSize: '22px' }}
             >
               presents
             </span>
@@ -140,13 +127,11 @@ export default function HeroSection() {
               className="text-lg sm:text-xl md:text-3xl tracking-tight text-white mb-3 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)] whitespace-nowrap"
               style={{
                 fontFamily: "'Press Start 2P', monospace",
-                textShadow:
-                  '0 0 12px rgba(57,255,20,0.5), 3px 3px 0 rgba(0,229,255,0.2)',
+                textShadow: '0 0 12px rgba(57,255,20,0.5), 3px 3px 0 rgba(0,229,255,0.2)',
               }}
             >
               MATLAB SIMULINK AI ENGINEERING HACKATHON
             </h1>
-
             <p
               className="text-emerald-400 whitespace-nowrap"
               style={{
@@ -155,8 +140,7 @@ export default function HeroSection() {
                 letterSpacing: '0.06em',
               }}
             >
-              An All-IndiaMATLAB Simulink AI Engineering Hackathon, Open to All
-              College Students
+              An All-IndiaMATLAB Simulink AI Engineering Hackathon, Open to All College Students
             </p>
           </motion.div>
 
@@ -181,8 +165,7 @@ export default function HeroSection() {
                 ⏱️ Registration Closes: August 25
               </span>
             </div>
-
-<CountdownTimer targetDate="2026-08-25T19:00:00+05:30" />
+            <CountdownTimer targetDate="2026-08-25T19:00:00+05:30" />
           </motion.div>
 
           {/* Dual CTAs */}
@@ -194,17 +177,14 @@ export default function HeroSection() {
             variants={fadeUp}
             className="flex flex-col sm:flex-row items-center gap-4 mb-14"
           >
-
-            {/* Register Button */}
-            <a
-              href="https://unstop.com/o/pNE0AoV?lb=useZi1fZ&utm_medium=Share&utm_source=iecyrqwn36473&utm_campaign=Online_coding_challenge"
-              target="_blank"
-              rel="noopener noreferrer"
+            {/* 2. REPLACED BUTTON: Now triggers the modal */}
+            <button
+              onClick={() => setIsTeamModalOpen(true)}
               className="px-8 py-3.5 rounded-xl bg-gradient-to-r from-[#39FF14] to-[#00FF66] text-[#060A07] font-extrabold text-sm font-mono tracking-wider shadow-[0_0_30px_rgba(57,255,20,0.6)] hover:scale-105 transition-all flex items-center gap-2 cursor-pointer"
             >
-              <span>REGISTRATION CLOSED</span>
+              <span>VIEW YOUR TEAM</span>
               <ChevronRight className="w-4 h-4" />
-            </a>
+            </button>
 
             {/* Prize Pool Button */}
             <button
@@ -214,7 +194,6 @@ export default function HeroSection() {
               <Trophy className="w-4 h-4 text-[#39FF14]" />
               <span>EXPLORE ₹30,000 PRIZE POOL</span>
             </button>
-
           </motion.div>
 
           {/* Key Event Highlights */}
@@ -227,40 +206,18 @@ export default function HeroSection() {
             className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-4xl pt-8 border-t border-emerald-950/80"
           >
             {[
-              {
-                icon: <Award className="w-5 h-5 text-[#E16725]" />,
-                val: '₹30,000',
-                label: 'Prize Pool + Rewards',
-              },
-              {
-                icon: <Layers className="w-5 h-5 text-[#39FF14]" />,
-                val: '4 Phases',
-                label: 'Registration to Grand Finale',
-              },
-              {
-                icon: <Code className="w-5 h-5 text-[#00E5FF]" />,
-                val: 'MATLAB & Simulink',
-                label: 'Primary Engineering Tools',
-              },
-              {
-                icon: <Zap className="w-5 h-5 text-[#39FF14]" />,
-                val: '3–4 Members',
-                label: 'Open to All Indian Colleges',
-              },
+              { icon: <Award className="w-5 h-5 text-[#E16725]" />, val: '₹30,000', label: 'Prize Pool + Rewards' },
+              { icon: <Layers className="w-5 h-5 text-[#39FF14]" />, val: '4 Phases', label: 'Registration to Grand Finale' },
+              { icon: <Code className="w-5 h-5 text-[#00E5FF]" />, val: 'MATLAB & Simulink', label: 'Primary Engineering Tools' },
+              { icon: <Zap className="w-5 h-5 text-[#39FF14]" />, val: '3–4 Members', label: 'Open to All Indian Colleges' },
             ].map((item, i) => (
               <div
                 key={i}
                 className="flex flex-col items-center justify-between p-4 rounded-xl bg-[#0D110E]/95 border border-gray-800 backdrop-blur-md shadow-[0_0_15px_rgba(0,0,0,0.4)] h-full"
               >
                 {item.icon}
-
-                <span className="text-lg font-bold font-mono text-white mt-1">
-                  {item.val}
-                </span>
-
-                <span className="text-[10px] font-bold text-gray-400 mt-0.5 text-center">
-                  {item.label}
-                </span>
+                <span className="text-lg font-bold font-mono text-white mt-1">{item.val}</span>
+                <span className="text-[10px] font-bold text-gray-400 mt-0.5 text-center">{item.label}</span>
               </div>
             ))}
           </motion.div>
@@ -279,6 +236,11 @@ export default function HeroSection() {
 
         </div>
       </div>
+
+      {/* 3. MODAL POPUP RENDERED HERE */}
+      {isTeamModalOpen && (
+        <ProblemStatementModal onClose={() => setIsTeamModalOpen(false)} />
+      )}
     </section>
   );
 }

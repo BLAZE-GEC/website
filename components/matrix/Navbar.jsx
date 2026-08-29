@@ -3,12 +3,14 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronRight, Trophy } from 'lucide-react';
+import { Menu, X, Trophy, Search } from 'lucide-react';
+import ProblemStatementModal from './ProblemStatementModal';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [hoveredLink, setHoveredLink] = useState(null);
+  const [psModalOpen, setPsModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 15);
@@ -32,7 +34,7 @@ export default function Navbar() {
   const scrollToSection = (id) => {
     document.body.style.overflow = '';
     setMobileMenuOpen(false);
-    
+
     setTimeout(() => {
       const el = document.getElementById(id);
       if (el) {
@@ -62,9 +64,9 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex items-center justify-between">
-        
+
         {/* Logo */}
-        <div 
+        <div
           onClick={() => {
             document.body.style.overflow = '';
             setMobileMenuOpen(false);
@@ -72,9 +74,9 @@ export default function Navbar() {
           }}
           className="flex items-center cursor-pointer group shrink-0"
         >
-          <Image 
-            src="/assets/MATRIX.png" 
-            alt="MATRIX Logo" 
+          <Image
+            src="/assets/MATRIX.png"
+            alt="MATRIX Logo"
             width={140}
             height={32}
             className="h-6 sm:h-8 w-auto object-contain group-hover:scale-105 transition-transform filter drop-shadow-[0_0_12px_#39FF14]"
@@ -99,7 +101,7 @@ export default function Navbar() {
                     : 'scale-95 opacity-0'
                 }`}
               />
-              
+
               <span
                 className="relative flex items-center gap-1.5 transition-colors duration-200"
                 style={{ fontFamily: "'Press Start 2P', 'VT323', monospace", fontSize: '11px', letterSpacing: '0.05em' }}
@@ -133,16 +135,14 @@ export default function Navbar() {
 
         {/* Action CTAs */}
         <div className="hidden md:flex items-center gap-3">
-          <a
-            href="https://unstop.com/o/pNE0AoV?lb=useZi1fZ&utm_medium=Share&utm_source=iecyrqwn36473&utm_campaign=Online_coding_challenge"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={() => setPsModalOpen(true)}
             className="relative group px-4 py-2.5 rounded-lg bg-[#39FF14] text-[#060A07] hover:scale-105 shadow-[0_0_20px_rgba(57,255,20,0.5)] transition-all cursor-pointer flex items-center gap-1.5 font-bold"
             style={{ fontFamily: "'Press Start 2P', monospace", fontSize: '9px' }}
           >
-            <span>REGISTRATION CLOSED</span>
-            <ChevronRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-          </a>
+            <Search className="w-3 h-3" />
+            <span>VIEW YOUR TEAM</span>
+          </button>
         </div>
 
         {/* Mobile Controls */}
@@ -172,7 +172,7 @@ export default function Navbar() {
               }}
               className="fixed inset-0 bg-black/80 backdrop-blur-md z-[90] md:hidden"
             />
-            
+
             {/* Drawer panel with viewport height fallback */}
             <motion.div
               initial={{ opacity: 0, x: '100%' }}
@@ -221,20 +221,27 @@ export default function Navbar() {
 
               {/* Bottom CTA */}
               <div className="p-4 border-t border-gray-800/80 space-y-2.5 bg-[#060A07] shrink-0">
-                <a
-                  href="https://unstop.com/o/pNE0AoV?lb=useZi1fZ&utm_medium=Share&utm_source=iecyrqwn36473&utm_campaign=Online_coding_challenge"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  onClick={() => {
+                    document.body.style.overflow = '';
+                    setMobileMenuOpen(false);
+                    setPsModalOpen(true);
+                  }}
                   className="w-full py-3 rounded-xl block bg-[#39FF14] text-[#060A07] font-bold text-center shadow-[0_0_20px_rgba(57,255,20,0.5)] cursor-pointer active:scale-98 transition-all"
                   style={{ fontFamily: "'Press Start 2P', monospace", fontSize: '8px' }}
                 >
-                  REGISTRATION CLOSED
-                </a>
+                  VIEW YOUR TEAM
+                </button>
               </div>
             </motion.div>
           </>
         )}
       </AnimatePresence>
+
+      {/* Problem Statement Lookup Modal */}
+      {psModalOpen && (
+        <ProblemStatementModal onClose={() => setPsModalOpen(false)} />
+      )}
     </header>
   );
 }

@@ -1,4 +1,4 @@
- "use client";
+"use client";
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -48,8 +48,145 @@ const aboutGridImages = [
   { src: "/assests/placementpgm.jpg", alt: "Brainstorming" },
 ];
 
+// Cyclic smooth looping slideshow component
+function UpcomingSlideshowTile() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(true);
+
+  // Sequence: Pic 1 -> Pic 2 -> Pic 1 (Cloned for smooth forward transition)
+  const slides = [
+        {
+      type: "image",
+      image: "/assests/events1/brand-new-year.jpg",
+      titleTop: "BRAND NEW YEAR",
+      titleBottom: "Freshers Orientation",
+    },
+    {
+      type: "image",
+      image: "/assests/events1/smartgect.png",
+      
+       
+      
+    },
+
+    {
+      type: "image",
+      image: "/assests/events1/brand-new-year.jpg",
+      titleTop: "BRAND NEW YEAR",
+      titleBottom: "Freshers Orientation",
+    },
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => prev + 1);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
+
+  // When the transition hits the final cloned slide, instantly snap back to 0 without animation
+  const handleTransitionEnd = () => {
+    if (currentSlide === slides.length - 1) {
+      setIsTransitioning(false);
+      setCurrentSlide(0);
+      // Re-enable transition after a tiny tick so future slides glide normally
+      setTimeout(() => setIsTransitioning(true), 50);
+    }
+  };
+
+  return (
+    <TiltCard className="relative rounded-2xl overflow-hidden shadow-sm h-[340px]" maxTilt={4}>
+      {/* Sliding Track for Backgrounds / Images */}
+      <div 
+        className="absolute inset-0 flex"
+        style={{ 
+          transform: `translateX(-${currentSlide * 100}%)`,
+          transition: isTransitioning ? "transform 0.7s ease-in-out" : "none" 
+        }}
+        onTransitionEnd={handleTransitionEnd}
+      >
+        {slides.map((slide, index) => (
+          <div key={index} className="min-w-full h-full relative flex-shrink-0">
+            {slide.type === "gradient" ? (
+              <div className="absolute inset-0" style={{ background: slide.bgStyle }} />
+            ) : (
+              <Image src={slide.image} alt={slide.titleTop} fill className="object-cover" />
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* Dark gradient overlay for text readability */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+
+      {/* Sliding Track for Texts */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div 
+          className="absolute inset-0 flex"
+          style={{ 
+            transform: `translateX(-${currentSlide * 100}%)`,
+            transition: isTransitioning ? "transform 0.7s ease-in-out" : "none" 
+          }}
+        >
+          {slides.map((slide, index) => (
+            <div key={index} className="min-w-full h-full flex flex-col items-center justify-center text-center px-6 flex-shrink-0 pb-12">
+              <h2
+                style={{ color: "#fff", textShadow: "0 2px 6px rgba(0,0,0,0.6)" }}
+                className="font-heading text-2xl md:text-3xl font-bold tracking-wide"
+              >
+                {slide.titleTop}
+              </h2>
+              <h3
+                style={{ color: "#fff", textShadow: "0 2px 6px rgba(0,0,0,0.6)" }}
+                className="font-heading text-3xl md:text-4xl font-bold mt-1"
+              >
+                {slide.titleBottom}
+              </h3>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Continuous Marquee Banner at the Bottom */}
+      <div className="absolute bottom-0 left-0 w-full bg-accent overflow-hidden py-2 z-10">
+        <div className="ticker-track">
+          <span className="ticker-text">
+            ● COMING SOON • COMING SOON • COMING SOON • COMING SOON • COMING SOON •
+          </span>
+          <span className="ticker-text">
+            ● COMING SOON • COMING SOON • COMING SOON • COMING SOON • COMING SOON •
+          </span>
+        </div>
+      </div>
+
+      <style jsx>{`
+        .ticker-track {
+          display: flex;
+          width: max-content;
+          white-space: nowrap;
+          animation: tickerScrollLocal 10s linear infinite;
+        }
+        .ticker-text {
+          color: white;
+          font-weight: 700;
+          font-size: 0.8rem;
+          letter-spacing: 1px;
+          display: inline-block;
+        }
+        @keyframes tickerScrollLocal {
+          from {
+            transform: translateX(0);
+          }
+          to {
+            transform: translateX(-50%);
+          }
+        }
+      `}</style>
+    </TiltCard>
+  );
+}
+
 export default function Home() {
-  // ---- Hero Carousel state ----
   const [slide, setSlide] = useState(0);
 
   useEffect(() => {
@@ -59,13 +196,11 @@ export default function Home() {
     return () => clearInterval(timer);
   }, []);
 
-  // ---- Newsletter form state ----
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
 
   const handleSubscribe = async (e) => {
     e.preventDefault();
-    // Load confetti only when needed, keeps the page fast for everyone else
     const confetti = (await import("canvas-confetti")).default;
     confetti({
       particleCount: 80,
@@ -77,19 +212,12 @@ export default function Home() {
     setTimeout(() => setSubscribed(false), 4000);
   };
 
-  // ---- RSVP placeholder ----
-  const handleRSVP = (eventTitle) => {
-    alert(`Thanks for your interest in "${eventTitle}"! We'll be in touch with details.`);
-  };
-
   return (
     <main className="container mx-auto px-4 pt-8 pb-20">
       <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-8">
 
         {/* LEFT COLUMN — Carousel + About */}
         <RevealOnScroll>
-
-          {/* Hero Carousel */}
           <div className="relative w-full h-[420px] md:h-[520px] rounded-2xl overflow-hidden shadow-lg">
             {heroSlides.map((s, i) => (
               <div
@@ -101,7 +229,6 @@ export default function Home() {
               >
                 <Image src={s.img} alt={s.title} fill priority={i === 0} className="object-cover" />
 
-                {/* Frosted glass strip — flush to the bottom edge, full width */}
                 <div
                   className="absolute bottom-0 left-0 right-0 px-4 py-3 md:px-6 md:py-4"
                   style={{
@@ -133,7 +260,6 @@ export default function Home() {
               </div>
             ))}
 
-            {/* Carousel dots */}
             <div className="absolute top-4 right-6 z-20 flex gap-2">
               {heroSlides.map((_, i) => (
                 <button
@@ -148,7 +274,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* About Us card */}
           <TiltCard className="bg-cardBg rounded-2xl p-6 md:p-10 mt-8 shadow-sm" maxTilt={4}>
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary mb-6">
               About Us
@@ -194,91 +319,12 @@ export default function Home() {
         {/* RIGHT COLUMN — Events, Gallery, Newsletter */}
         <RevealOnScroll delay={0.15} className="flex flex-col gap-8">
 
-          {/* Upcoming Events widget */}
-          {/* SMART GECT CHALLENGE */}
-          <TiltCard
-            className="relative rounded-2xl overflow-hidden shadow-sm h-[340px]"
-            maxTilt={4}
-          >
-            {/* Dark Premium Background */}
-            <div
-              className="absolute inset-0"
-              style={{
-                background: `
-                  radial-gradient(circle at top right, rgba(210,139,38,0.18), transparent 40%),
-                  radial-gradient(circle at bottom left, rgba(210,139,38,0.12), transparent 45%),
-                  linear-gradient(135deg, #0b1114 0%, #111827 45%, #1a261c 100%)
-                `,
-              }}
-            />
+          {/* Upcoming Events Sliding Widget */}
+          <UpcomingSlideshowTile />
 
-            {/* Soft Glow */}
-            <div
-              className="absolute inset-0"
-              style={{
-                boxShadow: "inset 0 0 120px rgba(0,0,0,0.45)",
-              }}
-            />
+          {/* Merch Store */}
+          <MerchTile />
 
-            {/* Center Content */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-              <h2
-                style={{ color: "#fff" }}
-                className="font-heading text-3xl md:text-4xl font-bold tracking-wide"
-              >
-                SMART GECT CHALLENGE
-              </h2>
-
-              <h3
-                style={{ color: "#fff" }}
-                className="font-heading text-5xl md:text-6xl font-bold mt-2"
-              >
-                2026
-              </h3>
-            </div>
-
-            {/* News Ticker */}
-            <div className="absolute bottom-0 left-0 w-full bg-accent overflow-hidden py-2">
-              <div className="ticker-track">
-                <span className="ticker-text">
-                  ● COMING SOON • COMING SOON • COMING SOON • COMING SOON • COMING SOON •
-                </span>
-
-                <span className="ticker-text">
-                  ● COMING SOON • COMING SOON • COMING SOON • COMING SOON • COMING SOON •
-                </span>
-              </div>
-            </div>
-
-            {/* Animation lives right here in the component — can't drift out
-                of sync with globals.css again, since it's self-contained. */}
-            <style jsx>{`
-              .ticker-track {
-                display: flex;
-                width: max-content;
-                white-space: nowrap;
-                animation: tickerScrollLocal 10s linear infinite;
-              }
-              .ticker-text {
-                color: white;
-                font-weight: 700;
-                font-size: 0.8rem;
-                letter-spacing: 1px;
-                display: inline-block;
-                padding-right: 0;
-              }
-              @keyframes tickerScrollLocal {
-                from {
-                  transform: translateX(0);
-                }
-                to {
-                  transform: translateX(-50%);
-                }
-              }
-            `}</style>
-          </TiltCard>
-{/* Merch Store */}
-<MerchTile />
           {/* Gallery widget */}
           <TiltCard className="bg-cardBg rounded-2xl p-6 shadow-sm" maxTilt={4}>
             <h3 className="font-heading text-2xl font-bold text-primary mb-4">Gallery</h3>

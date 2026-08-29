@@ -1,70 +1,38 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 
-export default function CountdownTimer({ targetDate = "2026-08-28T00:00:00+05:30" }) {
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  });
-
-  useEffect(() => {
-    const calculateTime = () => {
-      const difference = +new Date(targetDate) - +new Date();
-      if (difference > 0) {
-        setTimeLeft({
-          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-          minutes: Math.floor((difference / 1000 / 60) % 60),
-          seconds: Math.floor((difference / 1000) % 60)
-        });
-      } else {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-      }
-    };
-
-    calculateTime();
-    const timer = setInterval(calculateTime, 1000);
-    return () => clearInterval(timer);
-  }, [targetDate]);
-
-  const units = [
-    { label: 'DAYS', value: timeLeft.days },
-    { label: 'HOURS', value: timeLeft.hours },
-    { label: 'MINUTES', value: timeLeft.minutes },
-    { label: 'SECONDS', value: timeLeft.seconds }
-  ];
-
+export default function RegistrationCounter() {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-2xl mx-auto my-6">
-      {units.map((unit, index) => (
-        <motion.div
-          key={unit.label}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: index * 0.1 }}
-          className="relative group p-4 rounded-2xl bg-[#0D110E]/96 border border-[#39FF14]/30 backdrop-blur-md text-center shadow-[0_0_20px_rgba(57,255,20,0.15)] hover:border-[#39FF14] hover:shadow-[0_0_30px_rgba(57,255,20,0.3)] transition-all"
-        >
-          {/* Faint Grid lines inside card */}
-          <div className="absolute inset-0 opacity-10 matrix-signal-lines rounded-2xl pointer-events-none" />
+    <div className="flex justify-center max-w-2xl mx-auto my-6 px-4">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="relative group w-full md:w-[500px] p-6 sm:p-8 rounded-2xl bg-[#0D110E]/96 border border-[#39FF14]/40 backdrop-blur-md text-center shadow-[0_0_20px_rgba(57,255,20,0.2)] hover:border-[#39FF14] hover:shadow-[0_0_40px_rgba(57,255,20,0.4)] transition-all"
+      >
+        {/* Faint Grid lines inside card */}
+        <div className="absolute inset-0 opacity-10 matrix-signal-lines rounded-2xl pointer-events-none" />
+        
+        <div className="relative z-10 flex flex-col items-center justify-center">
+          <span className="text-5xl sm:text-6xl md:text-7xl font-black font-mono tracking-tighter text-[#39FF14] filter drop-shadow-[0_0_15px_rgba(57,255,20,0.8)]">
+            1,400+
+          </span>
           
-          <div className="relative z-10">
-            <span className="text-3xl sm:text-4xl md:text-5xl font-black font-mono tracking-tighter text-[#39FF14] filter drop-shadow-[0_0_12px_rgba(57,255,20,0.6)]">
-              {String(unit.value).padStart(2, '0')}
-            </span>
-            <span className="block mt-1 text-[10px] sm:text-xs font-mono font-extrabold tracking-widest text-gray-300">
-              {unit.label}
-            </span>
-          </div>
+          <span className="block mt-4 text-sm sm:text-base font-mono font-extrabold tracking-widest text-gray-200">
+            TOTAL REGISTRATIONS
+          </span>
+          
+          <span className="block mt-2 text-xs sm:text-sm font-mono text-[#39FF14]/70">
+            Thank you for the overwhelming response!
+          </span>
+        </div>
 
-          {/* Corner neon dash */}
-          <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-[#39FF14] rounded-tr-xl" />
-          <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-[#39FF14] rounded-bl-xl" />
-        </motion.div>
-      ))}
+        {/* Corner neon dashes */}
+        <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-[#39FF14] rounded-tr-xl transition-all group-hover:w-6 group-hover:h-6" />
+        <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-[#39FF14] rounded-bl-xl transition-all group-hover:w-6 group-hover:h-6" />
+      </motion.div>
     </div>
   );
 }

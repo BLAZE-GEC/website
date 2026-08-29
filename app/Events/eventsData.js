@@ -2,18 +2,18 @@
 // Used by both the Events page and the homepage "Latest Happenings" widget.
 
 const events = [
+ 
   {
-  id: 14,
-  img: "/assests/events1/ignitex-poster.jpg",
-  title: "IGNITE.X Workshop Series",
-  des: "A series of hands-on technical workshops covering engineering, design, programming, and emerging technologies.",
-  venue: "GEC Thrissur",
-  date: "29-07-2026 — 05-08-2026",
-  time: "",
-  link: "/Events/ignitex",
-  status: "View Workshop Series",
-},
-
+    id: 14,
+    img: "/assests/events1/ignitex-poster.jpg",
+    title: "IGNITE.X Workshop Series",
+    des: "A series of hands-on technical workshops covering engineering, design, programming, and emerging technologies.",
+    venue: "GEC Thrissur",
+    date: "29-07-2026 — 05-08-2026",
+    time: "",
+    link: "/Events/ignitex",
+    status: "View Workshop Series",
+  },
   {
     id: 13,
     img: "/assests/events1/dwsim.jpeg",
@@ -128,7 +128,7 @@ const events = [
     id: 3,
     img: "/assests/salvete.jpg",
     title: "Salvete",
-    des: "A collaborative brainstorming session fostering partnerships between Ideator and various departments, followed by a tour of the Ideator room.",
+    Ddes: "A collaborative brainstorming session fostering partnerships between Ideator and various departments, followed by a tour of the Ideator room.",
     venue: "Respective Departments",
     date: "20 Sep 2023",
     time: "4:15 pm",

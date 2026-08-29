@@ -1,39 +1,53 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TiltCard from "./ui/TiltCard";
 
 /**
  * A reusable "Coming Soon" announcement tile.
- * - Pass just a title -> shows the dark gradient background (Smart GECT Challenge style)
- * - Pass an image too -> shows that real poster/photo as the background instead
- * - Pass hideBanner -> skips the moving "COMING SOON" banner entirely
- * - When an image is set, clicking the tile toggles between a cropped fill
- *   view and the full image centered/contained within the same tile —
- *   no separate popup, it "pops out" right where it already is.
- *
- * Usage:
- *   <ComingSoonTile title="SMART GECT CHALLENGE" />
- *   <ComingSoonTile image="/assests/ignitex-poster.jpeg" hideBanner />
+ * - Pass `images` (array) -> cycles through them every 2 seconds if not expanded.
+ * - Pass `image` (string) -> single static image fallback.
+ * - Pass `title` -> shows title text.
+ * - Pass `hideBanner` -> skips the moving "COMING SOON" banner.
  */
-export default function ComingSoonTile({ title, image, hideBanner = false, className = "" }) {
+export default function ComingSoonTile({ title, image, images, hideBanner = false, className = "" }) {
   const [expanded, setExpanded] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Normalize images into an array (supports both single `image` and multiple `images`)
+  const imageList = images && images.length > 0 ? images : image ? [image] : [];
+
+  // Slideshow effect: Change image every 2 seconds unless expanded
+  useEffect(() => {
+    if (imageList.length <= 1 || expanded) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % imageList.length);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [imageList.length, expanded]);
+
+  const activeImage = imageList[currentIndex];
 
   return (
     <TiltCard
       maxTilt={5}
       className={`relative rounded-xl overflow-hidden h-64 flex items-end ${className}`}
     >
-      {image ? (
+      {activeImage ? (
         <div
           onClick={() => setExpanded((prev) => !prev)}
-          className={`absolute inset-0 cursor-pointer ${expanded ? "bg-black" : ""}`}
+          className={`absolute inset-0 cursor-pointer transition-colors duration-500 ${
+            expanded ? "bg-black" : ""
+          }`}
         >
           <img
-            src={image}
+            key={currentIndex} // Triggers a smooth fade/transition when image swaps
+            src={activeImage}
             alt={title || "Coming soon"}
-            className={`w-full h-full transition-all duration-300 ${
-              expanded ? "object-contain p-2" : "object-cover"
+            className={`w-full h-full transition-all duration-500 ${
+              expanded ? "object-contain p-2" : "object-cover animate-fade"
             }`}
           />
         </div>
@@ -41,7 +55,9 @@ export default function ComingSoonTile({ title, image, hideBanner = false, class
         <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-accent" />
       )}
 
-      {!expanded && <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />}
+      {!expanded && (
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+      )}
 
       {title && !expanded && (
         <h3

@@ -2,7 +2,17 @@
 // Used by both the Events page and the homepage "Latest Happenings" widget.
 
 const events = [
- 
+  {
+    id: 15,
+    img: "/assests/events1/brand-new-year.jpg",
+    title: "BRAND NEW YEAR — Freshers Orientation",
+    des: "Our grand orientation program welcoming the new batch of students to Club Ideator. The event featured interactive sessions, an introduction to our maker culture, and a showcase of what we build.",
+    venue: "GEC Thrissur",
+    date: "August 2024", 
+    time: "",
+    link: "/Gallery#team-meeting", // <--- Anchor link to the specific section
+    status: "View Event Images",
+  },
   {
     id: 14,
     img: "/assests/events1/ignitex-poster.jpg",
@@ -128,7 +138,7 @@ const events = [
     id: 3,
     img: "/assests/salvete.jpg",
     title: "Salvete",
-    Ddes: "A collaborative brainstorming session fostering partnerships between Ideator and various departments, followed by a tour of the Ideator room.",
+    des: "A collaborative brainstorming session fostering partnerships between Ideator and various departments, followed by a tour of the Ideator room.",
     venue: "Respective Departments",
     date: "20 Sep 2023",
     time: "4:15 pm",

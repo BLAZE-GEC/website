@@ -7,10 +7,7 @@ import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import ComingSoonTile from "@/components/ComingSoonTile";
 
 const upcomingEvents = [
-  { 
-    title: "BRAND NEW YEAR — Freshers Orientation",
-    image: "/assests/events1/brand-new-year.jpg",
-  },
+ 
   { 
      
     image: "/assests/events1/smartgect.png",

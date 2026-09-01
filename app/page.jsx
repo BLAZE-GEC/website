@@ -55,38 +55,25 @@ function UpcomingSlideshowTile() {
 
   // Sequence: Pic 1 -> Pic 2 -> Pic 1 (Cloned for smooth forward transition)
   const slides = [
-        {
-      type: "image",
-      image: "/assests/events1/brand-new-year.jpg",
-      titleTop: "BRAND NEW YEAR",
-      titleBottom: "Freshers Orientation",
-    },
     {
       type: "image",
       image: "/assests/events1/smartgect.png",
-      
-       
-      
-    },
-
-    {
-      type: "image",
-      image: "/assests/events1/brand-new-year.jpg",
-      titleTop: "BRAND NEW YEAR",
-      titleBottom: "Freshers Orientation",
     },
   ];
 
   useEffect(() => {
+    // Only run the sliding timer if there is more than 1 image
+    if (slides.length <= 1) return;
+
     const timer = setInterval(() => {
       setCurrentSlide((prev) => prev + 1);
     }, 3000);
     return () => clearInterval(timer);
-  }, []);
+  }, [slides.length]);
 
   // When the transition hits the final cloned slide, instantly snap back to 0 without animation
   const handleTransitionEnd = () => {
-    if (currentSlide === slides.length - 1) {
+    if (currentSlide === slides.length - 1 && slides.length > 1) {
       setIsTransitioning(false);
       setCurrentSlide(0);
       // Re-enable transition after a tiny tick so future slides glide normally
@@ -101,7 +88,7 @@ function UpcomingSlideshowTile() {
         className="absolute inset-0 flex"
         style={{ 
           transform: `translateX(-${currentSlide * 100}%)`,
-          transition: isTransitioning ? "transform 0.7s ease-in-out" : "none" 
+          transition: isTransitioning && slides.length > 1 ? "transform 0.7s ease-in-out" : "none" 
         }}
         onTransitionEnd={handleTransitionEnd}
       >
@@ -110,7 +97,7 @@ function UpcomingSlideshowTile() {
             {slide.type === "gradient" ? (
               <div className="absolute inset-0" style={{ background: slide.bgStyle }} />
             ) : (
-              <Image src={slide.image} alt={slide.titleTop} fill className="object-cover" />
+              <Image src={slide.image} alt={slide.titleTop || "Event Image"} fill className="object-cover" />
             )}
           </div>
         ))}
@@ -125,23 +112,27 @@ function UpcomingSlideshowTile() {
           className="absolute inset-0 flex"
           style={{ 
             transform: `translateX(-${currentSlide * 100}%)`,
-            transition: isTransitioning ? "transform 0.7s ease-in-out" : "none" 
+            transition: isTransitioning && slides.length > 1 ? "transform 0.7s ease-in-out" : "none" 
           }}
         >
           {slides.map((slide, index) => (
             <div key={index} className="min-w-full h-full flex flex-col items-center justify-center text-center px-6 flex-shrink-0 pb-12">
-              <h2
-                style={{ color: "#fff", textShadow: "0 2px 6px rgba(0,0,0,0.6)" }}
-                className="font-heading text-2xl md:text-3xl font-bold tracking-wide"
-              >
-                {slide.titleTop}
-              </h2>
-              <h3
-                style={{ color: "#fff", textShadow: "0 2px 6px rgba(0,0,0,0.6)" }}
-                className="font-heading text-3xl md:text-4xl font-bold mt-1"
-              >
-                {slide.titleBottom}
-              </h3>
+              {slide.titleTop && (
+                <h2
+                  style={{ color: "#fff", textShadow: "0 2px 6px rgba(0,0,0,0.6)" }}
+                  className="font-heading text-2xl md:text-3xl font-bold tracking-wide"
+                >
+                  {slide.titleTop}
+                </h2>
+              )}
+              {slide.titleBottom && (
+                <h3
+                  style={{ color: "#fff", textShadow: "0 2px 6px rgba(0,0,0,0.6)" }}
+                  className="font-heading text-3xl md:text-4xl font-bold mt-1"
+                >
+                  {slide.titleBottom}
+                </h3>
+              )}
             </div>
           ))}
         </div>

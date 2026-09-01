@@ -20,8 +20,23 @@ const galleryPhotos = [
   { id: 14, src: "/assests/jetengine.jpg", title: "Jet Engine Simulation", category: "prototypes" },
   { id: 15, src: "/assests/completed/multi_purpose_robo_arm.jpeg", title: "Multi-Purpose Robo Arm", category: "prototypes" },
 
-  { id: 16, src: "/assests/salvete.jpg", title: "Salvete - Fresher Session", category: "team" },
-  { id: 17, src: "/assests/placementpgm.jpg", title: "Coding Camp Session", category: "team" },
+  // --- TEAM MEETINGS (Brand New Year first, followed by others) ---
+  
+  // COMBINED AUTO-SWIPING TILE (Now placed first in the team section)
+  { 
+    id: 16, 
+    src: "/assests/events1/brand-new-year.jpg", 
+    slides: [
+      "/assests/events1/brand-new-year.jpg", // Frame 1: Spiderman Cover
+      "/assests/freshers1.jpg",              // Frame 2
+      "/assests/freshers2.jpg"               // Frame 3
+    ],
+    title: "Brand New Year Fresher's Event", 
+    category: "team" // <- Restored the category so it shows up in the filter!
+  },
+  { id: 17, src: "/assests/salvete.jpg", title: "Salvete - Fresher Session", category: "team" },
+  { id: 18, src: "/assests/placementpgm.jpg", title: "Coding Camp Session", category: "team" },
+  { id: 19, src: "/assests/ideathon.jpg", title: "Ideathon Session", category: "team" },
 ];
 
 export default galleryPhotos;

@@ -16,7 +16,7 @@ const faqs = [
    
   {
     q: "What is required in the final online submission package?",
-    a: "Submissions are due by September 14 on the official portal. The package must include: (1) Project Abstract, (2) MATLAB / Simulink Files, (3) Source Code (where applicable), (4) Demonstration Video."
+    a: "Submissions are due by September 16 on the official portal. The package must include: (1) Project Abstract, (2) MATLAB / Simulink Files, (3) Source Code (where applicable), (4) Demonstration Video."
   },
  
    

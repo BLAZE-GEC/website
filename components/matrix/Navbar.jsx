@@ -135,6 +135,31 @@ export default function Navbar() {
 
         {/* Action CTAs */}
         <div className="hidden md:flex items-center gap-3">
+          
+          {/* Submit Your Work Button (Desktop) */}
+          <a
+            href="https://unstop.com/o/pNE0AoV?lb=useZi1fZ&utm_medium=Share&utm_source=iecyrqwn36473&utm_campaign=Online_coding_challenge" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative px-4 py-2.5 rounded-lg border border-[#39FF14]/50 bg-black/60 text-[#39FF14] hover:bg-[#39FF14] hover:text-black hover:scale-105 shadow-[0_0_15px_rgba(57,255,20,0.2)] transition-all cursor-pointer flex items-center gap-2 font-bold"
+            style={{ fontFamily: "'Press Start 2P', monospace", fontSize: '9px' }}
+          >
+            <span>SUBMIT YOUR WORK</span>
+            
+            {/* Info Icon with its OWN group for hover */}
+            <div className="relative group flex items-center justify-center">
+              <span className="flex items-center justify-center w-3.5 h-3.5 rounded-full border-[1.5px] border-current text-[8px] font-sans font-black italic cursor-help">
+                i
+              </span>
+              
+              {/* Tooltip (Hidden by default, shows ONLY on hovering the 'i' icon) */}
+              {/* FIXED: text-white, font-bold, bg-black, z-[100] */}
+              <div className="absolute top-full right-0 mt-3 w-64 p-3 text-[12px] leading-relaxed font-sans font-bold text-center text-white bg-black border border-[#39FF14] rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-[100] shadow-[0_0_20px_rgba(57,255,20,0.6)]">
+                You can submit your work through unstop portal redirected from here..
+              </div>
+            </div>
+          </a>
+
           <button
             onClick={() => setPsModalOpen(true)}
             className="relative group px-4 py-2.5 rounded-lg bg-[#39FF14] text-[#060A07] hover:scale-105 shadow-[0_0_20px_rgba(57,255,20,0.5)] transition-all cursor-pointer flex items-center gap-1.5 font-bold"
@@ -220,7 +245,32 @@ export default function Navbar() {
               </div>
 
               {/* Bottom CTA */}
-              <div className="p-4 border-t border-gray-800/80 space-y-2.5 bg-[#060A07] shrink-0">
+              <div className="p-4 border-t border-gray-800/80 space-y-3 bg-[#060A07] shrink-0 overflow-visible">
+                
+                {/* Submit Your Work Button (Mobile) */}
+                <a
+                  href="https://unstop.com/o/pNE0AoV?lb=useZi1fZ&utm_medium=Share&utm_source=iecyrqwn36473&utm_campaign=Online_coding_challenge"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-3 rounded-xl flex justify-center items-center gap-2 bg-[#090E0B] border border-[#39FF14]/50 text-[#39FF14] font-bold text-center shadow-[0_0_15px_rgba(57,255,20,0.1)] cursor-pointer active:scale-98 transition-all"
+                  style={{ fontFamily: "'Press Start 2P', monospace", fontSize: '8px' }}
+                >
+                  <span>SUBMIT YOUR WORK</span>
+                  
+                  {/* Info Icon with its OWN group */}
+                  <div className="relative group flex items-center justify-center">
+                    <span className="flex items-center justify-center w-3.5 h-3.5 rounded-full border-[1.5px] border-current text-[8px] font-sans font-black italic cursor-help">
+                      i
+                    </span>
+                    
+                    {/* Tooltip for Mobile */}
+                    {/* FIXED: text-white, font-bold, bg-black, z-[100] */}
+                    <div className="absolute bottom-full right-0 mb-3 w-[200px] p-2.5 text-[11px] leading-tight font-sans font-bold text-center text-white bg-black border border-[#39FF14] rounded-lg opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-300 pointer-events-none z-[100] shadow-[0_0_20px_rgba(57,255,20,0.6)]">
+                      You can submit your work through unstop portal redirected from here..
+                    </div>
+                  </div>
+                </a>
+
                 <button
                   onClick={() => {
                     document.body.style.overflow = '';

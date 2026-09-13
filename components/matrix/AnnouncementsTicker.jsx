@@ -16,8 +16,8 @@ export default function AnnouncementsTicker() {
     {
       id: 2,
       badge: 'SUBMISSION DEADLINE',
-      text: '💡 Project Submission Deadline on September 14 via official portal.',
-      date: 'SEP 14',
+      text: '💡 Project Submission Deadline on September 16 via official portal.',
+      date: 'SEP 16',
       color: 'border-[#E16725] text-[#E16725]'
     },
     {

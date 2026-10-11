@@ -39,7 +39,7 @@ Jayaraj Shankar is an entrepreneur and business consultant with a background in 
   {
     id: "4",
     name: "Nishanth Gopinathan",
-    image: "/assests/nopic.png",
+    image: "/assests/nopic.jpeg",
     role: "1993 -97 BTech Chemical Eng",
     linkedin: "https://www.linkedin.com/in/nishanth-gopinathan-4457776",
     description: "<p>An experienced chemical engineer, Nishanth Gopinathan has contributed significantly to the field with his expertise and knowledge.</p>"

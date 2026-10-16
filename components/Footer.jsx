@@ -88,8 +88,8 @@ const Footer = () => {
           </p>
           <p className="text-bgSecondary text-sm">
             Email:{" "}
-            <a href="mailto:cfi.gec@gmail.com" className="hover:text-accent-light transition-colors">
-              cfi.gec@gmail.com
+            <a href="mailto:ideator@gectcr.ac.in" className="hover:text-accent-light transition-colors">
+              ideator@gectcr.ac.in
             </a>
           </p>
         </div>
